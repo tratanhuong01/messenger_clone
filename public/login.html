@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css general -->
+    <link rel="stylesheet" href="./css/loading.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/tailwind.css" />
+    <link rel="stylesheet" href="./css/tailwind.custom.css" />
+    <link rel="stylesheet" href="./css/animation.css" />
+    <!-- css general -->
+
+    <!--cdn general-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!--cdn general-->
+
+    <title>Document</title>
+</head>
+
+<body class=" bg-gray-100">
+    <!-- main -->
+    <div class="w-full dark:bg-dark-main h-screen relative" id="web">
+        <div class="w-full mx-auto sm:w-full md:w-full lg:w-full xl:w-3/4 2xl:w-3/4">
+            <div class="w-full flex flex-col py-2 mx-auto sm:flex-col sm:pt-4 lg:flex-row lg:pt-20">
+                <div class="w-full xl:absolute xl:top-1/2 transform xl:-translate-y-1/2 xl:py-0
+                p-8 pr-4 sm:w-11/12 sm:mx-auto lg:w-1/2" id="leftLogin">
+                    <div class="w-full">
+                        <span class="text-55px font-semibold text-1877F2">Ensonet <br></span>
+                        <p class="text-2xl color-word font-semibold">Mạng Xã Hội Lớn Nhất Thế Giới</p>
+                        <br>
+                        <br>
+                        <h2 class="xl:mb-32">Ensonet giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.
+                        </h2>
+                    </div>
+                    <div class="w-full hidden">
+                        <span class="text-3xl font-semibold text-1877F2">Ensonet <br></span>
+                        <div class="w-full mx-auto">
+                            <p class="text-2xl py-2 font-semibold">
+                                Đăng nhập gần đây
+                            </p>
+                            <p class="pb-3 text-gray-500 tex-xm">
+                                Nhấp vào ảnh của bạn hoặc thêm tài khoản.
+                            </p>
+                            <div class="w-full flex flex-wrap">
+                                <div id="cookie1000000001" class="w-1/4 mr-5 mt-5 relative border-2 border-solid border-gray-300 
+                                    shadow-lg cursor-pointer">
+                                    <img onclick="clickLoginAccountSave('1000000001','{&quot;ID&quot;:&quot;1000000001&quot;,&quot;EmailOrPhone&quot;:&quot;tratanhuong01@gmail.com&quot;,&quot;Password&quot;:&quot;huongtra2001&quot;,&quot;Ho&quot;:&quot;Tr\u00e0&quot;,&quot;Ten&quot;:&quot;H\u01b0\u1edfng&quot;,&quot;AnhDaiDien&quot;:&quot;http:\/\/res.cloudinary.com\/tratahuong01\/image\/upload\/v1623289152\/Avatar\/d5peo862j01zy9btpuee.jpg&quot;,&quot;TinhTrang&quot;:&quot;false&quot;}',
+                                        'false')"
+                                        src="http://res.cloudinary.com/tratahuong01/image/upload/v1623289152/Avatar/d5peo862j01zy9btpuee.jpg"
+                                        class="w-full mx-auto object-cover h-40" alt="">
+                                    <p onclick="clickLoginAccountSave('1000000001','{&quot;ID&quot;:&quot;1000000001&quot;,&quot;EmailOrPhone&quot;:&quot;tratanhuong01@gmail.com&quot;,&quot;Password&quot;:&quot;huongtra2001&quot;,&quot;Ho&quot;:&quot;Tr\u00e0&quot;,&quot;Ten&quot;:&quot;H\u01b0\u1edfng&quot;,&quot;AnhDaiDien&quot;:&quot;http:\/\/res.cloudinary.com\/tratahuong01\/image\/upload\/v1623289152\/Avatar\/d5peo862j01zy9btpuee.jpg&quot;,&quot;TinhTrang&quot;:&quot;false&quot;}',
+                                        'false')" class="font-semibold my-3 text-center text-xm">
+                                        Trà Hưởng
+                                    </p>
+                                    <span onclick="removeAccountSave('1000000001')" class="absolute top-0 left-0 cursor-pointer 
+                                        px-1.5 flex  items-center hover:bg-white hover:-left-2 rounded-full bg-gray-300 font-semibold
+                                        justify-center transform hover:scale-125 hover:-top-2 ">
+                                        ×
+                                    </span>
+                                </div>
+                                <div onclick="openAddAccount()" class="w-1/4 mr-5 relative border-2 mt-5 border-solid border-gray-300 
+                                    shadow-lg cursor-pointer">
+                                    <div class="w-full mx-auto relative h-40 bg-gray-300">
+                                        <div class="w-10 h-10 rounded-full bg-blue-500 flex justify-center top-1/2
+                                            left-1/2 transform -translate-y-1/2 -translate-x-1/2 absolute">
+                                            <i class="bx bx-plus text-3xl text-white my-1"></i>
+                                        </div>
+                                    </div>
+                                    <p class="font-semibold my-3 text-center text-blue-500 text-xm">
+                                        Thêm tài khoản
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full mx-auto rounded-lg mr-8 sm:w-11/12 sm:mx-auto lg:w-1/3
+                lg:mr-8 items-center flex flex-wrap xl:mt-12">
+                    <div class="w-full text-center p-2 bg-white rounded-lg">
+                        <div class="w-full">
+                            <form class="w-full bg-white" action="http://127.0.0.1:8000/ProcessLogin" method="post">
+                                <input type="hidden" name="_token" value="g0jGQDXa1lCob3E2X1lpYv4p5F5AlkOeZmP9cLAF">
+                                <input type="text" name="emailOrPhone" class="w-96per p-3 m-2.5 rounded-lg border-2 border-solid border-gray-200 
+                                " placeholder="Email Hoặc Số Điện Thoại" value="">
+                                <p class="py-2 text-left pl-3 font-semibold text-red-600">
+                                </p>
+                                <input type="password" name="passWord" class="w-96per p-3 m-2.5 rounded-lg border-2 border-solid border-gray-200 
+                                " placeholder="Mật Khẩu" value="">
+                                <p class="py-2 text-left pl-3 font-semibold text-red-600">
+                                </p>
+                                <button
+                                    class="mx-auto ml-2 w-93per p-3 my-2.5 border-none rounded-lg bg-1877F2 text-sm text-white font-semibold"
+                                    type="submit">Đăng Nhập</button>
+                                <p onclick="loadajax('LoadForgetAccount','second')"
+                                    class="text-1877F2 bg-white p-4 bg-white cursor-pointer">
+                                    Quên Tài khoản
+                                </p>
+                            </form>
+                        </div>
+                        <hr class="w-90% mx-auto mb-4">
+                        <div class="w-full">
+                            <div class="bg-white mb-4">
+                                <input type="button" onclick="loadajax('LoadFormRegister','second')"
+                                    value="Tạo Tài Khoản" class="outline-none px-8 py-3 bg-36A420 text-15px
+                             font-semibold text-white rounded-lg cursor-pointer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full text-center py-6 px-3">
+                        <a class="text-black" href=""><b>Tạo Trang</b>&nbsp;dành cho người nổi tiếng, nhãn hiệu hoặc
+                            doanh nghiệp.</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="w-full sm:p-4 xl:mt-16">
+                <ul class="list-none flex flex-wrap">
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Tiếng Việt</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">English (UK)</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">中文(台灣)</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">日本語</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">한국어</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">ภาษาไทย</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Français (France)</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Español</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Português (Brasil)</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Deutsch</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Italiano</a></li>
+                    <li class="">
+                        <button class="w-5 h-5 flex justify-center items-center border-1 mt-2
+                        border-solid border-gray-600 cursor-pointer">
+                            +
+                        </button>
+                    </li>
+                </ul>
+                <hr class="m-4">
+                <ul class="list-none flex flex-wrap">
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Đăng Kí</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Đăng Nhập</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Messager</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Facebook Lite</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Watch</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Danh Bạ</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Trang</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Hạng Mục Trang</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Địa Điểm</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Trò Chơi</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Vị Trí</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">MarketPlace</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Facebook Pay</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Nhóm</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Oculus</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Instagram</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Chiến Dịch Gây Quỹ</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Dịch Vụ</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Giới Thiệu</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Tạo Quảng Cáo</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Nhà Phát Triển</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Tuyển Dụng</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Quyền Riêng Tư</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Cookie</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Lựa Chọn Quảng Cáo</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Điều Khoản</a></li>
+                    <li class="text-sm p-2"><a class="text-gray-400" href="">Trợ Giúp</a></li>
+                </ul>
+                <br>
+                <b>&nbsp;&nbsp;Facebook @2020</b>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- main -->
+
+    <!-- place show modal -->
+    <div class="w-full bg-gray-500 top-0 left-0 z-50 bg-opacity-50 h-screen fixed hidden" id="second">
+        <!--form login-->
+        <div id="form-register" style="height: 600px;" class="overflow-x-auto wrapper-scrollbar w-11/12 fixed 
+        top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-100 bg-white z-50 border-2 
+        border-solid border-gray-300 pl-6 sm:w-11/12 sm:mt-12 lg:w-4/5 xl:w-1/3 xl:mt-4">
+            <div class="w-full">
+                <span onclick="closePost()" class="bg-gray-300 px-2.5 dark:text-white font-semibold
+                rounded-full dark:bg-dark-second cursor-pointer absolute text-3xl top-2 right-4">
+                    ×
+                </span>
+                <h1 class="py-2.5 text-3xl font-semibold">Đăng Kí</h1>
+            </div>
+            <p class="pb-2.5">Nhanh Chóng Dễ Dàng</p>
+            <hr>
+            <br>
+            <form action="" id="formRegister">
+                <input type="hidden" name="_token" value="g0jGQDXa1lCob3E2X1lpYv4p5F5AlkOeZmP9cLAF">
+                <div class="w-full flex">
+                    <input type="text" name="firstName" id="firstName" onclick="onclickRegister(0)" class="input_register w-47per p-2 rounded-lg border-2 border-solid border-gray-300 
+                        " placeholder="Họ" value="">
+                    &nbsp;
+                    <input type="text" name="lastName" id="lastName" onclick="onclickRegister(1)" class="input_register w-47per ml-2.5 p-2 rounded-lg border-2 border-solid border-gray-300 
+                        " placeholder="Tên" value="">
+                </div>
+                <div class="w-full flex">
+                    <ul class="w-1/2 mb-2.5 mt-2.5 ">
+                        <li class="w-full text-red-600 value_error"></li>
+                    </ul>
+                    <ul class="w-1/2 mb-2.5 mt-2.5 ">
+                        <li class="w-full text-red-600 value_error"></li>
+                    </ul>
+                </div>
+                <div class="w-full">
+                    <input oninput="checkEmail()" type="text" name="emailOrPhone" class="input_register w-96per p-2 rounded-lg border-2 
+                    border-solid border-gray-300 " id="emailOrPhone" placeholder="Số Di Động Hoặc Email"
+                        onclick="onclickRegister()" value="">
+                </div>
+                <ul class="w-full mb-4 mt-4">
+                    <li class="w-full text-red-600 value_error"></li>
+                </ul>
+                <div class="w-full email_again_one mb-4" style="display: none;" id="email-again">
+                    <input type="text" name="emailAgain" id="emailAgain" class="
+                    input_register w-96per p-2 rounded-lg border-2 border-solid border-gray-300 "
+                        placeholder="Nhập Lại Email" onclick="onclickRegister(3)" value="">
+                    <ul class="w-full">
+                        <li class="w-full text-red-600 value_error mt-4 mb-4"></li>
+                    </ul>
+                </div>
+                <div class="w-full">
+                    <input type="password" name="passWord" id="passWord" class="input_register w-96per p-2 rounded-lg border-2 
+                    border-solid border-gray-300 " placeholder="Mật Khẩu Mới" onclick="onclickRegister()" value="">
+                </div>
+                <ul class="w-full mb-4 mt-4">
+                    <li class="w-full text-red-600 value_error "></li>
+                </ul>
+                <div class="form_4">
+                    <p class="pb-4"><b class="text-sm">Ngày Sinh</b></p>
+                    <input type="date" name="NgaySinh" id="NgaySinh"
+                        class="w-96per border-2 border-solid border-gray-200 p-2 font-semibold" value="1990-01-01">
+                </div>
+                <div class="w-full mb-2.5 mt-2.5">
+                    <p class="block"><b class="text-sm">Giới Tính</b></p>
+                    <div class="w-full flex mb-2.5">
+                        <div class="mt-2.5 w-30per mr-4 p-2 border-gray-300 
+                        border-solid border-1">
+                            <label class="mr-16"><b>Nam</b></label><input type="radio" name="GioiTinh" id="" value="Nam"
+                                checked="">
+                        </div>
+                        <div class="mt-2.5 w-30per mr-4 p-2 border-gray-300 
+                        border-solid border-1">
+                            <label class="mr-16"><b>Nữ</b></label><input type="radio" name="GioiTinh" id="" value="Nữ">
+                        </div>
+                        <div class="mt-2.5 w-30per mr-4 p-2 border-gray-300 
+                        border-solid border-1">
+                            <label class="mr-16"><b>Khác</b></label><input type="radio" name="GioiTinh" id=""
+                                value="Khác">
+                        </div>
+                    </div>
+                </div>
+                <div class="form_5">
+                    <p style="font-size: 14px;color: #737373;">Bằng cách nhấp vào Đăng ký, bạn đồng ý với
+                        <a style="color: #385989;" href="">Điều khoản, Chính sách dữ liệu</a> và
+                        <a style="color: #385989;" href="">Chính sách cookie</a> của chúng tôi.
+                        Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.
+                    </p>
+                </div>
+                <div class="form_5 text-center p-4">
+                    <button type="button" id="btn-submit-form" class="text-xl w-1/2 p-2.5 border rounded-lg 
+                    text-white cursor-pointer bg-green-500" onclick="submitFormRegister()"
+                        style="background-color: #00a400;">
+                        Đăng Kí
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!--form login-->
+
+        <!--form forget password-->
+        <div id="get-account-main" class="wrapper-scrollbar w-11/12 fixed top-50per left-50per transform-translate-50per
+        p-4 opacity-100 bg-white z-50 border-2 border-solid border-gray-300 sm:w-4/5 sm:mt-12 
+        lg:w-3/5 xl:w-5/12 xl:mt-4">
+            <div class="w-full">
+                <div class="w-full">
+                    <div class="w-full text-center">
+                        <p class="text-2xl font-semibold p-2.5 dark:text-white">Quên tài khoản</p>
+                        <span onclick="closePost()" class="bg-gray-300 px-2.5 dark:text-white font-semibold
+                        rounded-full dark:bg-dark-second cursor-pointer absolute text-3xl top-2 right-4">
+                            ×
+                        </span>
+                    </div>
+                </div>
+                <div class="w-70per my-4 mx-auto">
+                    <p>Vui lòng nhập số điện thoại hoặc email để lấy mật khẩu</p>
+                    <form action="" id="formNhapTT">
+                        <input class="w-full p-4 my-4" type="text" name="emailOrPhone_Type" id="emailOrPhone_Type"
+                            placeholder="Email hoặc số điện thoại">
+                    </form>
+                </div>
+                <p class="w-70per text-red-600 font-semibold  py-4 mx-auto">
+
+                </p>
+                <hr>
+                <div class="w-full mt-4 text-right">
+                    <input type="button" onclick="forgetAccount()" class="cursor-pointer w-1/4 p-2.5 bg-1877F2 border-none font-semibold 
+                    text-white rounded-lg" value="Tìm kiếm">
+                    <input type="button" onclick="closePost()" class="cursor-pointer w-1/5 p-2.5 bg-1877F2 border-none font-semibold 
+                    text-white rounded-lg" value="Hủy">
+                </div>
+            </div>
+        </div>
+        <!--form forget password-->
+
+        <!--form login modal-->
+        <div id="get-account-main" class="wrapper-scrollbar w-11/12 fixed top-50per left-50per transform-translate-50per
+        p-4 opacity-100 bg-white z-50 border-2 border-solid border-gray-300 sm:w-4/5 sm:mt-12 
+        lg:w-3/5 xl:w-3/10 xl:mt-4">
+            <div class="w-full mx-auto">
+                <div class="w-full text-center">
+                    <p class="text-2xl font-semibold p-2.5 dark:text-white">Đăng nhập ensonet</p>
+                    <span onclick="closePost()" class="bg-gray-300 px-2.5 dark:text-white font-semibold
+                    rounded-full dark:bg-dark-second cursor-pointer absolute text-3xl top-2 right-4">
+                        ×
+                    </span>
+                </div>
+            </div>
+            <div class="w-full my-2">
+                <form class="w-full bg-white" action="http://127.0.0.1:8000/ProcessLoginModal" id="modalFormLogin"
+                    method="post" autocomplete="off">
+                    <input type="hidden" name="_token" value="g0jGQDXa1lCob3E2X1lpYv4p5F5AlkOeZmP9cLAF">
+                    <input type="text" name="emailOrPhone" class="w-96per p-3 m-2.5 rounded-lg border-2 border-solid border-gray-200 
+                    " placeholder="Email Hoặc Số Điện Thoại" value="" autocomplete="false" readonly=""
+                        onfocus="this.removeAttribute('readonly');">
+
+                    <p class="py-2 text-left pl-3 font-semibold text-red-600">
+                    </p>
+                    <input type="password" name="passWord" class="w-96per p-3 m-2.5 rounded-lg border-2 border-solid border-gray-200 
+                    " placeholder="Mật Khẩu" value="" autocomplete="false" readonly=""
+                        onfocus="this.removeAttribute('readonly');">
+                    <p class="py-2 text-left pl-3 font-semibold text-red-600">
+                    </p>
+                    <button onclick="loginSubmit(event,'0')" class="mx-auto ml-2 w-93per p-3 my-2.5 border-none rounded-lg 
+                    bg-1877F2 text-sm text-white font-semibold" type="button">Đăng Nhập</button>
+                    <p onclick="loadajax('LoadForgetAccount','second')" class="text-1877F2 bg-white p-4 bg-white 
+                    cursor-pointer text-center font-semibold">
+                        Quên Tài khoản
+                    </p>
+                </form>
+            </div>
+        </div>
+        <!--form login modal-->
+
+        <!--form login modal-->
+
+        <!--form login modal-->
+    </div>
+    <!-- place show modal -->
+
+    <!-- timeline -->
+
+</body>
+
+</html>
