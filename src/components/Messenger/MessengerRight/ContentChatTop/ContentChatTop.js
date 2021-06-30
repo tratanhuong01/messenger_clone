@@ -16,7 +16,7 @@ function ContentChatTop(props) {
           </div>
         </div>
         <div className="pl-3">
-          <b className="block dark:text-white">Phương Thảo</b>
+          <b className="block dark:text-white">hưởng dev</b>
           <span className="text-gray-700 dark:text-gray-300 text-sm">
             Đang hoạt động
           </span>

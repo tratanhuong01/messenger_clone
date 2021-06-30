@@ -7,10 +7,10 @@ ItemChatLeft.propTypes = {};
 function ItemChatLeft(props) {
   return (
     <div
-      className="mess-person cursor-pointer flex relative dark:hover:bg-dark-third 
+      className="w-full mess-person user__chat__child cursor-pointer flex relative dark:hover:bg-dark-third 
         hover:bg-gray-200 py-2 px-1"
     >
-      <div className="w-1/5">
+      <div className="w-full flex justify-center md:w-1/5 mr-3">
         <ItemSingleChat
           width="w-14"
           height="h-14"
@@ -20,13 +20,13 @@ function ItemChatLeft(props) {
           heightParent="w-14"
         />
       </div>
-      <div className="w-4/5">
+      <div className="w-4/5 hidden md:block">
         <div className="w-full">
           <span className="float-left font-semibold dark:text-gray-300">
-            Phương Thảo
+            Hưởng Developer
           </span>
         </div>
-        <div className="w-full flex py-1 text-sm flex">
+        <div className="w-full flex py-1 text-sm flex  md:pr-3 xl:pr-0">
           <div
             className="w-full flex dark:text-white 
               font-semibold"
@@ -37,7 +37,12 @@ function ItemChatLeft(props) {
             >
               You : Bạn đã gửi một tin nhắn thoại cho bạn
             </div>
-            <div className="w-1/4 flex pr-3 text-gray-500">3 ngày</div>
+            <div
+              className="w-1/4 flex pr-3 text-gray-500 inline-block whitespace-nowrap 
+              overflow-ellipsis overflow-hidden"
+            >
+              3 ngày
+            </div>
           </div>
         </div>
         <div

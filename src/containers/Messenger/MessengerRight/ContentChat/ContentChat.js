@@ -7,7 +7,7 @@ ContentChat.propTypes = {};
 
 function ContentChat(props) {
   return (
-    <div className="w-2/3 h-full max-h-full overflow-hidden flex flex-col">
+    <div className="w-full xl:w-2/3 h-full max-h-full overflow-hidden flex flex-col">
       <ContentChatTop />
       <ContentChatMain />
       <ControlChat />

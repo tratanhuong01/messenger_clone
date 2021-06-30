@@ -7,11 +7,11 @@ function MessengerLeftTop(props) {
     <div className="w-full flex py-2">
       <div
         className="w-1/2 font-semibold text-2xl py-0.5 ml-5 dark:text-white 
-        flex "
+        flex justify-center xl:justify-start"
       >
         <span className="flex items-center">Chat</span>
       </div>
-      <div className="w-1/2 my-2 ml-auto">
+      <div className="w-1/2 my-2 ml-auto hidden xl:block">
         <ul className="ml-auto flex float-right">
           <li
             className="w-9 h-9 flex ml-2 bg-gray-300 dark:bg-dark-third rounded-full 

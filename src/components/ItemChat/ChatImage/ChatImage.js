@@ -1,5 +1,4 @@
 import React from "react";
-import FeelMessageRight from "../FeelMessageRight/FeelMessageRight";
 
 ChatImage.propTypes = {};
 

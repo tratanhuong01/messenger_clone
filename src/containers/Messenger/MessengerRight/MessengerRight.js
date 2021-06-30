@@ -6,7 +6,7 @@ MessengerRight.propTypes = {};
 
 function MessengerRight(props) {
   return (
-    <div className="w-3/4 flex h-full">
+    <div className="w-full md:w-7/12 xl:w-3/4 flex h-full">
       <ContentChat />
       <CustomChat />
     </div>

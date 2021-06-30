@@ -1,0 +1,290 @@
+{
+  "products": [
+    {
+      "id": "SP100",
+      "NameProduct": "Apple Watch Series 6 GPS",
+      "UrlImage": [
+        {
+          "ID": 0,
+          "Url": "/images/products/product__SP100__GRAY.png",
+          "Color": "XÁM"
+        },
+        {
+          "ID": 1,
+          "Url": "/images/products/product__SP100__WHITE.png",
+          "Color": "TRẮNG"
+        },
+        {
+          "ID": 2,
+          "Url": "/images/products/product__SP100__PINK.png",
+          "Color": "HỒNG"
+        }
+      ],
+      "ColorProduct": [
+        {
+          "ID": 0,
+          "CodeColor": "bg-gray-700"
+        },
+        {
+          "ID": 1,
+          "CodeColor": "bg-white"
+        },
+        {
+          "ID": 2,
+          "CodeColor": "bg-pink-700"
+        }
+      ],
+      "Price": {
+        "Price": 12345000,
+        "Sale": 5
+      },
+      "BrandProduct": "Apple",
+      "SizeProduct": [
+        {
+          "ID": 0,
+          "Size": 40
+        },
+        {
+          "ID": 1,
+          "Size": 44
+        }
+      ],
+      "Path": "apple-watch-series-6-gps",
+      "TopSell": 1
+    },
+    {
+      "id": "SP101",
+      "NameProduct": "Nokia Steel HR",
+      "UrlImage": [
+        {
+          "ID": 1,
+          "Url": "/images/products/product__SP101__WHITE.png",
+          "Color": "TRẮNG"
+        },
+        {
+          "ID": 2,
+          "Url": "/images/products/product__SP101__BLACK.png",
+          "Color": "ĐEN"
+        }
+      ],
+      "ColorProduct": [
+        {
+          "ID": 0,
+          "CodeColor": "bg-white"
+        },
+        {
+          "ID": 1,
+          "CodeColor": "bg-black"
+        }
+      ],
+      "Price": {
+        "Price": 3678000,
+        "Sale": 10
+      },
+      "BrandProduct": "Nokia",
+      "SizeProduct": [
+        {
+          "ID": 0,
+          "Size": 40
+        },
+        {
+          "ID": 1,
+          "Size": 44
+        }
+      ],
+      "Path": "nokia-steel-hr",
+      "TopSell": 2
+    },
+    {
+      "id": "SP102",
+      "NameProduct": "Huawei Watch GT",
+      "UrlImage": [
+        {
+          "ID": 0,
+          "Url": "/images/products/product__SP102__ORANGCE.png",
+          "Color": "CAM"
+        },
+        {
+          "ID": 1,
+          "Url": "/images/products/product__SP102__GREEN.png",
+          "Color": "XANH"
+        }
+      ],
+      "ColorProduct": [
+        {
+          "ID": 0,
+          "CodeColor": "bg-organce"
+        },
+        {
+          "ID": 1,
+          "CodeColor": "bg-green-700"
+        }
+      ],
+      "Price": {
+        "Price": 2345000,
+        "Sale": 8
+      },
+      "BrandProduct": "Huawai",
+      "SizeProduct": [
+        {
+          "ID": 0,
+          "Size": 46
+        }
+      ],
+      "Path": "huawei-watch-gt",
+      "TopSell": 0
+    },
+    {
+      "id": "SP103",
+      "NameProduct": "Samsung Galaxy Watch Active 2 SR-830",
+      "UrlImage": [
+        {
+          "ID": 0,
+          "Url": "/images/products/product__SP103__BLACK.png",
+          "Color": "ĐEN"
+        },
+        {
+          "ID": 1,
+          "Url": "/images/products/product__SP103__PINK.png",
+          "Color": "HỒNG"
+        }
+      ],
+      "ColorProduct": [
+        {
+          "ID": 0,
+          "CodeColor": "bg-white"
+        },
+        {
+          "ID": 1,
+          "CodeColor": "bg-pink-700"
+        }
+      ],
+      "Price": {
+        "Price": 2845000,
+        "Sale": 1
+      },
+      "BrandProduct": "Samsung",
+      "SizeProduct": [
+        {
+          "ID": 0,
+          "Size": 40
+        }
+      ],
+      "Path": "samsung-galaxy-watch-active-2-sr-830",
+      "TopSell": 3
+    }
+  ],
+  "carts": [
+    {
+      "IDProduct": "SP103",
+      "IDKhachHang": 2,
+      "Color": "HỒNG",
+      "Size": 40,
+      "NumberChoose": 5,
+      "id": 1
+    },
+    {
+      "IDProduct": "SP102",
+      "IDKhachHang": "",
+      "Color": "XANH",
+      "Size": 46,
+      "NumberChoose": 1,
+      "id": 2
+    },
+    {
+      "IDProduct": "SP102",
+      "IDKhachHang": 1,
+      "Color": "XANH",
+      "Size": 46,
+      "NumberChoose": "1",
+      "id": 4
+    },
+    {
+      "IDProduct": "SP101",
+      "IDKhachHang": 1,
+      "Color": "TRẮNG",
+      "Size": 40,
+      "NumberChoose": 1,
+      "id": 5
+    },
+    {
+      "IDProduct": "SP101",
+      "IDKhachHang": 1,
+      "Color": "TRẮNG",
+      "Size": 40,
+      "NumberChoose": 1,
+      "id": 6
+    }
+  ],
+  "users": [
+    {
+      "fullName": "Trà Tấn Hưởng",
+      "numberPhone": "0354114665",
+      "email": "tratanhuong01@gmail.com",
+      "address": "",
+      "birthday": "2001-10-01",
+      "password": "huongtra2001",
+      "typeAccount": 0,
+      "id": 1
+    },
+    {
+      "fullName": "Tuấn Tiền Tỉ",
+      "numberPhone": "0354114665",
+      "email": "tuantienti@gmail.com",
+      "address": "",
+      "birthday": "1999-01-01",
+      "password": "huong123",
+      "typeAccount": 0,
+      "id": 2
+    }
+  ],
+  "promo__code": [
+    {
+      "id": 0,
+      "sale": 1,
+      "code": "KSNH10091",
+      "dateFrom": "02-06-2021",
+      "dateTo": "20-06-2021"
+    }
+  ],
+  "news": [
+    {
+      "id": 0,
+      "datePost": "14-06-2021",
+      "title": "Chi tiết smartwatch mới nhất của samsung",
+      "comment": [],
+      "thumnail": "",
+      "Content": ""
+    }
+  ],
+  "bills": [
+    {
+      "id": 0,
+      "IDKhachHang": "",
+      "Fee": "",
+      "totalMoney": "",
+      "address": "",
+      "numberPhone": "",
+      "email": "",
+      "note": "",
+      "PaymentMethod": {
+        "type": "",
+        "infomation": {
+          "typeCard": "",
+          "codeCard": ""
+        }
+      },
+      "dateCreateBill": ""
+    }
+  ],
+  "detail__bill": [
+    {
+      "id": 0,
+      "IDHoaDon": "",
+      "IDSanPham": "",
+      "Number": "",
+      "Color": "",
+      "Size": ""
+    }
+  ]
+}

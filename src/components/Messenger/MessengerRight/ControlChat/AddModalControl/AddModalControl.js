@@ -4,7 +4,7 @@ AddModalControl.propTypes = {};
 
 function AddModalControl(props) {
   return (
-    <div className="flex py-1">
+    <div className="flex">
       <div className="cursor-pointer fill-65676B ">
         <div
           className="hover:bg-gray-200 rounded-full 

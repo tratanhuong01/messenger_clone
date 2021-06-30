@@ -13,16 +13,12 @@ function ChatRight(props) {
     switch (typeMessage) {
       case 0:
         return <ChatText />;
-        break;
       case 1:
         return <ChatImage />;
-        break;
       case 2:
         return <ChatSticker />;
-        break;
       case 3:
         return <ChatGif />;
-        break;
       default:
         break;
     }

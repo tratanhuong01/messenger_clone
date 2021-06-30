@@ -8,7 +8,7 @@ CustomChat.propTypes = {};
 function CustomChat(props) {
   return (
     <div
-      className="w-1/3 pr-2 h-full max-h-full wrapper-content-right 
+      className="w-1/3 hidden xl:block pr-2 h-full max-h-full wrapper-content-right 
       overflow-y-auto"
     >
       <CustomChatTop />
