@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import MessengerLeft from "../../containers/Messenger/MessengerLeft/MessengerLeft";
 import MessengerRight from "../../containers/Messenger/MessengerRight/MessengerRight";
 import Header from "../../components/Header/Header";
+import { useHistory, withRouter } from "react-router-dom";
+import * as Config from "../../constants/Config";
 
 Messenger.propTypes = {};
 function getHeightContent() {
@@ -10,6 +12,14 @@ function getHeightContent() {
   return heightWindow - heightHeader;
 }
 function Messenger(props) {
+  let history = useHistory();
+  useEffect(() => {
+    if (localStorage && localStorage.getItem("user")) {
+      history.push(Config.PAGE_MESSENGER);
+    } else {
+      history.push(Config.PAGE_LOGIN);
+    }
+  }, []);
   const [heightContent, setHeightContent] = useState(0);
   useEffect(() => {
     setHeightContent(getHeightContent());
@@ -32,4 +42,4 @@ function Messenger(props) {
   );
 }
 
-export default Messenger;
+export default withRouter(Messenger);

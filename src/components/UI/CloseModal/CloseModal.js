@@ -1,17 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../../actions/index";
 
 CloseModal.propTypes = {};
 
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    closeModal: () => {
+      dispatch(actions.closeModal());
+    },
+  };
+};
+
 function CloseModal(props) {
+  const { closeModal } = props;
   return (
     <span
-      className="rounded-full dark:bg-dark-third text-gray-700 
-        px-3 py-1 text-2xl font-bold absolute right-2 bg-gray-300 top-2 cursor-pointer 
-        dark:text-white"
+      onClick={closeModal}
+      className="rounded-full dark:bg-dark-third text-gray-700 dark:text-white z-50
+      px-3 py-1 text-2xl font-bold fixed right-2 bg-gray-300 top-2 cursor-pointer"
     >
       ×
     </span>
   );
 }
 
-export default CloseModal;
+export default connect(null, mapDispatchToProps)(CloseModal);

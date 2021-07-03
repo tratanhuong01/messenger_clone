@@ -1,0 +1,15 @@
+//
+export const OPEN_MODAL_REGISTER = "OPEN_MODAL_REGISTER";
+//
+export const CLOSE_MODAL = "CLOSE_MODAL";
+//
+export const REGISTER_ACCOUNT = "REGISTER_ACCOUNT";
+//
+export const ON_LOADING_SUBMIT_MODAL = "ON_LOADING_SUBMIT_MODAL";
+//
+export const OFF_LOADING_SUBMIT_MODAL = "OFF_LOADING_SUBMIT_MODAL";
+//
+export const LOGIN = "LOGIN";
+//
+export const LOGOUT = "LOGOUT";
+//

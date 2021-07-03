@@ -17,7 +17,7 @@ function showAllLinks(routes) {
     return result;
   }
 }
-function App() {
+function App(props) {
   return (
     <Router>
       <Switch>{showAllLinks(routes)}</Switch>

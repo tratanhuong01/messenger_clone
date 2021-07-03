@@ -7,16 +7,19 @@ const routes = [
     path: Config.PAGE_LOGIN,
     exact: true,
     main: () => <Login />,
+    isLogin: false,
   },
   {
     path: Config.PAGE_MESSENGER,
     exact: true,
     main: () => <Messenger />,
+    isLogin: false,
   },
   {
     path: "",
     exact: true,
     main: () => <NotFound />,
+    isLogin: false,
   },
 ];
 
