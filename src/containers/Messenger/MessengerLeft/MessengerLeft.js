@@ -21,19 +21,9 @@ function MessengerLeft(props) {
           maxHeight: `620px`,
         }}
       >
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
-        <ItemChatLeft />
+        <p className="text-center font-semibold text-gray-700 dark:text-gray-300">
+          Không có bất kì tin nhắn nào..
+        </p>
       </div>
     </div>
   );

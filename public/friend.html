@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css general -->
+    <link rel="stylesheet" href="./css/loading.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/tailwind.css" />
+    <link rel="stylesheet" href="./css/tailwind.custom.css" />
+    <link rel="stylesheet" href="./css/animation.css" />
+    <!-- css general -->
+
+    <!--cdn general-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!--cdn general-->
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">
+        <div class="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second" id="header">
+            <div class="w-full flex px-2 my-1">
+                <div class="w-1/2 flex ml-1 md:w-1/4 relative">
+                    <div class="w-11/12 dark:bg-dark-second bg-gray-200 absolute -top-1 -left-3 flex z-30 hidden
+                    flex-wrap shadow-lg">
+                        <div class="w-full h-16 flex">
+                            <div class="w-11 h-11 rounded-full 
+                            text-center items-center pt-1 mt-1 cursor-pointer ml-1 "><i
+                                    class="bx bxs-left-arrow-alt text-3xl dark:text-gray-300"></i></div>
+                            <div class="mt-1 pl-1">
+                                <div
+                                    class="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
+                                    <input type="text" placeholder="Tìm kiếm trên Ensonet" class="w-56 outline-none 
+                                    bg-transparent hidden xl:inline-block dark:text-white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-0.5"><img class="w-12 p-0.5 sm:w-12" src="./images/logo.png" alt=""></div>
+                    <div class="mt-1 pl-4">
+                        <div
+                            class="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
+                            <i class="bx bx-search text-gray-500 text-xl xl:mr-2 dark:text-dark-txt"></i><input
+                                type="text" placeholder="Tìm kiếm trên Ensonet"
+                                class="outline-none bg-transparent hidden xl:inline-block dark:text-white">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 hidden md:block md:w-2/4 lg:w-1/2">
+                    <div class="mx-auto wrapper xl:w-4/5 md:w-full">
+                        <ul class="list-icon-header md:w-full">
+                            <li class="active dark:hover:bg-dark-third w-1/5 xl:w-auto"><svg viewBox="0 0 28 28"
+                                    class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 aaxa7vy3" height="28" width="28">
+                                    <path
+                                        d="M25.825 12.29C25.824 12.289 25.823 12.288 25.821 12.286L15.027 2.937C14.752 2.675 14.392 2.527 13.989 2.521 13.608 2.527 13.248 2.675 13.001 2.912L2.175 12.29C1.756 12.658 1.629 13.245 1.868 13.759 2.079 14.215 2.567 14.479 3.069 14.479L5 14.479 5 23.729C5 24.695 5.784 25.479 6.75 25.479L11 25.479C11.552 25.479 12 25.031 12 24.479L12 18.309C12 18.126 12.148 17.979 12.33 17.979L15.67 17.979C15.852 17.979 16 18.126 16 18.309L16 24.479C16 25.031 16.448 25.479 17 25.479L21.25 25.479C22.217 25.479 23 24.695 23 23.729L23 14.479 24.931 14.479C25.433 14.479 25.921 14.215 26.132 13.759 26.371 13.245 26.244 12.658 25.825 12.29">
+                                    </path>
+                                </svg></li>
+                            <li class="dark:hover:bg-dark-third w-1/5 xl:w-auto"><svg viewBox="0 0 28 28"
+                                    class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv" height="28" width="28">
+                                    <path
+                                        d="M8.75 25.25C8.336 25.25 8 24.914 8 24.5 8 24.086 8.336 23.75 8.75 23.75L19.25 23.75C19.664 23.75 20 24.086 20 24.5 20 24.914 19.664 25.25 19.25 25.25L8.75 25.25ZM17.163 12.846 12.055 15.923C11.591 16.202 11 15.869 11 15.327L11 9.172C11 8.631 11.591 8.297 12.055 8.576L17.163 11.654C17.612 11.924 17.612 12.575 17.163 12.846ZM21.75 20.25C22.992 20.25 24 19.242 24 18L24 6.5C24 5.258 22.992 4.25 21.75 4.25L6.25 4.25C5.008 4.25 4 5.258 4 6.5L4 18C4 19.242 5.008 20.25 6.25 20.25L21.75 20.25ZM21.75 21.75 6.25 21.75C4.179 21.75 2.5 20.071 2.5 18L2.5 6.5C2.5 4.429 4.179 2.75 6.25 2.75L21.75 2.75C23.821 2.75 25.5 4.429 25.5 6.5L25.5 18C25.5 20.071 23.821 21.75 21.75 21.75Z">
+                                    </path>
+                                </svg></li>
+                            <li class="dark:hover:bg-dark-third w-1/5 xl:w-auto"><svg viewBox="0 0 28 28"
+                                    class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv" height="28" width="28">
+                                    <path
+                                        d="M17.5 23.75 21.75 23.75C22.164 23.75 22.5 23.414 22.5 23L22.5 14 22.531 14C22.364 13.917 22.206 13.815 22.061 13.694L21.66 13.359C21.567 13.283 21.433 13.283 21.34 13.36L21.176 13.497C20.591 13.983 19.855 14.25 19.095 14.25L18.869 14.25C18.114 14.25 17.382 13.987 16.8 13.506L16.616 13.354C16.523 13.278 16.39 13.278 16.298 13.354L16.113 13.507C15.53 13.987 14.798 14.25 14.044 14.25L13.907 14.25C13.162 14.25 12.439 13.994 11.861 13.525L11.645 13.35C11.552 13.275 11.419 13.276 11.328 13.352L11.155 13.497C10.57 13.984 9.834 14.25 9.074 14.25L8.896 14.25C8.143 14.25 7.414 13.989 6.832 13.511L6.638 13.351C6.545 13.275 6.413 13.275 6.32 13.351L5.849 13.739C5.726 13.84 5.592 13.928 5.452 14L5.5 14 5.5 23C5.5 23.414 5.836 23.75 6.25 23.75L10.5 23.75 10.5 17.5C10.5 16.81 11.06 16.25 11.75 16.25L16.25 16.25C16.94 16.25 17.5 16.81 17.5 17.5L17.5 23.75ZM3.673 8.75 24.327 8.75C24.3 8.66 24.271 8.571 24.238 8.483L23.087 5.355C22.823 4.688 22.178 4.25 21.461 4.25L6.54 4.25C5.822 4.25 5.177 4.688 4.919 5.338L3.762 8.483C3.729 8.571 3.7 8.66 3.673 8.75ZM24.5 10.25 3.5 10.25 3.5 12C3.5 12.414 3.836 12.75 4.25 12.75L4.421 12.75C4.595 12.75 4.763 12.69 4.897 12.58L5.368 12.193C6.013 11.662 6.945 11.662 7.59 12.193L7.784 12.352C8.097 12.609 8.49 12.75 8.896 12.75L9.074 12.75C9.483 12.75 9.88 12.607 10.194 12.345L10.368 12.2C11.01 11.665 11.941 11.659 12.589 12.185L12.805 12.359C13.117 12.612 13.506 12.75 13.907 12.75L14.044 12.75C14.45 12.75 14.844 12.608 15.158 12.35L15.343 12.197C15.989 11.663 16.924 11.663 17.571 12.197L17.755 12.35C18.068 12.608 18.462 12.75 18.869 12.75L19.095 12.75C19.504 12.75 19.901 12.606 20.216 12.344L20.38 12.208C21.028 11.666 21.972 11.666 22.62 12.207L23.022 12.542C23.183 12.676 23.387 12.75 23.598 12.75 24.097 12.75 24.5 12.347 24.5 11.85L24.5 10.25ZM24 14.217 24 23C24 24.243 22.993 25.25 21.75 25.25L6.25 25.25C5.007 25.25 4 24.243 4 23L4 14.236C2.875 14.112 2 13.158 2 12L2 9.951C2 9.272 2.12 8.6 2.354 7.964L3.518 4.802C4.01 3.563 5.207 2.75 6.54 2.75L21.461 2.75C22.793 2.75 23.99 3.563 24.488 4.819L25.646 7.964C25.88 8.6 26 9.272 26 9.951L26 11.85C26 13.039 25.135 14.026 24 14.217ZM16 23.75 16 17.75 12 17.75 12 23.75 16 23.75Z">
+                                    </path>
+                                </svg></li>
+                            <li class="dark:hover:bg-dark-third w-1/5 xl:w-auto"><svg viewBox="0 0 28 28"
+                                    class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv" height="28" width="28">
+                                    <path
+                                        d="M25.5 14C25.5 7.649 20.351 2.5 14 2.5 7.649 2.5 2.5 7.649 2.5 14 2.5 20.351 7.649 25.5 14 25.5 20.351 25.5 25.5 20.351 25.5 14ZM27 14C27 21.18 21.18 27 14 27 6.82 27 1 21.18 1 14 1 6.82 6.82 1 14 1 21.18 1 27 6.82 27 14ZM7.479 14 7.631 14C7.933 14 8.102 14.338 7.934 14.591 7.334 15.491 6.983 16.568 6.983 17.724L6.983 18.221C6.983 18.342 6.99 18.461 7.004 18.578 7.03 18.802 6.862 19 6.637 19L6.123 19C5.228 19 4.5 18.25 4.5 17.327 4.5 15.492 5.727 14 7.479 14ZM20.521 14C22.274 14 23.5 15.492 23.5 17.327 23.5 18.25 22.772 19 21.878 19L21.364 19C21.139 19 20.97 18.802 20.997 18.578 21.01 18.461 21.017 18.342 21.017 18.221L21.017 17.724C21.017 16.568 20.667 15.491 20.067 14.591 19.899 14.338 20.067 14 20.369 14L20.521 14ZM8.25 13C7.147 13 6.25 11.991 6.25 10.75 6.25 9.384 7.035 8.5 8.25 8.5 9.465 8.5 10.25 9.384 10.25 10.75 10.25 11.991 9.353 13 8.25 13ZM19.75 13C18.647 13 17.75 11.991 17.75 10.75 17.75 9.384 18.535 8.5 19.75 8.5 20.965 8.5 21.75 9.384 21.75 10.75 21.75 11.991 20.853 13 19.75 13ZM15.172 13.5C17.558 13.5 19.5 15.395 19.5 17.724L19.5 18.221C19.5 19.202 18.683 20 17.677 20L10.323 20C9.317 20 8.5 19.202 8.5 18.221L8.5 17.724C8.5 15.395 10.441 13.5 12.828 13.5L15.172 13.5ZM16.75 9C16.75 10.655 15.517 12 14 12 12.484 12 11.25 10.655 11.25 9 11.25 7.15 12.304 6 14 6 15.697 6 16.75 7.15 16.75 9Z">
+                                    </path>
+                                </svg></li>
+                            <li class="dark:hover:bg-dark-third w-1/5 xl:w-auto"><svg viewBox="0 0 28 28"
+                                    class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv" height="28" width="28">
+                                    <path
+                                        d="M23.5 9.5H10.25a.75.75 0 00-.75.75v7c0 .414.336.75.75.75H17v5.5H4.5v-19h19v5zm0 14h-5v-6.25a.75.75 0 00-.75-.75H11V11h12.5v12.5zm1.5.25V4.25C25 3.561 24.439 3 23.75 3H4.25C3.561 3 3 3.561 3 4.25v19.5c0 .689.561 1.25 1.25 1.25h19.5c.689 0 1.25-.561 1.25-1.25z">
+                                    </path>
+                                </svg></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-1/2 flex sm:w-3/4 md:w-1/4">
+                    <div class="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 
+                    hover:bg-gray-200 round-avatar dark:hover:bg-dark-third 
+                    lg:mx-0 hidden xl:flex">
+                        <div class="w-1/3 hidden lg:block lg:w-full lg:pt-1 xl:w-auto xl:mr-2"><a
+                                href="http://127.0.0.1:8000/profile.1000000001"><img
+                                    class="w-8 h-8 rounded-full object-cover" src="./images/avatar.png" alt=""></a>
+                        </div>
+                        <div class="w-2/3 hidden pt-1 text-center xl:block xl:w-auto lg:pt-2"><span
+                                class="dark:text-white font-semibold text-sm">Hưởng</span></div>
+                    </div>
+                    <div class="w-full pt-2 pb-2 sm:w-full">
+                        <ul class="flex float-right">
+                            <li class="">
+                                <div
+                                    class="cursor-pointer pt-1.5 relative h-10 ml-1 mr-1 w-10 bg-gray-200 dark:bg-dark-third dark:text-white text-center rounded-full">
+                                    <i class="bx bx-plus text-xl hidden"></i><i class="bx bxs-moon text-xl"></i>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div
+                                    class="w-10 bg-gray-200 dark:bg-dark-third 
+                                dark:text-white text-center rounded-full cursor-pointer h-10 ml-1 mr-1 pt-1.5 relative">
+                                    <i class="bx bxl-messenger text-xl"></i><span class="absolute -top-2 -right-1"><span
+                                            class="text-white bg-red-600 font-semibold rounded-full text-xs px-1 py-0.5 ">1</span></span>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="pt-1.5 relative w-10 bg-gray-200 
+                                dark:bg-dark-third dark:text-white text-center rounded-full cursor-pointer 
+                                h-10 ml-1 mr-1"><i class="far fa-bell text-xm"></i><span id="numNotification"
+                                        class="absolute -top-2 -right-1"><span
+                                            class="text-white bg-red-600 font-semibold rounded-full text-xs px-1 py-0.5 ">2</span></span>
+                                </div>
+                            </li>
+                            <li class="relative">
+                                <div class="pt-1.5 w-10 bg-gray-200 dark:bg-dark-third dark:text-white text-center rounded-full cursor-pointer 
+                                h-10 ml-1 mr-1"><i class="fas fa-sort-down text-xl leading-4"></i></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full p-2 rounded-lg absolute dark:bg-dark-second bg-white 
+                    z-50 top-16 wrapper-scrollbar overflow-x-hidden overflow-y-auto border-solid border-gray-200 
+                    lg:w-92 lg:p-0 tranform -translate-1/2 sm:w-3/4 right-0 border-2 lg:w-92 shadow-xl 
+                    dark:border-dark-main hidden">
+                        <ul class="w-full hidden">
+                            <li class="w-full flex p-3 cursor-pointer flex dark:hover:bg-dark-third hover:bg-gray-200">
+                                <img class="w-12 h-12 rounded-full object-cover" src="./images/avatar.jpg"
+                                    alt="">&nbsp;&nbsp;<p class="pt-2.5 pl-1 dark:text-white font-semibold">Trà Hưởng
+                                </p>
+                            </li>
+                            <li class="w-full flex p-3 cursor-pointer dark:hover:bg-dark-third  dark:text-white 
+                            font-semibold hover:bg-gray-200">&nbsp; &nbsp;&nbsp;<i
+                                    class="fas fa-cog text-xl dark:text-white"></i>&nbsp;
+                                &nbsp; &nbsp;Cài Đặt Tài Khoản</li>
+                            <li class="w-full flex p-3 cursor-pointer dark:hover:bg-dark-third hover:bg-gray-200 
+                            dark:text-white font-semibold">&nbsp; &nbsp;&nbsp;<i
+                                    class="fas fa-sign-out-alt text-xl dark:text-white"></i>&nbsp; &nbsp; &nbsp;Đăng
+                                Xuất</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full 
+        lg:mx-auto xl:w-full" style="max-height: 798px; height: 798px;">
+            <div class="w-24 md:w-5/12 xl:w-1/4 border-r-2 border-solid dark:border-dark-second
+            border-gray-100 shadow-xl overflow-hidden ">
+                <div class="w-full my-2 flex relative">
+                    <div class="w-full flex px-4">
+                        <input type="text" placeholder="Tìm kiếm" class="w-full rounded-full py-2 bg-gray-200 
+                        pl-11 pr-3 flex items-center">
+                        <i class='bx bx-search-alt-2 absolute left-7 top-1 text-gray-700 
+                        text-2xl'></i>
+                    </div>
+                    <div class="flex mx-2">
+                        <span class='bx bx-user-plus text-2xl flex items-center cursor-pointer 
+                        p-2 hover:bg-gray-200 rounded-full w-10 h-10 flex justify-center'></span>
+                    </div>
+                    <div class="flex mx-2">
+                        <span class='bx bx-shape-polygon text-2xl flex items-center cursor-pointer 
+                        p-2 hover:bg-gray-200 rounded-full w-10 h-10 flex justify-center'></span>
+                    </div>
+                </div>
+                <div class="w-full my-2.5 flex">
+                    <div class="w-full flex items-center font-semibold cursor-pointer py-2 
+                    hover:bg-gray-200 px-6">
+                        <span class='bx bx-user-plus text-2xl text-blue-500 
+                        cursor-pointer mr-2'></span>
+                        Thêm bạn bằng email hoặc số điện thoại
+                    </div>
+                </div>
+                <div class="w-full my-2.5">
+                    <div class="w-full flex p-2.5 cursor-pointer hover:bg-gray-200">
+                        <div class="w-20">
+                            <div class="w-14 h-14 rounded-full bg-blue-500 flex justify-center">
+                                <span class='bx bx-user-plus text-4xl text-white flex items-center'></span>
+                            </div>
+                        </div>
+                        <div class="w-full flex ml-4">
+                            <span class="flex items-center text-xm font-semibold">
+                                Danh sách kết bạn
+                            </span>
+                        </div>
+                    </div>
+                    <div class="w-full flex p-2.5 cursor-pointer hover:bg-gray-200">
+                        <div class="w-20">
+                            <div class="w-14 h-14 rounded-full bg-indigo-500 flex justify-center">
+                                <span class='fas fa-users text-2xl text-white flex items-center'></span>
+                            </div>
+                        </div>
+                        <div class="w-full flex ml-4">
+                            <span class="flex items-center text-xm font-semibold">
+                                Danh sách nhóm
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full my-2.5">
+                    <div class="w-full flex py-2 px-4">
+                        <div class="w-1/2 flex justify-start">
+                            <span class="flex items-center font-semibold cursor-pointer">
+                                Bạn bè (65)
+                            </span>
+                        </div>
+                        <div class="w-1/2 flex justify-end">
+                            <span class='bx bxs-chevron-right text-xl flex items-center 
+                            cursor-pointer'></span>
+                        </div>
+                    </div>
+                    <div class="w-full my-2">
+                        <div class="w-full py-2 px-4 hover:bg-gray-200 flex cursor-pointer ">
+                            <div class="object-cover rounded-full relative w-14 h-14">
+                                <img src="./images/boy.jpg" alt=""
+                                    class="rounded-full object-cover mx-auto w-14 h-14" />
+                            </div>
+                            <div class="ml-5 flex">
+                                <span class="font-semibold flex items-center">
+                                    Hưởng developer
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-full py-2 px-4 hover:bg-gray-200 flex cursor-pointer ">
+                            <div class="object-cover rounded-full relative w-14 h-14">
+                                <img src="./images/gai.jpg" alt=""
+                                    class="rounded-full object-cover mx-auto w-14 h-14" />
+                            </div>
+                            <div class="ml-5 flex">
+                                <span class="font-semibold flex items-center">
+                                    Hưởng developer
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-full py-2 px-4 hover:bg-gray-200 flex cursor-pointer ">
+                            <div class="object-cover rounded-full relative w-14 h-14">
+                                <img src="./images/avatar.png" alt=""
+                                    class="rounded-full object-cover mx-auto w-14 h-14" />
+                            </div>
+                            <div class="ml-5 flex">
+                                <span class="font-semibold flex items-center">
+                                    Hưởng developer
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-7/12 xl:w-3/4 h-full">
+                <div class="w-full border-2 border-solid border-gray-200 hidden">
+                    <div class="w-full flex p-2 cursor-pointer hover:bg-gray-200">
+                        <div class="w-20">
+                            <div class="w-14 h-14 rounded-full bg-blue-500 flex justify-center">
+                                <span class='bx bx-user-plus text-3xl text-white flex items-center'></span>
+                            </div>
+                        </div>
+                        <div class="w-full flex ml-4">
+                            <span class="flex items-center text-xm font-semibold">
+                                Danh sách kết bạn
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-100 p-6 hidden">
+                    <p class="font-semibold mb-4 ml-8 w-full">Gợi ý kết bạn (46) </p>
+                    <div class="flex flex-wrap justify-center">
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-24 h-24  object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer mb-1">
+                                Lê Văn Nam
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs mb-1">
+                                Từ quanh đây
+                            </p>
+                            <p class="w-full font-semibold text-center cursor-pointer 
+                            text-gray-500 text-xs">
+                                Chưa có nhóm chung
+                            </p>
+                            <div class="w-full mt-2 p-2 flex justify-center">
+                                <button class="py-1 text-xm px-5 border-2 border-solid border-blue-500 
+                                text-blue-700 font-semibold hover:bg-blue-200 rounded-lg">Kết bạn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full border-2 border-solid border-gray-200">
+                    <div class="w-full flex p-2 cursor-pointer hover:bg-gray-200">
+                        <div class="w-20">
+                            <div class="w-14 h-14 rounded-full bg-indigo-500 flex justify-center">
+                                <span class='fas fa-users text-3xl text-white flex items-center'></span>
+                            </div>
+                        </div>
+                        <div class="w-full flex ml-4">
+                            <span class="flex items-center text-xm font-semibold">
+                                Danh sách nhóm
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-100 p-6 h-full">
+                    <div>
+                        <select name="" class="w-60 p-2 px-4 rounded-full border-2 border-solid 
+                        border-gray-300 font-semibold" id="">
+                            <option value="">Tất cả (2)</option>
+                            <option value="">Nhóm do tôi quản lí</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-wrap justify-center ">
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative py-10">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/boy.jpg" class="w-28 h-28 object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer my-2">
+                                Lớp chính trị
+                            </p>
+                            <p class="w-full font-semibold text-center text-xs cursor-pointer 
+                            text-gray-500">
+                                38 thành viên
+                            </p>
+                        </div>
+                        <div class="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative py-10">
+                            <span class="font-semibold text-xl cursor-pointer absolute top-2 
+                            right-4 ">&times;</span>
+                            <div class="w-full flex mb-2 mt-1 justity-center">
+                                <img src="./images/gai.jpg" class="w-28 h-28 object-cover 
+                                rounded-full mx-auto" alt="">
+                            </div>
+                            <p class="w-full font-semibold text-center cursor-pointer my-2">
+                                Động Bàn Tơ
+                            </p>
+                            <p class="w-full font-semibold text-center text-xs cursor-pointer 
+                            text-gray-500">
+                                38 thành viên
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full h-screen fixed top-0 left-0 bg-opacity-50 bg-black z-50">
+        <div class="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+        rounded-lg z-50 bg-white dark:bg-dark-third shadow-lg rounded-lg ">
+            <div class="w-full relative">
+                <span class="rounded-full dark:bg-dark-third text-gray-700 z-50 cursor-pointer dark:text-white 
+                px-3 py-1 text-2xl font-semibold absolute -right-3 bg-gray-300 -top-3">×</span>
+                <div class="w-full relative border-b-2 border-gray-300 border-solid pb-1" style="height: 365px;">
+                    <div class="w-full h-56 relative">
+                        <img src="https://product.bachkhoa-aptech.edu.vn:33/resources/upload/image/cover-messenger.jpg"
+                            class="w-full h-full object-cover" alt="">
+                    </div>
+                    <div class="w-full absolute top-32">
+                        <div class="w-full">
+                            <div class="w-40 h-40 mx-auto relative">
+                                <img src="https://pbs.twimg.com/media/EYVxlOSXsAExOpX.jpg" class="w-full h-full rounded-full 
+                                    object-cover p-1 border-4 bg-white border-solid border-gray-500" alt="">
+                                <span class=' bx bxs-camera absolute bottom-0 right-0 h-10 w-10 dark:text-white
+                                    rounded-full cursor-pointer bg-gray-200 dark:bg-dark-third text-2xl flex
+                                    justify-center items-center'></span>
+                            </div>
+                            <p class="text-center w-full font-bold text-2xl my-2">Trà Tấn Hưởng</p>
+                            <p class="text-sm text-center font-semibold w-full text-gray-500">
+                                Try do it !!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-20 h-20 rounded-full border-2 border-solid border-indigo-500 shadow-lg 
+                    absolute bottom-8 bg-white left-10 flex justify-center cursor-pointer text-gray-700 
+                    hover:text-white hover:border-white hover:bg-indigo-500">
+                        <p class="flex items-center">
+                            <i class='bx bxs-user text-xl mr-0.5'></i>
+                            <span class="font-semibold">340k</span>
+                        </p>
+                    </div>
+                    <div class="w-20 h-20 rounded-full border-2 border-solid border-indigo-500 shadow-lg 
+                    absolute bottom-8 bg-white right-10 flex justify-center cursor-pointer text-gray-700 
+                    hover:text-white hover:border-white hover:bg-indigo-500">
+                        <p class="flex items-center">
+                            <i class='bx bxs-user text-xl mr-0.5'></i>
+                            <span class="font-semibold">340k</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full mt-2">
+                    <div class="w-full my-2 relative flex justify-center">
+                        <button class="border-2 border-solid border-indigo-500 text-indigo-500 font-semibold mr-5
+                        py-2 px-8 hover:border-white hover:bg-indigo-500 hover:text-white rounded-full shadow-xl">
+                            Nhắn tin
+                        </button>
+                        <button class="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
+                        py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5">
+                            Kết bạn
+                        </button>
+                    </div>
+                </div>
+                <div class="w-full mt-2">
+                    <div class="w-full flex">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

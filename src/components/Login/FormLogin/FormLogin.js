@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { connect } from "react-redux";
 import * as actions from "../../../actions/index";
-import { Redirect } from "react-router-dom";
 
 FormLogin.propTypes = {};
 

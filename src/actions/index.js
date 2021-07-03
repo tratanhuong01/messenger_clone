@@ -1,6 +1,5 @@
 import * as Types from "../constants/ActionTypes";
 import api from "../api/api";
-import { Redirect } from "react-router-dom";
 
 export const openModalRegister = () => {
   return {

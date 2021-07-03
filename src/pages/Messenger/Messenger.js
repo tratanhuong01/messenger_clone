@@ -13,31 +13,36 @@ function getHeightContent() {
 }
 function Messenger(props) {
   let history = useHistory();
+  const [heightContent, setHeightContent] = useState(0);
+
   useEffect(() => {
     if (localStorage && localStorage.getItem("user")) {
       history.push(Config.PAGE_MESSENGER);
+      setHeightContent(getHeightContent());
     } else {
       history.push(Config.PAGE_LOGIN);
     }
   }, []);
-  const [heightContent, setHeightContent] = useState(0);
-  useEffect(() => {
-    setHeightContent(getHeightContent());
-  }, []);
   return (
     <div className="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">
-      <Header id="header" />
-      <div
-        className="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full 
-        lg:mx-auto xl:w-full"
-        style={{
-          maxHeight: `${heightContent}px`,
-          height: `${heightContent}px`,
-        }}
-      >
-        <MessengerLeft heightContent={heightContent} />
-        <MessengerRight />
-      </div>
+      {localStorage && localStorage.getItem("user") ? (
+        <>
+          <Header id="header" />
+          <div
+            className="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full 
+            lg:mx-auto xl:w-full"
+            style={{
+              maxHeight: `${heightContent}px`,
+              height: `${heightContent}px`,
+            }}
+          >
+            <MessengerLeft heightContent={heightContent} />
+            <MessengerRight />
+          </div>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

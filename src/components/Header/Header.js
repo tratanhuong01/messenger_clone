@@ -1,8 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 
 Header.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
 function Header(props) {
+  const { isLogin } = props;
   return (
     <div
       className="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second"
@@ -106,21 +114,21 @@ function Header(props) {
         <div className="w-1/2 flex sm:w-3/4 md:w-1/4">
           <div
             className="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 
-          hover:bg-gray-200 round-avatar dark:hover:bg-dark-third 
-          lg:mx-0 hidden xl:flex"
+            hover:bg-gray-200 round-avatar dark:hover:bg-dark-third 
+            lg:mx-0 hidden xl:flex"
           >
             <div className="w-1/3 hidden lg:block lg:w-full lg:pt-1 xl:w-auto xl:mr-2">
               <a href="http://127.0.0.1:8000/profile.1000000001">
                 <img
                   className="w-8 h-8 rounded-full object-cover"
-                  src="/images/avatar.jpg"
+                  src={isLogin.user.avatar}
                   alt=""
                 />
               </a>
             </div>
             <div className="w-2/3 hidden pt-1 text-center xl:block xl:w-auto lg:pt-2">
               <span className="dark:text-white font-semibold text-sm">
-                Hưởng
+                {`${isLogin.user.lastName}`}
               </span>
             </div>
           </div>
@@ -182,12 +190,12 @@ function Header(props) {
               <li className="w-full flex p-3 cursor-pointer flex dark:hover:bg-dark-third hover:bg-gray-200">
                 <img
                   className="w-12 h-12 rounded-full object-cover"
-                  src="/images/avatar.jpg"
+                  src={isLogin.user.avatar}
                   alt=""
                 />
                 &nbsp;&nbsp;
                 <p className="pt-2.5 pl-1 dark:text-white font-semibold">
-                  Trà Hưởng
+                  {`${isLogin.user.firstName} ${isLogin.user.lastName}`}
                 </p>
               </li>
               <li
@@ -214,4 +222,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default connect(mapStateToProps, null)(Header);
