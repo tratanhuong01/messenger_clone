@@ -36,6 +36,7 @@ export const registerAccountRequest = (user) => {
             password: user.password,
             avatar: "",
             typeAccoount: 1,
+            darkMode: 0,
             dateCreated: "",
           };
           api("users", "POST", userNew, headers)
@@ -77,7 +78,7 @@ export const loginAccountRequest = (user) => {
           alert("Thông tin đăng nhập không chính xác !!");
         } else {
           localStorage.setItem("user", JSON.stringify(res.data));
-          dispatch(login(user));
+          dispatch(login(res.data));
         }
       })
       .catch((err) => {
@@ -96,5 +97,11 @@ export const login = (user) => {
 export const logout = () => {
   return {
     type: Types.LOGOUT,
+  };
+};
+
+export const openModalProfile = () => {
+  return {
+    type: Types.OPEN_MODAL_PROFILE,
   };
 };

@@ -1236,6 +1236,9 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:w-47\% {
+    width: 47%;
+  }
   .sm\:inline-block {
     display: inline-block;
   }

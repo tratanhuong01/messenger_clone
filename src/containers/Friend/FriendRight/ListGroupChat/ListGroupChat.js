@@ -12,11 +12,11 @@ function ListGroupChat(props) {
         icon="fa fa-users"
         bgColor="bg-indigo-500"
       />
-      <div className="w-full bg-gray-100 p-6 h-full">
+      <div className="w-full bg-gray-100  dark:bg-dark-main p-1 md:p-6 h-full">
         <div>
           <select
-            class="w-60 p-2 ml-6 mb-3 rounded-full border-2 border-solid 
-            border-gray-300 font-semibold"
+            className="w-60 p-2 ml-6 mb-3 rounded-full border-2 border-solid 
+            border-gray-300 font-semibold dark:bg-dark-second dark:text-gray-300"
           >
             <option value="">Tất cả (2)</option>
             <option value="">Nhóm do tôi quản lí</option>

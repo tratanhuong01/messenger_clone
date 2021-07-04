@@ -19,7 +19,7 @@ function Login(props) {
     return <Redirect to={Config.PAGE_MESSENGER} />;
   }
   return (
-    <div className="w-full dark:bg-dark-main h-screen relative">
+    <div className="w-full h-screen relative">
       <MainLogin />
       <ShowModal />
     </div>

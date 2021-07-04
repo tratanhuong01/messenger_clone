@@ -1,5 +1,6 @@
 import * as Types from "../constants/ActionTypes";
 import ModalRegister from "../components/Modals/Login/ModalRegister/ModalRegister";
+import ModalProfile from "../components/Modals/Friend/ModalProfile/ModalProfile";
 const initialState = {
   StateModal: false,
   DataModal: "",
@@ -21,6 +22,11 @@ const myReducer = (state = initialState, action) => {
       state.DataModal = "";
       return { ...state };
     //
+    case Types.OPEN_MODAL_PROFILE:
+      document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
+      state.StateModal = true;
+      state.DataModal = <ModalProfile />;
+      return { ...state };
     default:
       return state;
   }

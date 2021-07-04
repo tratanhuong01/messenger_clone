@@ -14,8 +14,10 @@ function ListFriendRequest(props) {
           bgColor="bg-blue-500"
         />
       </div>
-      <div className="w-full bg-gray-100 p-6">
-        <p className="font-semibold mb-4 ml-8 w-full">Gợi ý kết bạn (46) </p>
+      <div className="w-full bg-gray-100 dark:bg-dark-main p-6">
+        <p className="font-semibold mb-4 ml-8 w-full dark:text-gray-300">
+          Gợi ý kết bạn (46){" "}
+        </p>
         <div className="flex flex-wrap justify-center">
           <ItemFriendRequest />
           <ItemFriendRequest />

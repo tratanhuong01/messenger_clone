@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import * as Config from "../../../../constants/Config";
 
 EmptyMessage.propTypes = {};
 
@@ -18,7 +20,9 @@ function EmptyMessage(props) {
           Hiện chưa có tin nhắn nào
         </p>
         <p className="w-full text-center text-blue-500 cursor-pointer font-semibold my-3">
-          Tìm bạn bè
+          <Link to={Config.PAGE_FRIEND} className="">
+            Tìm bạn bè
+          </Link>
         </p>
       </div>
     </div>

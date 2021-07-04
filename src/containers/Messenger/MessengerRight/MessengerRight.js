@@ -1,7 +1,7 @@
 import React from "react";
 import EmptyMessage from "../../../components/Messenger/MessengerRight/EmptyMessage/EmptyMessage";
-import ContentChat from "./ContentChat/ContentChat";
-import CustomChat from "./CustomChat/CustomChat";
+// import ContentChat from "./ContentChat/ContentChat";
+// import CustomChat from "./CustomChat/CustomChat";
 
 MessengerRight.propTypes = {};
 

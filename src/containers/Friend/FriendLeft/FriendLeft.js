@@ -27,13 +27,16 @@ function FriendLeft(props) {
         />
       </div>
       <div className="w-full my-2.5">
-        <div className="w-full flex py-2 px-4">
-          <div className="w-1/2 flex justify-start">
-            <span className="flex items-center font-semibold cursor-pointer">
+        <div className="w-full flex py-2 px-4  dark:text-gray-300">
+          <div className="w-full md:w-1/2 flex text-sm justify-start">
+            <span
+              className="w-full flex items-center font-semibold cursor-pointer justify-center 
+              md:justify-start"
+            >
               Bạn bè (65)
             </span>
           </div>
-          <div className="w-1/2 flex justify-end">
+          <div className="w-1/2 flex justify-end hidden md:flex">
             <span
               className="bx bxs-chevron-right text-xl flex items-center 
               cursor-pointer"

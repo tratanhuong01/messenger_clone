@@ -18,6 +18,7 @@ function showAllLinks(routes) {
   }
 }
 function App(props) {
+  document.getElementById("root").classList = "";
   return (
     <Router>
       <Switch>{showAllLinks(routes)}</Switch>

@@ -13,3 +13,5 @@ export const LOGIN = "LOGIN";
 //
 export const LOGOUT = "LOGOUT";
 //
+export const OPEN_MODAL_PROFILE = "OPEN_MODAL_PROFILE";
+//
