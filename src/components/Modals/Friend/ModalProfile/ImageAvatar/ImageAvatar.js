@@ -3,10 +3,11 @@ import React from "react";
 ImageAvatar.propTypes = {};
 
 function ImageAvatar(props) {
+  const { user } = props;
   return (
     <div className="w-40 h-40 mx-auto relative">
       <img
-        src="https://pbs.twimg.com/media/EYVxlOSXsAExOpX.jpg"
+        src={user.avatar}
         className="w-full h-full rounded-full 
         object-cover p-1 border-4 bg-white border-solid border-gray-500"
         alt=""

@@ -15,3 +15,7 @@ export const LOGOUT = "LOGOUT";
 //
 export const OPEN_MODAL_PROFILE = "OPEN_MODAL_PROFILE";
 //
+export const OPEN_MODAL_ADD_FRIEND = "OPEN_MODAL_ADD_FRIEND";
+//
+export const OPEN_MODAL_CREATE_GROUP = "OPEN_MODAL_CREATE_GROUP";
+//

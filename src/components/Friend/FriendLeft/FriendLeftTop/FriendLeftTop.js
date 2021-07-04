@@ -1,8 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../../../actions/index";
 
 FriendLeftTop.propTypes = {};
 
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    openModalAddFriend: () => {
+      dispatch(actions.openModalAddFriend());
+    },
+    openModalCreateGroup: () => {
+      dispatch(actions.openModalCreateGroup());
+    },
+  };
+};
+
 function FriendLeftTop(props) {
+  const { openModalAddFriend, openModalCreateGroup } = props;
   return (
     <div className="w-full my-2 flex relative">
       <div className="w-full flex px-4">
@@ -19,6 +33,7 @@ function FriendLeftTop(props) {
       </div>
       <div className="flex mx-2">
         <span
+          onClick={openModalAddFriend}
           className="bx bx-user-plus text-2xl flex items-center cursor-pointer 
           p-2 hover:bg-gray-200 rounded-full w-10 h-10 flex justify-center 
           dark:hover:bg-dark-third dark:text-gray-300"
@@ -26,6 +41,7 @@ function FriendLeftTop(props) {
       </div>
       <div className="flex mx-2">
         <span
+          onClick={openModalCreateGroup}
           className="bx bx-shape-polygon text-2xl flex items-center cursor-pointer 
            p-2 hover:bg-gray-200 rounded-full w-10 h-10 flex justify-center 
            dark:hover:bg-dark-third dark:text-gray-300"
@@ -35,4 +51,4 @@ function FriendLeftTop(props) {
   );
 }
 
-export default FriendLeftTop;
+export default connect(null, mapDispatchToProps)(FriendLeftTop);

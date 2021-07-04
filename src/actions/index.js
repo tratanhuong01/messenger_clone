@@ -105,3 +105,15 @@ export const openModalProfile = () => {
     type: Types.OPEN_MODAL_PROFILE,
   };
 };
+
+export const openModalAddFriend = () => {
+  return {
+    type: Types.OPEN_MODAL_ADD_FRIEND,
+  };
+};
+
+export const openModalCreateGroup = () => {
+  return {
+    type: Types.OPEN_MODAL_CREATE_GROUP,
+  };
+};

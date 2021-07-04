@@ -140,52 +140,48 @@ function Header(props) {
             </div>
           </div>
           <div className="w-full pt-2 pb-2 sm:w-full">
-            <ul className="flex float-right">
-              <li className="">
-                <div className="cursor-pointer pt-1.5 relative h-10 ml-1 mr-1 w-10 bg-gray-200 dark:bg-dark-third dark:text-white text-center rounded-full">
-                  <i className="bx bx-plus text-xl hidden"></i>
-                  <i className="bx bxs-moon text-xl"></i>
-                </div>
-              </li>
-              <li className="relative">
-                <div
-                  className="w-10 bg-gray-200 dark:bg-dark-third 
-                          dark:text-white text-center rounded-full cursor-pointer h-10 ml-1 mr-1 pt-1.5 relative"
-                >
-                  <i className="bx bxl-messenger text-xl"></i>
-                  <span className="absolute -top-2 -right-1">
-                    <span className="text-white bg-red-600 font-semibold rounded-full text-xs px-1 py-0.5 ">
-                      1
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li className="relative">
-                <div
-                  className="pt-1.5 relative w-10 bg-gray-200 
-                      dark:bg-dark-third dark:text-white text-center rounded-full cursor-pointer 
-                      h-10 ml-1 mr-1"
-                >
-                  <i className="far fa-bell text-xm"></i>
+            <div className="flex float-right">
+              <div className="w-12 h-12 mr-1 flex justify-center relative">
+                <span
+                  className="bx bxs-moon cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
+                 rounded-full flex items-center justify-center text-xl"
+                ></span>
+              </div>
+              <div className="w-12 h-12 mr-1 flex justify-center relative">
+                <span
+                  className="bx bxl-messenger cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
+                 rounded-full flex items-center justify-center text-xl"
+                ></span>
+                <div className="absolute -top-1 -right-1">
                   <span
-                    id="numNotification"
-                    className="absolute -top-2 -right-1"
+                    className="text-white bg-red-600 font-semibold rounded-full text-xs h-5 w-5 flex 
+                    justify-center items-center"
                   >
-                    <span className="text-white bg-red-600 font-semibold rounded-full text-xs px-1 py-0.5 ">
-                      2
-                    </span>
+                    2
                   </span>
                 </div>
-              </li>
-              <li className="relative">
-                <div
-                  className="pt-1.5 w-10 bg-gray-200 dark:bg-dark-third dark:text-white text-center rounded-full cursor-pointer 
-                      h-10 ml-1 mr-1"
-                >
-                  <i className="fas fa-sort-down text-xl leading-4"></i>
+              </div>
+              <div className="w-12 h-12 mr-1 flex justify-center relative">
+                <span
+                  className="far fa-bell cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
+                 rounded-full flex items-center justify-center"
+                ></span>
+                <div className="absolute -top-1 -right-1">
+                  <span
+                    className="text-white bg-red-600 font-semibold rounded-full text-xs h-5 w-5 flex 
+                    justify-center items-center"
+                  >
+                    2
+                  </span>
                 </div>
-              </li>
-            </ul>
+              </div>
+              <div className="w-12 h-12 mr-1 flex justify-center relative">
+                <span
+                  className="bx bx-exit cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
+                 rounded-full flex items-center justify-center text-xl"
+                ></span>
+              </div>
+            </div>
           </div>
           <div
             className="w-full p-2 rounded-lg absolute dark:bg-dark-second bg-white 

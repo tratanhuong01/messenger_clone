@@ -7,6 +7,12 @@ import * as actions from "../../../../actions/index";
 
 ModalProfile.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
 const mapDispatchToProps = (dispatch, props) => {
   return {
     closeModal: () => {
@@ -16,7 +22,8 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 function ModalProfile(props) {
-  const { closeModal } = props;
+  const { closeModal, isLogin } = props;
+  const user = isLogin.user;
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
@@ -38,9 +45,9 @@ function ModalProfile(props) {
         </div>
         <div className="w-full absolute top-32">
           <div className="w-full">
-            <ImageAvatar />
+            <ImageAvatar user={user} />
             <p className="text-center w-full font-bold text-2xl my-2 dark:text-gray-300">
-              Trà Tấn Hưởng
+              {`${user.firstName} ${user.lastName}`}
             </p>
             <p className="text-sm text-center font-semibold w-full text-gray-500">
               Try do it !!
@@ -73,4 +80,4 @@ function ModalProfile(props) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(ModalProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalProfile);
