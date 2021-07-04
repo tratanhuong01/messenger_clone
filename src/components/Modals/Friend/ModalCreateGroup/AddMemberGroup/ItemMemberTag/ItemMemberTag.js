@@ -9,7 +9,7 @@ function ItemMemberTag(props) {
         cursor-pointer flex justify-center w-auto break-all"
     >
       <img
-        src="./images/gai.jpg"
+        src="./images/male/8.jpg"
         className="w-6 h-6 rounded-full object-cover mr-1"
         alt=""
       />

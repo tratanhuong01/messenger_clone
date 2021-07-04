@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ImageAvatar from "./ImageAvatar/ImageAvatar";
 import ImageCover from "./ImageCover/ImageCover";
 import ItemProfileChild from "./ItemProfileChild/ItemProfileChild";
-import * as actions from "../../../../actions/index";
+import * as modalsAction from "../../../../actions/modals/index";
+import FriendUser from "./FriendUser/FriendUser";
+import ConnectFriend from "./ConnectFriend/ConnectFriend";
 
 ModalProfile.propTypes = {};
 
@@ -16,14 +18,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     closeModal: () => {
-      dispatch(actions.closeModal());
+      dispatch(modalsAction.closeModal());
     },
   };
 };
 
 function ModalProfile(props) {
-  const { closeModal, isLogin } = props;
-  const user = isLogin.user;
+  const { closeModal, user, isLogin } = props;
+  const [showConnectFriend, setShowConnectFriend] = useState(false);
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
@@ -45,7 +47,7 @@ function ModalProfile(props) {
         </div>
         <div className="w-full absolute top-32">
           <div className="w-full">
-            <ImageAvatar user={user} />
+            <ImageAvatar user={user} isLogin={isLogin} />
             <p className="text-center w-full font-bold text-2xl my-2 dark:text-gray-300">
               {`${user.firstName} ${user.lastName}`}
             </p>
@@ -57,20 +59,21 @@ function ModalProfile(props) {
           <ItemProfileChild position="right-10" />
         </div>
         <div className="w-full mt-2">
-          <div className="w-full my-2 relative flex justify-center">
-            <button
-              className="border-2 border-solid border-indigo-500 text-indigo-500 font-semibold mr-5 bg-white
-              py-2 px-8 hover:border-white hover:bg-indigo-500 hover:text-white rounded-full shadow-xl"
-            >
-              Nhắn tin
-            </button>
-            <button
-              className="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
-              py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5"
-            >
-              Kết bạn
-            </button>
-          </div>
+          {showConnectFriend ? (
+            <ConnectFriend
+              setShowConnectFriend={setShowConnectFriend}
+              user={user}
+            />
+          ) : (
+            <div className="">
+              {isLogin.user.id === user.id ? (
+                ""
+              ) : (
+                <FriendUser setShowConnectFriend={setShowConnectFriend} />
+              )}
+            </div>
+          )}
+
           <div className="w-full mt-2">
             <div className="w-full flex"></div>
           </div>

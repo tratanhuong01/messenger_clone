@@ -20,6 +20,7 @@ const myReducer = (state = initialState, action) => {
     case Types.LOGOUT:
       state.isLogin = false;
       state.user = null;
+      localStorage.removeItem("user");
       return { ...state };
     //
     default:

@@ -14,7 +14,7 @@ function ItemMemberChoose(props) {
       </div>
       <div className="w-12 h-12 relative ml-10 mr-4">
         <img
-          src="./images/boy.jpg"
+          src="./images/male/7.jpg"
           className="w-full h-full rounded-full object-cover"
           alt=""
         />

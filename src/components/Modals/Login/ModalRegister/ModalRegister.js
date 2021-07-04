@@ -5,7 +5,8 @@ import * as Config from "../../../../constants/Config";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { connect } from "react-redux";
-import * as actions from "../../../../actions/index";
+import * as usersAction from "../../../../actions/users/index";
+import * as modalsAction from "../../../../actions/modals/index";
 import LoadingSubmitModal from "../../General/LoadingSubmitModal";
 
 ModalRegister.propTypes = {};
@@ -19,10 +20,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     closeModal: () => {
-      dispatch(actions.closeModal());
+      dispatch(modalsAction.closeModal());
     },
     registerAccountRequest: (user) => {
-      dispatch(actions.registerAccountRequest(user));
+      dispatch(usersAction.registerAccountRequest(user));
     },
   };
 };
@@ -171,6 +172,7 @@ function ModalRegister(props) {
               } `}
               placeholder="Mật Khẩu Mới"
               {...register("password")}
+              autoComplete="on"
             />
           </div>
           <ul className="w-full mb-4 mt-4">

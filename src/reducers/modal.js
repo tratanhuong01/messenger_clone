@@ -27,7 +27,7 @@ const myReducer = (state = initialState, action) => {
     case Types.OPEN_MODAL_PROFILE:
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       state.StateModal = true;
-      state.DataModal = <ModalProfile />;
+      state.DataModal = <ModalProfile user={action.user} />;
       return { ...state };
     //
     case Types.OPEN_MODAL_ADD_FRIEND:

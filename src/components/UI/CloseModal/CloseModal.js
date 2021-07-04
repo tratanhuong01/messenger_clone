@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../actions/index";
+import * as modalsAction from "../../../actions/modals/index";
 
 CloseModal.propTypes = {};
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     closeModal: () => {
-      dispatch(actions.closeModal());
+      dispatch(modalsAction.closeModal());
     },
   };
 };

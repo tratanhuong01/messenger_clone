@@ -3,14 +3,14 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { connect } from "react-redux";
-import * as actions from "../../../actions/index";
+import * as usersAction from "../../../actions/users/index";
 
 FormLogin.propTypes = {};
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     loginAccountRequest: (user) => {
-      dispatch(actions.loginAccountRequest(user));
+      dispatch(usersAction.loginAccountRequest(user));
     },
   };
 };
@@ -59,6 +59,7 @@ function FormLogin(props) {
           errors.password ? "border-red-500 text-red-500" : "border-gray-200 "
         }`}
         {...register("password")}
+        autoComplete="on"
       />
       <p className="py-2 text-left pl-3 font-semibold text-red-600">
         {errors.password ? errors.password.message : ""}

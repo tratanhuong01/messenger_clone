@@ -10,7 +10,7 @@ function ItemFriend(props) {
     >
       <div className="object-cover rounded-full mx-auto md:m-0 relative w-14 h-14">
         <img
-          src="./images/boy.jpg"
+          src="./images/male/1.jpg"
           alt=""
           className="rounded-full object-cover mx-auto w-14 h-14"
         />

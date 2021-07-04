@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../../actions/index";
+import * as modalsAction from "../../../../actions/modals/index";
 
 FriendLeftTop.propTypes = {};
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     openModalAddFriend: () => {
-      dispatch(actions.openModalAddFriend());
+      dispatch(modalsAction.openModalAddFriend());
     },
     openModalCreateGroup: () => {
-      dispatch(actions.openModalCreateGroup());
+      dispatch(modalsAction.openModalCreateGroup());
     },
   };
 };

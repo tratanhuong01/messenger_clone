@@ -16,7 +16,7 @@ function ItemListGroupChat(props) {
       </span>
       <div className="w-full flex mb-2 mt-1 justity-center">
         <img
-          src="./images/boy.jpg"
+          src="./images/male/4.jpg"
           className="w-28 h-28 object-cover 
           rounded-full mx-auto"
           alt=""
