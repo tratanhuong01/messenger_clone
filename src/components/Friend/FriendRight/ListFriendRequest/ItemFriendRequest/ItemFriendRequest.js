@@ -3,6 +3,7 @@ import React from "react";
 ItemFriendRequest.propTypes = {};
 
 function ItemFriendRequest(props) {
+  const { item } = props;
   return (
     <div className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative dark:bg-dark-second">
       <span
@@ -13,20 +14,20 @@ function ItemFriendRequest(props) {
       </span>
       <div className="w-full flex mb-2 mt-1 justity-center">
         <img
-          src="./images/boy.jpg"
+          src={item.avatar}
           className="w-24 h-24  object-cover 
           rounded-full mx-auto"
           alt=""
         />
       </div>
       <p className="w-full font-semibold text-center cursor-pointer mb-1 dark:text-white">
-        Lê Văn Nam
+        {`${item.firstName} ${item.lastName}`}
       </p>
       <p
         className="w-full font-semibold text-center cursor-pointer 
         text-gray-500 text-xs mb-1 dark:text-gray-300"
       >
-        Từ quanh đây
+        Từ hệ thống
       </p>
       <p
         className="w-full font-semibold text-center cursor-pointer 

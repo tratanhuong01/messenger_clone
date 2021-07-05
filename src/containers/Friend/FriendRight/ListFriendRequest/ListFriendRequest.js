@@ -5,6 +5,10 @@ import ItemFriendRequest from "../../../../components/Friend/FriendRight/ListFri
 ListFriendRequest.propTypes = {};
 
 function ListFriendRequest(props) {
+  const { list } = props;
+  const showItemFriendRequest = list.map((item, index) => {
+    return <ItemFriendRequest item={item} key={index} />;
+  });
   return (
     <>
       <div className="w-full flex cursor-pointer hover:bg-gray-200">
@@ -16,17 +20,10 @@ function ListFriendRequest(props) {
       </div>
       <div className="w-full bg-gray-100 dark:bg-dark-main p-6">
         <p className="font-semibold mb-4 ml-8 w-full dark:text-gray-300">
-          Gợi ý kết bạn (46){" "}
+          Gợi ý kết bạn ({list.length}){" "}
         </p>
         <div className="flex flex-wrap justify-center">
-          <ItemFriendRequest />
-          <ItemFriendRequest />
-          <ItemFriendRequest />
-          <ItemFriendRequest />
-          <ItemFriendRequest />
-          <ItemFriendRequest />
-          <ItemFriendRequest />
-          <ItemFriendRequest />
+          {showItemFriendRequest}
         </div>
       </div>
     </>

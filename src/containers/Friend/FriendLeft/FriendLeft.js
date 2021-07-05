@@ -3,10 +3,38 @@ import FriendLeftTop from "../../../components/Friend/FriendLeft/FriendLeftTop/F
 import AddFriendByEmailPhone from "../../../components/Friend/FriendLeft/AddFriendByEmailPhone/AddFriendByEmailPhone";
 import FriendLeftList from "../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 import ItemFriend from "../../../components/Friend/FriendLeft/ItemFriend/ItemFriend";
+import { connect } from "react-redux";
+import * as contentRightAction from "../../../actions/contentRight/index";
 
 FriendLeft.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    loadListInviteFriendRequest: (id) => {
+      dispatch(contentRightAction.loadListInviteFriendRequest(id));
+    },
+    loadListConnectFriendRequest: () => {
+      dispatch(contentRightAction.loadListConnectFriendRequest());
+    },
+    loadListGroupRequest: () => {
+      dispatch(contentRightAction.loadListGroupRequest());
+    },
+  };
+};
+
 function FriendLeft(props) {
+  const {
+    loadListInviteFriendRequest,
+    isLogin,
+    loadListConnectFriendRequest,
+    loadListGroupRequest,
+  } = props;
   return (
     <div
       className="w-24 md:w-5/12 xl:w-1/4 border-r-2 border-solid dark:border-dark-second
@@ -16,14 +44,26 @@ function FriendLeft(props) {
       <AddFriendByEmailPhone />
       <div className="w-full my-2.5">
         <FriendLeftList
-          label="Danh sách kết bạn"
+          onClick={loadListInviteFriendRequest}
+          label="Danh sách lời mời"
           icon="bx bx-user-plus"
-          bgColor="bg-blue-500"
+          bgColor="bg-green-500"
+          idUser={isLogin.user.id}
+          index={1}
         />
         <FriendLeftList
+          onClick={loadListGroupRequest}
           label="Danh sách nhóm"
           icon="fa fa-users"
           bgColor="bg-indigo-500"
+          index={2}
+        />
+        <FriendLeftList
+          onClick={loadListConnectFriendRequest}
+          label="Danh sách kết bạn"
+          icon="bx bx-user-plus"
+          bgColor="bg-blue-500"
+          index={3}
         />
       </div>
       <div className="w-full my-2.5">
@@ -54,4 +94,4 @@ function FriendLeft(props) {
   );
 }
 
-export default FriendLeft;
+export default connect(mapStateToProps, mapDispatchToProps)(FriendLeft);

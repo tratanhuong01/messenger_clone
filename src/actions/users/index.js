@@ -92,3 +92,15 @@ export const searchUserByEmailOrPhone = (search) => {
       });
   };
 };
+
+export const getAllUsers = () => {
+  return (dispatch) => {
+    return api("users", "GET", null, null)
+      .then((res) => {
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};

@@ -6,12 +6,14 @@ import ItemProfileChild from "./ItemProfileChild/ItemProfileChild";
 import * as modalsAction from "../../../../actions/modals/index";
 import FriendUser from "./FriendUser/FriendUser";
 import ConnectFriend from "./ConnectFriend/ConnectFriend";
+import * as relationshipUsersAction from "../../../../actions/relationshipusers/index";
 
 ModalProfile.propTypes = {};
 
 const mapStateToProps = (state) => {
   return {
     isLogin: state.isLogin,
+    profile: state.profile,
   };
 };
 
@@ -20,12 +22,18 @@ const mapDispatchToProps = (dispatch, props) => {
     closeModal: () => {
       dispatch(modalsAction.closeModal());
     },
+    loadInformationProfile: (idMain, idView) => {
+      dispatch(relationshipUsersAction.loadInformationProfile(idMain, idView));
+    },
   };
 };
 
 function ModalProfile(props) {
-  const { closeModal, user, isLogin } = props;
+  const { closeModal, user, isLogin, profile, loadInformationProfile } = props;
   const [showConnectFriend, setShowConnectFriend] = useState(false);
+  useEffect(() => {
+    loadInformationProfile(isLogin.user.id, user.id);
+  }, [loadInformationProfile, isLogin, user]);
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
@@ -69,7 +77,10 @@ function ModalProfile(props) {
               {isLogin.user.id === user.id ? (
                 ""
               ) : (
-                <FriendUser setShowConnectFriend={setShowConnectFriend} />
+                <FriendUser
+                  profile={profile}
+                  setShowConnectFriend={setShowConnectFriend}
+                />
               )}
             </div>
           )}
