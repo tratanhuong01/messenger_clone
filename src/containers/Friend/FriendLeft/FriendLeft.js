@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FriendLeftTop from "../../../components/Friend/FriendLeft/FriendLeftTop/FriendLeftTop";
 import AddFriendByEmailPhone from "../../../components/Friend/FriendLeft/AddFriendByEmailPhone/AddFriendByEmailPhone";
 import FriendLeftList from "../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 import ItemFriend from "../../../components/Friend/FriendLeft/ItemFriend/ItemFriend";
 import { connect } from "react-redux";
 import * as contentRightAction from "../../../actions/contentRight/index";
+import api from "../../../api/api";
 
 FriendLeft.propTypes = {};
 
@@ -19,8 +20,8 @@ const mapDispatchToProps = (dispatch, props) => {
     loadListInviteFriendRequest: (id) => {
       dispatch(contentRightAction.loadListInviteFriendRequest(id));
     },
-    loadListConnectFriendRequest: () => {
-      dispatch(contentRightAction.loadListConnectFriendRequest());
+    loadListConnectFriendRequest: (id) => {
+      dispatch(contentRightAction.loadListConnectFriendRequest(id));
     },
     loadListGroupRequest: () => {
       dispatch(contentRightAction.loadListGroupRequest());
@@ -34,11 +35,25 @@ function FriendLeft(props) {
     isLogin,
     loadListConnectFriendRequest,
     loadListGroupRequest,
+    getFriendById,
   } = props;
+  const [friends, setFriends] = useState([]);
+  useEffect(() => {
+    api(`relationshipuser/${isLogin.user.id}`, "GET", null, null)
+      .then((res) => {
+        setFriends(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [getFriendById, isLogin]);
+  const showAllFriends = friends.map((item, index) => {
+    return <ItemFriend item={item} key={index} />;
+  });
   return (
     <div
       className="w-24 md:w-5/12 xl:w-1/4 border-r-2 border-solid dark:border-dark-second
-    border-gray-100 shadow-xl overflow-hidden "
+    border-gray-100 shadow-xl overflow-hidden pt-2"
     >
       <FriendLeftTop />
       <AddFriendByEmailPhone />
@@ -63,6 +78,7 @@ function FriendLeft(props) {
           label="Danh sách kết bạn"
           icon="bx bx-user-plus"
           bgColor="bg-blue-500"
+          idUser={isLogin.user.id}
           index={3}
         />
       </div>
@@ -73,7 +89,7 @@ function FriendLeft(props) {
               className="w-full flex items-center font-semibold cursor-pointer justify-center 
               md:justify-start"
             >
-              Bạn bè (65)
+              Bạn bè ({friends.length})
             </span>
           </div>
           <div className="w-1/2 flex justify-end hidden md:flex">
@@ -83,12 +99,7 @@ function FriendLeft(props) {
             ></span>
           </div>
         </div>
-        <div className="w-full my-2">
-          <ItemFriend />
-          <ItemFriend />
-          <ItemFriend />
-          <ItemFriend />
-        </div>
+        <div className="w-full my-2">{showAllFriends}</div>
       </div>
     </div>
   );

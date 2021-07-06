@@ -22,7 +22,10 @@ function ListGroupChat(props) {
             <option value="">Nhóm do tôi quản lí</option>
           </select>
         </div>
-        <div className="flex flex-wrap justify-center">
+        <div
+          className="flex flex-wrap justify-center overflow-y-auto"
+          style={{ maxHeight: "540px" }}
+        >
           <ItemGroupChat />
           <ItemGroupChat />
           <ItemGroupChat />

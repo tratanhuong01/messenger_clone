@@ -1,12 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
 import FriendLeftList from "../../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 import ItemFriendRequest from "../../../../components/Friend/FriendRight/ListFriendRequest/ItemFriendRequest/ItemFriendRequest";
 
 ListFriendRequest.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    contentRight: state.contentRight,
+  };
+};
+
 function ListFriendRequest(props) {
-  const { list } = props;
-  const showItemFriendRequest = list.map((item, index) => {
+  const { contentRight } = props;
+  const showItemFriendRequest = contentRight.list.map((item, index) => {
     return <ItemFriendRequest item={item} key={index} />;
   });
   return (
@@ -20,9 +27,12 @@ function ListFriendRequest(props) {
       </div>
       <div className="w-full bg-gray-100 dark:bg-dark-main p-6">
         <p className="font-semibold mb-4 ml-8 w-full dark:text-gray-300">
-          Gợi ý kết bạn ({list.length}){" "}
+          Gợi ý kết bạn ({contentRight.list.length}){" "}
         </p>
-        <div className="flex flex-wrap justify-center">
+        <div
+          className="flex flex-wrap justify-center overflow-y-auto"
+          style={{ maxHeight: "540px" }}
+        >
           {showItemFriendRequest}
         </div>
       </div>
@@ -30,4 +40,4 @@ function ListFriendRequest(props) {
   );
 }
 
-export default ListFriendRequest;
+export default connect(mapStateToProps, null)(ListFriendRequest);

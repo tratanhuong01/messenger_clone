@@ -79,6 +79,7 @@ function ModalProfile(props) {
               ) : (
                 <FriendUser
                   profile={profile}
+                  user={user}
                   setShowConnectFriend={setShowConnectFriend}
                 />
               )}

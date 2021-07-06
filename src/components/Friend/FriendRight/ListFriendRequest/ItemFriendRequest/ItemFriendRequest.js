@@ -1,9 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as relationshipsActions from "../../../../../actions/relationshipusers/index";
 
 ItemFriendRequest.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    addRelationsipUserRequest: (relationship) => {
+      dispatch(relationshipsActions.addRelationsipUserRequest(relationship));
+    },
+  };
+};
+
 function ItemFriendRequest(props) {
-  const { item } = props;
+  const { item, isLogin, addRelationsipUserRequest } = props;
+  const relationship = {
+    userSend: isLogin.user,
+    userRecivice: item,
+  };
   return (
     <div className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative dark:bg-dark-second">
       <span
@@ -37,6 +57,7 @@ function ItemFriendRequest(props) {
       </p>
       <div className="w-full mt-2 p-2 flex justify-center dark:bg-dark-second">
         <button
+          onClick={() => addRelationsipUserRequest(relationship)}
           className="py-1 text-xm px-5 border-2 border-solid border-blue-500 
           text-blue-700 font-semibold hover:bg-blue-200 rounded-lg dark:bg-dark-second"
         >
@@ -47,4 +68,4 @@ function ItemFriendRequest(props) {
   );
 }
 
-export default ItemFriendRequest;
+export default connect(mapStateToProps, mapDispatchToProps)(ItemFriendRequest);

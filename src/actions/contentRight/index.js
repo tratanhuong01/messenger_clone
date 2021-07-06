@@ -1,13 +1,36 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 
-export const loadListConnectFriendRequest = () => {
+export const loadListConnectFriendRequest = (id) => {
   return (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
     dispatch(changeContentToLoading());
-    return api(`users`, "GET", null, null)
-      .then((res) => {
-        dispatch(loadListConnectFriend(res.data));
-        dispatch(changeLoadingToContent());
+    return api(`users`, "GET", null, { headers })
+      .then((resUsers) => {
+        api(`getFriendProposal/${id}`, "GET", null, { headers })
+          .then((resProposal) => {
+            api(
+              "processUserTint",
+              "POST",
+              {
+                userList: resUsers.data,
+                relationshipUserList: resProposal.data,
+              },
+              { headers }
+            )
+              .then((resMain) => {
+                dispatch(loadListConnectFriend(resMain.data));
+                dispatch(changeLoadingToContent());
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);

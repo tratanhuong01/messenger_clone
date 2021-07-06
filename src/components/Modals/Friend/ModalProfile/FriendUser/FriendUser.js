@@ -1,9 +1,41 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as relationshipsAction from "../../../../../actions/relationshipusers/index";
 
 FriendUser.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    deleteRelationShipRequest: (relationship) => {
+      dispatch(relationshipsAction.deleteRelationShipRequest(relationship));
+    },
+    updateStatusRelationShipRequest: (relationship) => {
+      dispatch(
+        relationshipsAction.updateStatusRelationShipRequest(relationshipsAction)
+      );
+    },
+  };
+};
+
 function FriendUser(props) {
-  const { setShowConnectFriend, profile } = props;
+  const {
+    setShowConnectFriend,
+    profile,
+    deleteRelationShipRequest,
+    isLogin,
+    user,
+    updateStatusRelationShipRequest,
+  } = props;
+  const relationship = {
+    idSend: isLogin.user.id,
+    idRecivice: user.id,
+  };
   const ButtonSwitch = () => {
     switch (profile.statusFriend) {
       case 0:
@@ -20,6 +52,7 @@ function FriendUser(props) {
       case 1:
         return (
           <button
+            onClick={() => deleteRelationShipRequest(relationship)}
             className="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
           py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5"
           >
@@ -30,6 +63,7 @@ function FriendUser(props) {
       case 2:
         return (
           <button
+            onClick={() => updateStatusRelationShipRequest(relationship)}
             className="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
             py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5"
           >
@@ -53,4 +87,4 @@ function FriendUser(props) {
   );
 }
 
-export default FriendUser;
+export default connect(mapStateToProps, mapDispatchToProps)(FriendUser);

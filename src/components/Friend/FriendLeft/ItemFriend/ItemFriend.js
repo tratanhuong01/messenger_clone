@@ -3,6 +3,7 @@ import React from "react";
 ItemFriend.propTypes = {};
 
 function ItemFriend(props) {
+  const { item } = props;
   return (
     <div
       className="w-full md:py-2 md:px-4 py-3 hover:bg-gray-200 flex cursor-pointer 
@@ -10,14 +11,14 @@ function ItemFriend(props) {
     >
       <div className="object-cover rounded-full mx-auto md:m-0 relative w-14 h-14">
         <img
-          src="./images/male/1.jpg"
+          src={item.userRelationshipUser.avatar}
           alt=""
           className="rounded-full object-cover mx-auto w-14 h-14"
         />
       </div>
       <div className="ml-5 hidden md:flex">
         <span className="font-semibold flex items-center dark:text-gray-300">
-          Hưởng developer
+          {`${item.userRelationshipUser.firstName} ${item.userRelationshipUser.lastName}`}
         </span>
       </div>
     </div>

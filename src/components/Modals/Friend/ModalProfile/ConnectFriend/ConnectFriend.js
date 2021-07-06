@@ -10,9 +10,10 @@ function ConnectFriend(props) {
         <textarea
           name=""
           placeholder="Nhập lời chào"
-          className="w-11/12 mx-auto p-3 rounded-lg border-2 border-solid 
-            border-blue-500 max-h-32 h-32 resize-none"
-        >{`Xin chào , tôi là ${user.firstName} ${user.lastName}`}</textarea>
+          className="w-11/12 mx-auto p-3 rounded-lg border-2 border-solid dark:text-gray-300
+            border-blue-500 max-h-32 h-32 resize-none dark:bg-dark-third font-semibold"
+          defaultValue={`Xin chào , tôi là ${user.firstName} ${user.lastName}`}
+        ></textarea>
       </div>
       <div className="w-full my-2 relative flex justify-center">
         <button

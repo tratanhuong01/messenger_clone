@@ -1,9 +1,40 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as relationshipsActions from "../../../../../actions/relationshipusers/index";
 
 ItemFriendInvite.propTypes = {};
 
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    updateStatusRelationShipRequest: (relationship) => {
+      dispatch(
+        relationshipsActions.updateStatusRelationShipRequest(relationship)
+      );
+    },
+    deleteRelationShipRequest: (relationship) => {
+      dispatch(relationshipsActions.deleteRelationShipRequest(relationship));
+    },
+  };
+};
+
 function ItemFriendInvite(props) {
-  const user = props.item.userRelationshipUser;
+  const {
+    item,
+    isLogin,
+    updateStatusRelationShipRequest,
+    deleteRelationShipRequest,
+  } = props;
+  const user = item.userRelationshipUser;
+  const relationship = {
+    idSend: isLogin.user.id,
+    idRecivice: user.id,
+  };
   return (
     <div className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative dark:bg-dark-second">
       <span
@@ -25,6 +56,7 @@ function ItemFriendInvite(props) {
       </p>
       <div className="w-full p-2 flex justify-center dark:bg-dark-second">
         <button
+          onClick={() => updateStatusRelationShipRequest(relationship)}
           className="py-1 text-xm px-5 border-2 border-solid border-blue-500 text-sm
           text-blue-700 font-semibold hover:bg-blue-200 rounded-lg dark:bg-dark-second"
         >
@@ -33,6 +65,7 @@ function ItemFriendInvite(props) {
       </div>
       <div className="w-full p-2 flex justify-center dark:bg-dark-second">
         <button
+          onClick={() => deleteRelationShipRequest(relationship)}
           className="py-1 text-xm px-5 border-2 border-solid border-blue-500 text-sm
           text-blue-700 font-semibold hover:bg-blue-200 rounded-lg dark:bg-dark-second"
         >
@@ -43,4 +76,4 @@ function ItemFriendInvite(props) {
   );
 }
 
-export default ItemFriendInvite;
+export default connect(mapStateToProps, mapDispatchToProps)(ItemFriendInvite);

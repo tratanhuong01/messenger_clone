@@ -18,13 +18,13 @@ function FormInputSearch(props) {
         type="text"
         placeholder="Nhập email hoặc số điện thoại..."
         className="w-full py-2 px-3.5 rounded-full border-2 border-solid 
-        border-gray-300 shadow-lg my-4 "
+        border-gray-300 shadow-lg my-4 dark:bg-dark-third dark:text-gray-300"
         name="valueSearch"
         onChange={onChange}
         value={valueSearch}
       />
       <label className="w-11/12 pl-2 text-red-500 font-semibold">
-        Không tìm thấy tài khoản nào
+        {/* Không tìm thấy tài khoản nào */}
       </label>
     </div>
   );
