@@ -14,38 +14,65 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
     typeGroupMessage: 0,
     dateCreated: "",
   };
+  const content = {
+    data: [
+      {
+        id: 0,
+        content:
+          "Các bạn hiện là bạn bè hiện các bạn có thể nhắn tin trò chuyện với nhau",
+        src: "",
+      },
+    ],
+    type: -1,
+  };
   return (dispatch) => {
     return api("groupmessage", "POST", data, { headers })
       .then((res) => {
         let messOne = {
-          id: "11111",
+          id: null,
           groupMessage: res.data,
           userMesages: groupMessage.userSend,
-          content: "",
-          nickName: "",
+          content: null,
+          nickName: null,
           stateMessage: 0,
           typeMessage: 0,
           dateCreated: null,
         };
         let messTwo = {
-          id: "22222",
+          id: null,
           groupMessage: res.data,
           userMesages: groupMessage.userRecivice,
-          content: "",
-          nickName: "",
+          content: null,
+          nickName: null,
           stateMessage: 0,
           typeMessage: 0,
-          dateCreated: "",
+          dateCreated: null,
+        };
+        let messThree = {
+          id: null,
+          groupMessage: res.data,
+          userMesages: groupMessage.userRecivice,
+          content: JSON.stringify(content),
+          nickName: null,
+          stateMessage: 0,
+          typeMessage: -1,
+          dateCreated: null,
         };
         api("messages", "POST", messOne, { headers })
           .then((res) => {
             api("messages", "POST", messTwo, { headers })
               .then((res) => {
-                dispatch(
-                  contentRightAction.loadListInviteFriend(
-                    groupMessage.listInvite
-                  )
-                );
+                api("messages", "POST", messThree, { headers })
+                  .then((res) => {
+                    dispatch(
+                      contentRightAction.loadListInviteFriend(
+                        groupMessage.listInvite
+                      )
+                    );
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
               })
               .catch((err) => {
                 console.log(err);

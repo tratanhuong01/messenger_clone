@@ -45,3 +45,5 @@ export const ADD_MESSAGE = "ADD_MESSAGE";
 //
 export const ADD_GROUP_MESSAGE = "ADD_GROUP_MESSAGE";
 //
+export const LOAD_ALL_MESSAGE_OF_USER_BY_ID = "LOAD_ALL_MESSAGE_OF_USER_BY_ID";
+//
