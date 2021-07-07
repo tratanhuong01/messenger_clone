@@ -32,12 +32,13 @@ function ItemFriendInvite(props) {
   } = props;
   const user = item.userRelationshipUser;
   const relationship = {
-    idSend: isLogin.user.id,
-    idRecivice: user.id,
+    userSend: isLogin.user,
+    userRecivice: user,
   };
   return (
     <div className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative dark:bg-dark-second">
       <span
+        onClick={() => deleteRelationShipRequest(relationship)}
         className="font-semibold text-xl cursor-pointer absolute top-2
         right-4 dark:text-gray-300"
       >

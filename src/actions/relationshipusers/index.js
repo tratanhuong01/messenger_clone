@@ -1,6 +1,7 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as contentRightAction from "../contentRight/index";
+import * as groupMessagesAction from "../groupmessage/index";
 
 export const addRelationsipUserRequest = (relationship) => {
   return (dispatch) => {
@@ -99,22 +100,85 @@ export const statusFriend = (status) => {
 
 export const updateStatusRelationShipRequest = (relationship) => {
   return (dispatch) => {
-    return api(
-      `updateStatusRelationShip/${relationship.idSend}/${relationship.idRecivice}`,
+    const requestOne = api(
+      `updateStatusRelationShip/${relationship.userSend.id}/${relationship.userRecivice.id}`,
       "GET",
       null,
       null
+    );
+    const requestTwo = api(
+      `updateStatusRelationShip/${relationship.userRecivice.id}/${relationship.userSend.id}`,
+      "GET",
+      null,
+      null
+    );
+    const requestFour = api(
+      `relationshipuser/${relationship.userSend.id}`,
+      "GET",
+      null,
+      null
+    );
+    return requestOne
+      .then((res) => {
+        requestTwo
+          .then((res) => {
+            api(
+              `getInviteRequest/${relationship.userSend.id}/${1}`,
+              "GET",
+              null,
+              null
+            )
+              .then((resListInvite) => {
+                relationship.listInvite = resListInvite.data;
+                requestFour
+                  .then((resFriend) => {
+                    dispatch(loadListFriend(resFriend.data));
+                    // console.log(resFriend.data);
+                    dispatch(
+                      groupMessagesAction.addGroupMessageRequestSingle(
+                        relationship
+                      )
+                    );
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const deleteRelationShipRequest = (relationship) => {
+  return (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    return api(
+      `relationshipuser/${relationship.userSend.id}/${relationship.userRecivice.id}`,
+      "GET",
+      null,
+      { headers }
     )
       .then((res) => {
         api(
-          `updateStatusRelationShip/${relationship.idRecivice}/${relationship.idSend}`,
+          `relationshipuser/${relationship.userRecivice.id}/${relationship.userSend.id}`,
           "GET",
           null,
-          null
+          { headers }
         )
-          .then((updateStatusRelationShip) => {
+          .then((res) => {
             api(
-              `getInviteRequest/${relationship.idSend}/${1}`,
+              `getInviteRequest/${relationship.userSend.id}/${1}`,
               "GET",
               null,
               null
@@ -138,46 +202,21 @@ export const updateStatusRelationShipRequest = (relationship) => {
   };
 };
 
-export const deleteRelationShipRequest = (relationship) => {
+export const loadListFriendRequest = (id) => {
   return (dispatch) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    return api(
-      `relationshipuser/${relationship.idSend}/${relationship.idRecivice}`,
-      "GET",
-      null,
-      { headers }
-    )
+    return api(`relationshipuser/${id}`, "GET", null, null)
       .then((res) => {
-        api(
-          `relationshipuser/${relationship.idRecivice}/${relationship.idSend}`,
-          "GET",
-          null,
-          { headers }
-        )
-          .then((res) => {
-            api(
-              `getInviteRequest/${relationship.idSend}/${1}`,
-              "GET",
-              null,
-              null
-            )
-              .then((response) => {
-                dispatch(
-                  contentRightAction.loadListInviteFriend(response.data)
-                );
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        dispatch(loadListFriend(res.data));
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+};
+
+export const loadListFriend = (list) => {
+  return {
+    type: Types.LOAD_LIST_FRIEND,
+    list,
   };
 };

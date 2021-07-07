@@ -15,6 +15,7 @@ export const loadListConnectFriendRequest = (id) => {
               "processUserTint",
               "POST",
               {
+                idMain: id,
                 userList: resUsers.data,
                 relationshipUserList: resProposal.data,
               },

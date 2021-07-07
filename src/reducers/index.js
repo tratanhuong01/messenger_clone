@@ -5,6 +5,7 @@ import isLogin from "./isLogin";
 import profile from "./profile";
 import contentRight from "./contentRight";
 import users from "./users";
+import friends from "./friends";
 
 const myReducer = combineReducers({
   modal,
@@ -13,6 +14,7 @@ const myReducer = combineReducers({
   profile,
   contentRight,
   users,
+  friends,
 });
 
 export default myReducer;

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import FriendLeftTop from "../../../components/Friend/FriendLeft/FriendLeftTop/FriendLeftTop";
 import AddFriendByEmailPhone from "../../../components/Friend/FriendLeft/AddFriendByEmailPhone/AddFriendByEmailPhone";
 import FriendLeftList from "../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 import ItemFriend from "../../../components/Friend/FriendLeft/ItemFriend/ItemFriend";
 import { connect } from "react-redux";
 import * as contentRightAction from "../../../actions/contentRight/index";
-import api from "../../../api/api";
+import * as relationshipUsersAction from "../../../actions/relationshipusers/index";
 
 FriendLeft.propTypes = {};
 
 const mapStateToProps = (state) => {
   return {
     isLogin: state.isLogin,
+    friends: state.friends,
   };
 };
 
@@ -26,6 +27,9 @@ const mapDispatchToProps = (dispatch, props) => {
     loadListGroupRequest: () => {
       dispatch(contentRightAction.loadListGroupRequest());
     },
+    loadListFriendRequest: (id) => {
+      dispatch(relationshipUsersAction.loadListFriendRequest(id));
+    },
   };
 };
 
@@ -35,29 +39,26 @@ function FriendLeft(props) {
     isLogin,
     loadListConnectFriendRequest,
     loadListGroupRequest,
-    getFriendById,
+    friends,
+    loadListFriendRequest,
   } = props;
-  const [friends, setFriends] = useState([]);
   useEffect(() => {
-    api(`relationshipuser/${isLogin.user.id}`, "GET", null, null)
-      .then((res) => {
-        setFriends(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [getFriendById, isLogin]);
-  const showAllFriends = friends.map((item, index) => {
+    loadListFriendRequest(isLogin.user.id);
+  }, [loadListFriendRequest, isLogin]);
+  const showAllFriends = friends.listFriends.map((item, index) => {
     return <ItemFriend item={item} key={index} />;
   });
   return (
     <div
       className="w-24 md:w-5/12 xl:w-1/4 border-r-2 border-solid dark:border-dark-second
-    border-gray-100 shadow-xl overflow-hidden pt-2"
+      border-gray-100 shadow-xl overflow-hidden pt-2"
     >
       <FriendLeftTop />
       <AddFriendByEmailPhone />
-      <div className="w-full my-2.5">
+      <div
+        className="w-full my-2.5 overflow-y-auto wrapper-content-right"
+        style={{ maxHeight: "152px" }}
+      >
         <FriendLeftList
           onClick={loadListInviteFriendRequest}
           label="Danh sách lời mời"
@@ -89,7 +90,7 @@ function FriendLeft(props) {
               className="w-full flex items-center font-semibold cursor-pointer justify-center 
               md:justify-start"
             >
-              Bạn bè ({friends.length})
+              Bạn bè ({friends.listFriends.length})
             </span>
           </div>
           <div className="w-1/2 flex justify-end hidden md:flex">
