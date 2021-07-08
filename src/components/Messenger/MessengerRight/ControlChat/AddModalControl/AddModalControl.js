@@ -3,6 +3,7 @@ import React from "react";
 AddModalControl.propTypes = {};
 
 function AddModalControl(props) {
+  const { item } = props;
   return (
     <div className="flex">
       <div className="cursor-pointer fill-65676B ">
@@ -11,7 +12,7 @@ function AddModalControl(props) {
           dark:hover:bg-dark-third p-1 "
         >
           <svg
-            fill="#EE046B"
+            fill={item[0].colorChat}
             className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji tftn3vyl"
             height="20px"
             width="20px"

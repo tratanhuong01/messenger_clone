@@ -3,14 +3,14 @@ import React from "react";
 StickerControl.propTypes = {};
 
 function StickerControl(props) {
+  const { item } = props;
   return (
     <li
       className="float-left cursor-pointer p-1 fill-65676B  hover:bg-gray-200 rounded-full 
       dark:hover:bg-dark-third"
     >
       <svg
-        id="sticker10045"
-        fill="#EE046B"
+        fill={item[0].colorChat}
         className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji"
         height="20px"
         width="20px"

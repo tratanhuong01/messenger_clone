@@ -7,6 +7,9 @@ import InputChatControl from "../../../../../components/Messenger/MessengerRight
 import SendIconControl from "../../../../../components/Messenger/MessengerRight/ControlChat/SendIconControl/SendIconControl";
 
 function ControlChat(props) {
+  //
+  const { item } = props;
+
   return (
     <div
       className="w-full bg-white dark:bg-dark-second relative z-20 pt-2 pb-3 px-1 flex 
@@ -14,16 +17,16 @@ function ControlChat(props) {
     >
       <div className="w-32 flex">
         <ul className="mr-3 w-full flex py-2">
-          <AddModalControl />
-          <AddFileControl />
-          <StickerControl />
-          <GifControl />
+          <AddModalControl item={item} />
+          <AddFileControl item={item} />
+          <StickerControl item={item} />
+          <GifControl item={item} />
         </ul>
       </div>
       <div className="w-9/12 relative">
         <InputChatControl />
       </div>
-      <SendIconControl />
+      <SendIconControl item={item} />
     </div>
   );
 }

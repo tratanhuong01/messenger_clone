@@ -62,7 +62,7 @@ function ItemChatLeft(props) {
           } `}
           >
             <div className="w-full flex justify-center md:w-1/5 mr-3">
-              {item[0].typeMessage === "0" ? (
+              {item[0].typeGroupMessage === "0" ? (
                 <ItemSingleChat
                   user={user}
                   width="w-14"
@@ -87,7 +87,7 @@ function ItemChatLeft(props) {
             <div className="w-4/5 hidden md:block">
               <div className="w-full">
                 <span className="float-left font-semibold dark:text-gray-300">
-                  {item[0].typeMessage === "0"
+                  {item[0].typeGroupMessage === "0"
                     ? `${user.firstName} ${user.lastName}`
                     : generalNameGroup()}
                 </span>
