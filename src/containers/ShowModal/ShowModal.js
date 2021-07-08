@@ -1,15 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
-
-ShowModal.propTypes = {};
-const mapStateToProps = (state) => {
-  return {
-    modal: state.modal,
-  };
-};
+import { useSelector } from "react-redux";
 
 function ShowModal(props) {
-  const { modal } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      modal: state.modal,
+    };
+  });
+
+  const { modal } = states;
+
   return (
     <div
       className={`w-full bg-black top-0 left-0 z-50 bg-opacity-50 h-screen fixed 
@@ -20,4 +21,4 @@ function ShowModal(props) {
   );
 }
 
-export default connect(mapStateToProps)(ShowModal);
+export default ShowModal;

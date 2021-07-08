@@ -1,23 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as modalsAction from "../../../../actions/modals/index";
 
-AddFriendByEmailPhone.propTypes = {};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    openModalAddFriend: () => {
-      dispatch(modalsAction.openModalAddFriend());
-    },
-  };
-};
-
 function AddFriendByEmailPhone(props) {
-  const { openModalAddFriend } = props;
+  //
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full my-2.5 flex">
       <div
-        onClick={openModalAddFriend}
+        onClick={() => dispatch(modalsAction.openModalAddFriend())}
         className="w-full flex items-center font-semibold cursor-pointer py-2 
         hover:bg-gray-200 px-6 dark:text-gray-300 dark:hover:bg-dark-third"
       >
@@ -33,4 +25,4 @@ function AddFriendByEmailPhone(props) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(AddFriendByEmailPhone);
+export default AddFriendByEmailPhone;

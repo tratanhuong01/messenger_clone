@@ -1,7 +1,5 @@
 import React from "react";
 
-ItemListGroupChat.propTypes = {};
-
 function ItemListGroupChat(props) {
   return (
     <div

@@ -3,7 +3,6 @@ import CustomChatCenter from "../../../../components/Messenger/MessengerRight/Cu
 import CustomChatTop from "../../../../components/Messenger/MessengerRight/CustomChatTop/CustomChatTop";
 import FileSentMessages from "../../../../components/Messenger/MessengerRight/FileSentMessages/FileSentMessages";
 import ImageOrVideoSentMessages from "../../../../components/Messenger/MessengerRight/ImageOrVideoSendMessages/ImageOrVideoSendMessages";
-CustomChat.propTypes = {};
 
 function CustomChat(props) {
   return (

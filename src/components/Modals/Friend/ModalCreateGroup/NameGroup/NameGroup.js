@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 NameGroup.propTypes = {};
 
 function NameGroup(props) {
+  const [name, setName] = useState("");
+  const setNameGroup = (event) => {
+    setName(event.target.value);
+    props.setNameGroup(event.target.value);
+  };
   return (
     <div className="m-2 w-full pl-2 pr-6">
       <label
@@ -16,6 +21,8 @@ function NameGroup(props) {
         placeholder="Tên nhóm"
         className="w-full dark:bg-dark-third dark:border-dark-third shadow-lg my-2 dark:text-gray-300 
         py-2 px-3.5 rounded-full border-2 border-solid border-gray-300"
+        value={name}
+        onChange={setNameGroup}
       />
     </div>
   );

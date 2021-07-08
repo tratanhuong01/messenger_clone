@@ -1,44 +1,34 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as relationshipsActions from "../../../../../actions/relationshipusers/index";
 
-ItemFriendInvite.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-  };
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    updateStatusRelationShipRequest: (relationship) => {
-      dispatch(
-        relationshipsActions.updateStatusRelationShipRequest(relationship)
-      );
-    },
-    deleteRelationShipRequest: (relationship) => {
-      dispatch(relationshipsActions.deleteRelationShipRequest(relationship));
-    },
-  };
-};
-
 function ItemFriendInvite(props) {
-  const {
-    item,
-    isLogin,
-    updateStatusRelationShipRequest,
-    deleteRelationShipRequest,
-  } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
+  const dispatch = useDispatch();
+
+  const { item } = props;
+
   const user = item.userRelationshipUser;
+
   const relationship = {
     userSend: isLogin.user,
     userRecivice: user,
   };
+
   return (
     <div className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative dark:bg-dark-second">
       <span
-        onClick={() => deleteRelationShipRequest(relationship)}
+        onClick={() =>
+          dispatch(relationshipsActions.deleteRelationShipRequest(relationship))
+        }
         className="font-semibold text-xl cursor-pointer absolute top-2
         right-4 dark:text-gray-300"
       >
@@ -57,7 +47,11 @@ function ItemFriendInvite(props) {
       </p>
       <div className="w-full p-2 flex justify-center dark:bg-dark-second">
         <button
-          onClick={() => updateStatusRelationShipRequest(relationship)}
+          onClick={() =>
+            dispatch(
+              relationshipsActions.updateStatusRelationShipRequest(relationship)
+            )
+          }
           className="py-1 text-xm px-5 border-2 border-solid border-blue-500 text-sm
           text-blue-700 font-semibold hover:bg-blue-200 rounded-lg dark:bg-dark-second"
         >
@@ -66,7 +60,11 @@ function ItemFriendInvite(props) {
       </div>
       <div className="w-full p-2 flex justify-center dark:bg-dark-second">
         <button
-          onClick={() => deleteRelationShipRequest(relationship)}
+          onClick={() =>
+            dispatch(
+              relationshipsActions.deleteRelationShipRequest(relationship)
+            )
+          }
           className="py-1 text-xm px-5 border-2 border-solid border-blue-500 text-sm
           text-blue-700 font-semibold hover:bg-blue-200 rounded-lg dark:bg-dark-second"
         >
@@ -77,4 +75,4 @@ function ItemFriendInvite(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemFriendInvite);
+export default ItemFriendInvite;

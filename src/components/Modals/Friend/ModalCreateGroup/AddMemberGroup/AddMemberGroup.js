@@ -1,9 +1,17 @@
 import React from "react";
+import ContentEditable from "react-contenteditable";
 import MainItemMemberTag from "./MainItemMemberTag/MainItemMemberTag";
 
 AddMemberGroup.propTypes = {};
 
 function AddMemberGroup(props) {
+  const { memberChoose, setMemberChoose, setUserCurrent, setData, data } =
+    props;
+  const searchUsers = (event) => {
+    const userCurrent = props.searchUser(event.target.value);
+    setData(event.target.value);
+    setUserCurrent(userCurrent);
+  };
   return (
     <div className="m-2 w-full pl-2 pr-6">
       <label
@@ -13,13 +21,31 @@ function AddMemberGroup(props) {
         Mời bạn thêm vào cuộc trò chuyện (0/100)
       </label>
       <div className="w-full relative mb-1">
-        <div
-          placeholder="Nhập họ tên , email , số điện thoại để tìm..."
-          className="w-full border-gray-300 shadow-lg my-2 py-2 px-10 rounded-lg 
-          border-2 border-solid flex pt-3"
-        >
-          <MainItemMemberTag />
-        </div>
+        {memberChoose.length <= 0 ? (
+          <ContentEditable
+            placeholder="Nhập họ tên , email , số điện thoại để tìm..."
+            className="w-full border-gray-300 shadow-lg my-2 py-2 px-10 rounded-lg 
+            border-2 border-solid flex dark:text-gray-300"
+            html={data}
+            onChange={searchUsers}
+          />
+        ) : (
+          <div
+            placeholder="Nhập họ tên , email , số điện thoại để tìm..."
+            className="w-full border-gray-300 shadow-lg my-2 py-2 px-10 rounded-lg 
+            border-2 border-solid flex dark:text-gray-300"
+          >
+            <MainItemMemberTag
+              memberChoose={memberChoose}
+              setMemberChoose={setMemberChoose}
+              data={data}
+              setData={setData}
+              setUserCurrent={setUserCurrent}
+              searchUser={props.searchUser}
+            />
+          </div>
+        )}
+
         <span
           className="bx bx-search absolute top-1/2 transform -translate-y-1/2 left-3 text-xl 
             text-gray-500"

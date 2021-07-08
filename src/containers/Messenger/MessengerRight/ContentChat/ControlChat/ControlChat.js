@@ -6,8 +6,6 @@ import GifControl from "../../../../../components/Messenger/MessengerRight/Contr
 import InputChatControl from "../../../../../components/Messenger/MessengerRight/ControlChat/InputChatControl/InputChatControl";
 import SendIconControl from "../../../../../components/Messenger/MessengerRight/ControlChat/SendIconControl/SendIconControl";
 
-ControlChat.propTypes = {};
-
 function ControlChat(props) {
   return (
     <div

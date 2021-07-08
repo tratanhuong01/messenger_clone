@@ -1,3 +1,23 @@
+//color
+
+export const COLOR_CHAT = [
+  "#006AD4",
+  "#02B28D",
+  "#4C9CF2",
+  "#5B5B5B",
+  "#68D400",
+  "#692CF2",
+  "#77A2F2",
+  "#AB41D4",
+  "#B51299",
+  "#B76618",
+  "#EDA600",
+  "#EE046B",
+  "#FF311E",
+];
+
+//color
+
 //
 export const OPEN_MODAL_REGISTER = "OPEN_MODAL_REGISTER";
 //
@@ -46,4 +66,8 @@ export const ADD_MESSAGE = "ADD_MESSAGE";
 export const ADD_GROUP_MESSAGE = "ADD_GROUP_MESSAGE";
 //
 export const LOAD_ALL_MESSAGE_OF_USER_BY_ID = "LOAD_ALL_MESSAGE_OF_USER_BY_ID";
+//
+export const GET_ALL_MESSAGE_CONTENT_RIGHT = "GET_ALL_MESSAGE_CONTENT_RIGHT";
+//
+export const GET_ALL_MESSAGES_BY_GROUP = "GET_ALL_MESSAGES_BY_GROUP";
 //

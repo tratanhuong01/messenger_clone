@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import MainFriend from "../../containers/Friend/MainFriend";
 import ShowModal from "../../containers/ShowModal/ShowModal";
 import * as Config from "../../constants/Config";
 
-Friend.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-  };
-};
-
 function Friend(props) {
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
   const history = useHistory();
-  const { isLogin } = props;
+
   useEffect(() => {
     if (isLogin.isLogin) {
       history.push(Config.PAGE_FRIEND);
@@ -31,4 +32,4 @@ function Friend(props) {
   );
 }
 
-export default connect(mapStateToProps, null)(withRouter(Friend));
+export default withRouter(Friend);

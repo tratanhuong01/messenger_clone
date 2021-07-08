@@ -1,22 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as modalsAction from "../../../../actions/modals/index";
 
-FriendLeftTop.propTypes = {};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    openModalAddFriend: () => {
-      dispatch(modalsAction.openModalAddFriend());
-    },
-    openModalCreateGroup: () => {
-      dispatch(modalsAction.openModalCreateGroup());
-    },
-  };
-};
-
 function FriendLeftTop(props) {
-  const { openModalAddFriend, openModalCreateGroup } = props;
+  //
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full my-2 flex relative">
       <div className="w-full flex px-4">
@@ -33,7 +22,7 @@ function FriendLeftTop(props) {
       </div>
       <div className="flex mx-2">
         <span
-          onClick={openModalAddFriend}
+          onClick={() => dispatch(modalsAction.openModalAddFriend())}
           className="bx bx-user-plus text-2xl flex items-center cursor-pointer 
           p-2 hover:bg-gray-200 rounded-full w-10 h-10 flex justify-center 
           dark:hover:bg-dark-third dark:text-gray-300"
@@ -41,7 +30,7 @@ function FriendLeftTop(props) {
       </div>
       <div className="flex mx-2">
         <span
-          onClick={openModalCreateGroup}
+          onClick={() => dispatch(modalsAction.openModalCreateGroup())}
           className="bx bx-shape-polygon text-2xl flex items-center cursor-pointer 
            p-2 hover:bg-gray-200 rounded-full w-10 h-10 flex justify-center 
            dark:hover:bg-dark-third dark:text-gray-300"
@@ -51,4 +40,4 @@ function FriendLeftTop(props) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(FriendLeftTop);
+export default FriendLeftTop;

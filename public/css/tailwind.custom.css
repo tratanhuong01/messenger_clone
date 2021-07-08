@@ -88,3 +88,6 @@
 .w-86\% {
   width: 86%;
 }
+.dark .dark\:border-white {
+  border-color: white !important;
+}

@@ -1,29 +1,19 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../actions/modals/index";
 import * as usersAction from "../../actions/users/index";
 
-Header.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-  };
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    openModalProfile: (user) => {
-      dispatch(modalsAction.openModalProfile(user));
-    },
-    logout: () => {
-      dispatch(usersAction.logout());
-    },
-  };
-};
-
 function Header(props) {
-  const { isLogin, openModalProfile, logout } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -127,7 +117,9 @@ function Header(props) {
         </div>
         <div className="w-1/2 flex sm:w-3/4 md:w-1/4">
           <div
-            onClick={() => openModalProfile(isLogin.user)}
+            onClick={() =>
+              dispatch(modalsAction.openModalProfile(isLogin.user))
+            }
             className="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 
             hover:bg-gray-200 round-avatar dark:hover:bg-dark-third 
             lg:mx-0 hidden xl:flex cursor-pointer"
@@ -183,7 +175,7 @@ function Header(props) {
               </div>
               <div className="w-12 h-12 mr-1 flex justify-center relative">
                 <span
-                  onClick={logout}
+                  onClick={() => dispatch(usersAction.logout())}
                   className="bx bx-exit cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
                  rounded-full flex items-center justify-center text-xl"
                 ></span>
@@ -232,4 +224,4 @@ function Header(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

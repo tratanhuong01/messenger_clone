@@ -6,6 +6,8 @@ import Header from "../../components/Header/Header";
 MainMessenger.propTypes = {};
 
 function MainMessenger(props) {
+  const { match } = props;
+
   return (
     <div className="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">
       {localStorage && localStorage.getItem("user") ? (
@@ -16,8 +18,8 @@ function MainMessenger(props) {
               lg:mx-auto xl:w-full"
             style={{ maxHeight: "798px", height: "798px" }}
           >
-            <MessengerLeft />
-            <MessengerRight />
+            <MessengerLeft slug={match.params.slug} />
+            <MessengerRight slug={match.params.slug} />
           </div>
         </>
       ) : (

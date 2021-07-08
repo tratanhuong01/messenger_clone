@@ -2,7 +2,6 @@ import React from "react";
 import CreateAccountButton from "../../../../components/Login/CreateAccountButton/CreateAccountButton";
 import FormLogin from "../../../../components/Login/FormLogin/FormLogin";
 import EndFormLogin from "../../../../components/Login/EndFormLogin/EndFormLogin";
-RightLogin.propTypes = {};
 
 function RightLogin(props) {
   return (

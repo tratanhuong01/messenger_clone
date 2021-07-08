@@ -15,17 +15,22 @@ const mapStateToProps = (state) => {
 
 function Messenger(props) {
   const history = useHistory();
-  const { isLogin } = props;
+  const { isLogin, match } = props;
   useEffect(() => {
     if (isLogin.isLogin) {
-      history.push(Config.PAGE_MESSENGER);
+      history.push(
+        Config.PAGE_MESSENGER +
+          (typeof match.params.slug === "undefined"
+            ? ""
+            : "/" + match.params.slug)
+      );
     } else {
       history.push(Config.PAGE_LOGIN);
     }
   }, [isLogin, history]);
   return (
     <div className="w-full dark:bg-dark-main h-screen relative">
-      <MainMessenger />
+      <MainMessenger match={match} />
       <ShowModal />
     </div>
   );

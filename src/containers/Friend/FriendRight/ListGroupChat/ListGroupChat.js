@@ -2,8 +2,6 @@ import React from "react";
 import ItemGroupChat from "../../../../components/Friend/FriendRight/ListGroupChat/ItemGroupChat/ItemListGroupChat";
 import FriendLeftList from "../../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 
-ListGroupChat.propTypes = {};
-
 function ListGroupChat(props) {
   return (
     <>

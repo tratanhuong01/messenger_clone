@@ -1,7 +1,5 @@
 import React from "react";
 
-FooterLogin.propTypes = {};
-
 function FooterLogin(props) {
   return (
     <div className="w-full sm:p-4 xl:mt-16">

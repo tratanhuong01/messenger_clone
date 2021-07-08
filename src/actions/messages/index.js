@@ -18,3 +18,10 @@ export const addMessage = () => {
     type: Types.ADD_MESSAGE,
   };
 };
+
+export const getAllMessageByGroup = (data) => {
+  return {
+    type: Types.GET_ALL_MESSAGES_BY_GROUP,
+    data,
+  };
+};

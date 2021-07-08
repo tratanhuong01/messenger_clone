@@ -1,35 +1,44 @@
 import React, { useEffect } from "react";
 import MessengerLeftTop from "../../../components/Messenger/MessengerLeft/MessengerLeftTop/MessengerLeftTop";
 import MessengerLeftSearch from "../../../components/Messenger/MessengerLeft/MessengerLeftSearch/MessengerLeftSearch";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../../actions/index";
 import ItemChatLeft from "../../../components/Messenger/MessengerLeft/ItemChatLeft/ItemChatLeft";
 
 MessengerLeft.propTypes = {};
 
-const mapStateToProps = (state) => {
-  return {
-    messages: state.messages,
-    isLogin: state.isLogin,
-  };
-};
-
-const mapDispatchToProps = (dispatch, prop) => {
-  return {
-    loadAllMessageOfUserByIdRequest: (id) => {
-      dispatch(actions.loadAllMessageOfUserByIdRequest(id));
-    },
-  };
-};
-
 function MessengerLeft(props) {
-  const { loadAllMessageOfUserByIdRequest, isLogin, messages } = props;
-  useEffect(() => {
-    loadAllMessageOfUserByIdRequest(isLogin.user.id);
-  }, [loadAllMessageOfUserByIdRequest, isLogin]);
-  const showAllMessagesUser = messages.list.map((item, index) => {
-    return <ItemChatLeft item={item} key={index} idUser={isLogin.user.id} />;
+  //
+  const { slug } = props;
+
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+      messages: state.messages,
+    };
   });
+
+  const { isLogin, messages } = states;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.loadAllMessageOfUserByIdRequest(isLogin.user.id));
+  }, [isLogin, dispatch]);
+
+  const showAllMessagesUser =
+    messages.list === null
+      ? ""
+      : messages.list.map((item, index) => {
+          return (
+            <ItemChatLeft
+              item={item}
+              key={index}
+              idUser={isLogin.user.id}
+              slug={slug}
+            />
+          );
+        });
   return (
     <div
       className="w-24 md:w-5/12 xl:w-1/4 border-r-2 border-solid dark:border-dark-second
@@ -56,4 +65,4 @@ function MessengerLeft(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessengerLeft);
+export default MessengerLeft;

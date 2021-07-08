@@ -3,51 +3,31 @@ import FriendLeftTop from "../../../components/Friend/FriendLeft/FriendLeftTop/F
 import AddFriendByEmailPhone from "../../../components/Friend/FriendLeft/AddFriendByEmailPhone/AddFriendByEmailPhone";
 import FriendLeftList from "../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 import ItemFriend from "../../../components/Friend/FriendLeft/ItemFriend/ItemFriend";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as contentRightAction from "../../../actions/contentRight/index";
 import * as relationshipUsersAction from "../../../actions/relationshipusers/index";
 
-FriendLeft.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-    friends: state.friends,
-  };
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    loadListInviteFriendRequest: (id) => {
-      dispatch(contentRightAction.loadListInviteFriendRequest(id));
-    },
-    loadListConnectFriendRequest: (id) => {
-      dispatch(contentRightAction.loadListConnectFriendRequest(id));
-    },
-    loadListGroupRequest: () => {
-      dispatch(contentRightAction.loadListGroupRequest());
-    },
-    loadListFriendRequest: (id) => {
-      dispatch(relationshipUsersAction.loadListFriendRequest(id));
-    },
-  };
-};
-
 function FriendLeft(props) {
-  const {
-    loadListInviteFriendRequest,
-    isLogin,
-    loadListConnectFriendRequest,
-    loadListGroupRequest,
-    friends,
-    loadListFriendRequest,
-  } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+      friends: state.friends,
+    };
+  });
+
+  const { isLogin, friends } = states;
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    loadListFriendRequest(isLogin.user.id);
-  }, [loadListFriendRequest, isLogin]);
+    dispatch(relationshipUsersAction.loadListFriendRequest(isLogin.user.id));
+  }, [dispatch, isLogin]);
+
   const showAllFriends = friends.listFriends.map((item, index) => {
     return <ItemFriend item={item} key={index} />;
   });
+
   return (
     <div
       className="w-24 md:w-5/12 xl:w-1/4 border-r-2 border-solid dark:border-dark-second
@@ -60,7 +40,11 @@ function FriendLeft(props) {
         style={{ maxHeight: "152px" }}
       >
         <FriendLeftList
-          onClick={loadListInviteFriendRequest}
+          onClick={() =>
+            dispatch(
+              contentRightAction.loadListInviteFriendRequest(isLogin.user.id)
+            )
+          }
           label="Danh sách lời mời"
           icon="bx bx-user-plus"
           bgColor="bg-green-500"
@@ -68,14 +52,20 @@ function FriendLeft(props) {
           index={1}
         />
         <FriendLeftList
-          onClick={loadListGroupRequest}
+          onClick={() =>
+            dispatch(contentRightAction.loadListGroupRequest(isLogin.user.id))
+          }
           label="Danh sách nhóm"
           icon="fa fa-users"
           bgColor="bg-indigo-500"
           index={2}
         />
         <FriendLeftList
-          onClick={loadListConnectFriendRequest}
+          onClick={() =>
+            dispatch(
+              contentRightAction.loadListConnectFriendRequest(isLogin.user.id)
+            )
+          }
           label="Danh sách kết bạn"
           icon="bx bx-user-plus"
           bgColor="bg-blue-500"
@@ -106,4 +96,4 @@ function FriendLeft(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FriendLeft);
+export default FriendLeft;

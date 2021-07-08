@@ -2,8 +2,6 @@ import React from "react";
 import AccountNotIsset from "../../../../components/Login/AccountNotIsset/AccountNotIsset";
 import AccountIsset from "../../../../components/Login/AccountIsset/AccountIsset";
 
-LeftLogin.propTypes = {};
-
 function LeftLogin(props) {
   return (
     <div className="w-full flex flex-col py-2 mx-auto sm:flex-col sm:pt-4 lg:flex-row lg:pt-20">

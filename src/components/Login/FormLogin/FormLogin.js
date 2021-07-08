@@ -2,27 +2,18 @@ import React from "react";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as usersAction from "../../../actions/users/index";
 
-FormLogin.propTypes = {};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    loginAccountRequest: (user) => {
-      dispatch(usersAction.loginAccountRequest(user));
-    },
-  };
-};
-
 function FormLogin(props) {
-  const { loginAccountRequest } = props;
+  //
   const validationSchema = Yup.object().shape({
     emailOrPhone: Yup.string().required(
       "Email hoặc số điện thoại không được để trống !!"
     ),
     password: Yup.string().required("Mật khẩu không được để trống !!"),
   });
+
   const {
     handleSubmit,
     register,
@@ -30,8 +21,11 @@ function FormLogin(props) {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+
+  const dispatch = useDispatch();
+
   const onHandleSubmit = (user) => {
-    loginAccountRequest(user);
+    dispatch(usersAction.loginAccountRequest(user));
   };
   return (
     <form className="w-full bg-white" onSubmit={handleSubmit(onHandleSubmit)}>
@@ -77,4 +71,4 @@ function FormLogin(props) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(FormLogin);
+export default FormLogin;

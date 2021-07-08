@@ -1,7 +1,8 @@
 import * as Types from "../constants/ActionTypes";
 
 const initialState = {
-  list: [[]],
+  list: null,
+  data: null,
 };
 const myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,6 +11,9 @@ const myReducer = (state = initialState, action) => {
       state.list = action.listInList;
       return { ...state };
     //
+    case Types.GET_ALL_MESSAGES_BY_GROUP:
+      state.data = action.data;
+      return { ...state };
     default:
       return state;
   }

@@ -33,7 +33,7 @@ function ModalAddFriend(props) {
           <div className="flex my-2 justify-end">
             <ButtonCancel />
             <ButtonSave
-              searchUserByEmailOrPhone={searchUserByEmailOrPhone}
+              onClick={searchUserByEmailOrPhone}
               search={search}
               label={"Tìm kiếm"}
             />

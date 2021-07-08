@@ -3,7 +3,6 @@ import NotFound from "./containers/NotFound/NotFound";
 import Login from "./pages/Login/Login";
 import Messenger from "./pages/Messenger/Messenger";
 import Friend from "./pages/Friend/Friend";
-import Profile from "./pages/Profile/Profile";
 
 const routes = [
   {
@@ -12,19 +11,19 @@ const routes = [
     main: () => <Login />,
   },
   {
-    path: Config.PAGE_MESSENGER,
+    path: `${Config.PAGE_MESSENGER}`,
     exact: true,
-    main: () => <Messenger />,
+    main: ({ match }) => <Messenger match={match} />,
+  },
+  {
+    path: `${Config.PAGE_MESSENGER}/:slug`,
+    exact: true,
+    main: ({ match }) => <Messenger match={match} />,
   },
   {
     path: Config.PAGE_FRIEND,
     exact: true,
     main: () => <Friend />,
-  },
-  {
-    path: Config.PAGE_PROFILE,
-    exact: true,
-    main: () => <Profile />,
   },
   {
     path: "",

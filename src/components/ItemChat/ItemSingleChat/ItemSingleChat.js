@@ -1,7 +1,5 @@
 import React from "react";
 
-ItemSingleChat.propTypes = {};
-
 function ItemSingleChat(props) {
   const { width, height, padding, margin, user } = props;
   return (

@@ -1,21 +1,22 @@
 import React from "react";
 import ItemFriendInvite from "../../../../components/Friend/FriendRight/ListFriendInvite/ItemFriendInvite/ItemFriendInvite";
 import FriendLeftList from "../../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
-import { connect } from "react-redux";
-
-ListFriendInvite.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    contentRight: state.contentRight,
-  };
-};
+import { useSelector } from "react-redux";
 
 function ListFriendInvite(props) {
-  const { contentRight } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      contentRight: state.contentRight,
+    };
+  });
+
+  const { contentRight } = states;
+
   const showItemFriendInvite = contentRight.list.map((item, index) => {
     return <ItemFriendInvite item={item} key={index} />;
   });
+
   return (
     <>
       <div className="w-full flex cursor-pointer hover:bg-gray-200">
@@ -40,4 +41,4 @@ function ListFriendInvite(props) {
   );
 }
 
-export default connect(mapStateToProps, null)(ListFriendInvite);
+export default ListFriendInvite;

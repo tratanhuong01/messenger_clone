@@ -1,16 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
-
-FriendLeftList.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    contentRight: state.contentRight,
-  };
-};
+import { useSelector } from "react-redux";
 
 function FriendLeftList(props) {
-  const { label, bgColor, icon, onClick, idUser, contentRight, index } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      contentRight: state.contentRight,
+    };
+  });
+
+  const { contentRight } = states;
+
+  const { label, bgColor, icon, onClick, idUser, index } = props;
+
   return (
     <div
       onClick={() => onClick(idUser)}
@@ -37,4 +39,4 @@ function FriendLeftList(props) {
   );
 }
 
-export default connect(mapStateToProps, null)(FriendLeftList);
+export default FriendLeftList;

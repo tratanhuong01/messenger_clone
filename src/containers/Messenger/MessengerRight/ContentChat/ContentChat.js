@@ -3,8 +3,6 @@ import ContentChatMain from "../../../../components/Messenger/MessengerRight/Con
 import ContentChatTop from "../../../../components/Messenger/MessengerRight/ContentChatTop/ContentChatTop";
 import ControlChat from "./ControlChat/ControlChat";
 
-ContentChat.propTypes = {};
-
 function ContentChat(props) {
   return (
     <div className="w-full xl:w-2/3 h-full max-h-full overflow-hidden flex flex-col">
