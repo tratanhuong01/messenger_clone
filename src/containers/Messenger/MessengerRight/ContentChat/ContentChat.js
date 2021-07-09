@@ -3,9 +3,12 @@ import { useSelector } from "react-redux";
 import ContentChatMain from "../../../../components/Messenger/MessengerRight/ContentChatMain/ContentChatMain";
 import ContentChatTop from "../../../../components/Messenger/MessengerRight/ContentChatTop/ContentChatTop";
 import ControlChat from "./ControlChat/ControlChat";
+import * as process from "../../../../functions/process";
 
 function ContentChat(props) {
   //
+  const { showRight, setShowRight } = props;
+
   const states = useSelector((state) => {
     return {
       messages: state.messages,
@@ -17,52 +20,23 @@ function ContentChat(props) {
 
   const item = messages.data;
 
-  const checkMemberChat = () => {
-    let newUserChat = [];
-    for (let index = 0; index < item.length; index++) {
-      const element = item[index];
-      if (
-        newUserChat.findIndex((item) => item.idUser === element.idUser) === -1
-      ) {
-        newUserChat.push(element);
-      }
-    }
-    return newUserChat;
-  };
-
-  const findUserChating = () => {
-    let newData = null;
-    item.forEach((element) => {
-      if (isLogin.user.id === element.idUser) {
-      } else {
-        newData = element;
-      }
-    });
-    return newData;
-  };
-
-  const generalNameGroup = () => {
-    let data = checkMemberChat();
-    let name = "";
-    data.forEach((element) => {
-      name += element.lastName + " , ";
-    });
-    return name;
-  };
-
-  const user = findUserChating();
-
-  const userChat = checkMemberChat();
+  const { user, name } = process.dataUsersChat(item, isLogin.user.id);
 
   return (
-    <div className="w-full xl:w-2/3 h-full max-h-full overflow-hidden flex flex-col">
+    <div
+      className={`w-full ${
+        showRight ? "" : "xl:w-2/3"
+      } h-full max-h-full overflow-hidden flex flex-col`}
+    >
       <ContentChatTop
-        generalNameGroup={generalNameGroup}
+        name={name}
         item={item}
-        user={item[0].typeGroupMessage === "0" ? user : userChat}
+        user={user}
         typeGroupMessage={item[0].typeGroupMessage}
+        setShowRight={setShowRight}
+        showRight={showRight}
       />
-      <ContentChatMain item={item} />
+      <ContentChatMain item={item} user={user} />
       <ControlChat item={item} />
     </div>
   );

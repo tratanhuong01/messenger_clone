@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EmptyMessage from "../../../components/Messenger/MessengerRight/EmptyMessage/EmptyMessage";
 import ContentChat from "./ContentChat/ContentChat";
@@ -8,6 +8,8 @@ import * as messagesAction from "../../../actions/messages/index";
 function MessengerRight(props) {
   //
   const dispatch = useDispatch();
+
+  const [showRight, setShowRight] = useState(false);
 
   const states = useSelector((state) => {
     return {
@@ -37,8 +39,8 @@ function MessengerRight(props) {
         <EmptyMessage />
       ) : (
         <>
-          <ContentChat />
-          <CustomChat />
+          <ContentChat showRight={showRight} setShowRight={setShowRight} />
+          <CustomChat showRight={showRight} />
         </>
       )}
     </div>

@@ -3,12 +3,12 @@ import React from "react";
 FirstSingleChat.propTypes = {};
 
 function FirstSingleChat(props) {
-  const { item } = props;
+  const { item, user } = props;
   return (
     <div className="w-full p-2 text-center">
       <div className="w-16 h-16 relative mx-auto">
         <img
-          src={item.avatar}
+          src={user.avatar}
           className="w-16 h-16 rounded-full object-cover mx-auto"
           alt=""
         />
@@ -19,7 +19,7 @@ function FirstSingleChat(props) {
         </span>{" "}
         <br />
         <span className="text-sm font-semibold dark:text-gray-300">
-          {JSON.parse(item.content).data[0].content}
+          {item.data[0].content}
         </span>
       </p>
     </div>

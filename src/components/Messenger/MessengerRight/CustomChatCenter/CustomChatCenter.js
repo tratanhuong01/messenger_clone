@@ -1,8 +1,11 @@
 import React from "react";
-
-CustomChatCenter.propTypes = {};
+import { useDispatch } from "react-redux";
+import * as modalsAction from "../../../../actions/modals/index";
 
 function CustomChatCenter(props) {
+  //
+  const dispatch = useDispatch();
+
   return (
     <>
       <li
@@ -15,6 +18,7 @@ function CustomChatCenter(props) {
       <li className="w-full py-1">
         <ul className="w-full">
           <li
+            onClick={() => dispatch(modalsAction.openModalChangeColorChat())}
             className="w-full py-2.5 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white"
           >
@@ -22,12 +26,14 @@ function CustomChatCenter(props) {
             &nbsp;&nbsp; Đổi chủ đề
           </li>
           <li
+            onClick={() => dispatch(modalsAction.openModalChangeIconChat())}
             className="w-full py-2.5 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white"
           >
             ✌️&nbsp;&nbsp; Thay đổi biểu tượng cảm xúc
           </li>
           <li
+            onClick={() => dispatch(modalsAction.openModalChangeNickName())}
             className="w-full py-2.5 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white"
           >

@@ -43,3 +43,33 @@ export const openModalCreateGroup = () => {
     type: Types.OPEN_MODAL_CREATE_GROUP,
   };
 };
+
+export const openModalChangeNickName = () => {
+  return {
+    type: Types.OPEN_MODAL_CHANGE_NICK_NAME,
+  };
+};
+
+export const openModalChangeIconChat = () => {
+  return {
+    type: Types.OPEN_MODAL_CHANGE_ICON_CHAT,
+  };
+};
+
+export const openModalChangeColorChat = () => {
+  return {
+    type: Types.OPEN_MODAL_CHANGE_COLOR_CHAT,
+  };
+};
+
+export const openModalWarningLeaveGroup = () => {
+  return {
+    type: Types.OPEN_MODAL_WARNING_LEAVE_GROUP,
+  };
+};
+
+export const openModalMemberGroupChat = () => {
+  return {
+    type: Types.OPEN_MODAL_MEMBER_GROUP_CHAT,
+  };
+};

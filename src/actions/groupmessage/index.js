@@ -18,8 +18,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
     data: [
       {
         id: 0,
-        content:
-          "Các bạn hiện là bạn bè hiện các bạn có thể nhắn tin trò chuyện với nhau",
+        content: "Các bạn hiện là bạn bè trên Ensonet",
         src: "",
       },
     ],
@@ -35,7 +34,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
           content: null,
           nickName: null,
           stateMessage: 0,
-          typeMessage: 0,
+          typeMessage: -1,
           dateCreated: null,
         };
         let messTwo = {
@@ -45,7 +44,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
           content: null,
           nickName: null,
           stateMessage: 0,
-          typeMessage: 0,
+          typeMessage: -1,
           dateCreated: null,
         };
         let messThree = {
@@ -55,7 +54,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
           content: JSON.stringify(content),
           nickName: null,
           stateMessage: 0,
-          typeMessage: -1,
+          typeMessage: 1,
           dateCreated: null,
         };
         api("messages", "POST", messOne, { headers })

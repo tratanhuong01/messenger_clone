@@ -8,11 +8,19 @@ import FeelMessageRight from "../FeelMessageRight/FeelMessageRight";
 ChatRight.propTypes = {};
 
 function ChatRight(props) {
-  const { typeMessage } = props;
-  const data = (typeMessage) => {
-    switch (typeMessage) {
+  const { item } = props;
+  const data = () => {
+    const content = JSON.parse(item.content);
+    switch (content.type) {
       case 0:
-        return <ChatText />;
+        return (
+          <ChatText
+            margin="ml-auto"
+            item={item}
+            content={content}
+            messages=""
+          />
+        );
       case 1:
         return <ChatImage />;
       case 2:
@@ -36,7 +44,7 @@ function ChatRight(props) {
         </div>
       </div>
       <div className="mess-user-r1 pl-2 flex mr-4" style={{ width: "inherit" }}>
-        {data(typeMessage)}
+        {data()}
         <span
           className="z-10 absolute cursor-pointer"
           style={{

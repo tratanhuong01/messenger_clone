@@ -5,10 +5,13 @@ import FileSentMessages from "../../../../components/Messenger/MessengerRight/Fi
 import ImageOrVideoSentMessages from "../../../../components/Messenger/MessengerRight/ImageOrVideoSendMessages/ImageOrVideoSendMessages";
 
 function CustomChat(props) {
+  const { showRight } = props;
   return (
     <div
-      className="w-1/3 hidden xl:block pr-2 h-full max-h-full wrapper-content-right 
-      overflow-y-auto"
+      className={`${
+        showRight ? "hidden" : "w-1/3 hidden xl:block"
+      } pr-2 h-full max-h-full wrapper-content-right 
+      overflow-y-auto`}
     >
       <CustomChatTop />
       <ul className="w-full py-2">

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 import ItemSingleChat from "../../../ItemChat/ItemSingleChat/ItemSingleChat";
+import * as process from "../../../../functions/process";
 
 CustomChatTop.propTypes = {};
 
@@ -18,46 +19,11 @@ function CustomChatTop(props) {
 
   const item = messages.data;
 
-  const checkMemberChat = () => {
-    let newUserChat = [];
-    for (let index = 0; index < item.length; index++) {
-      const element = item[index];
-      if (
-        newUserChat.findIndex((item) => item.idUser === element.idUser) === -1
-      ) {
-        newUserChat.push(element);
-      }
-    }
-    return newUserChat;
-  };
-
-  const findUserChating = () => {
-    let newData = null;
-    item.forEach((element) => {
-      if (isLogin.user.id === element.idUser) {
-      } else {
-        newData = element;
-      }
-    });
-    return newData;
-  };
-
-  const generalNameGroup = () => {
-    let data = checkMemberChat();
-    let name = "";
-    data.forEach((element) => {
-      name += element.lastName + " , ";
-    });
-    return name;
-  };
-
-  const user = findUserChating();
-
-  const userChat = checkMemberChat();
+  const { user, name } = process.dataUsersChat(item, isLogin.user.id);
 
   return (
     <div className="w-full mt-2">
-      {item[0].typeMessage === "0" ? (
+      {item[0].typeGroupMessage === "0" ? (
         <ItemSingleChat
           width="w-16"
           height="h-16"
@@ -75,14 +41,10 @@ function CustomChatTop(props) {
           padding=""
           widthParent="w-16"
           heightParent="h-16"
-          user={userChat}
+          user={user}
         />
       )}
-      <p className="font-semibold text-center dark:text-white">
-        {item[0].typeMessage === "0"
-          ? `${user.firstName} ${user.lastName}`
-          : generalNameGroup()}
-      </p>
+      <p className="font-semibold text-center dark:text-white">{name}</p>
       <p className="font-semibold text-center text-sm text-gray-600 dark:text-gray-300">
         Đang hoạt động
       </p>

@@ -6,8 +6,7 @@ ContentChatTop.propTypes = {};
 
 function ContentChatTop(props) {
   //
-
-  const { item, typeGroupMessage, user, generalNameGroup } = props;
+  const { item, typeGroupMessage, user, name, setShowRight, showRight } = props;
 
   const colorChat = item[0].colorChat;
 
@@ -38,11 +37,7 @@ function ContentChatTop(props) {
           )}
         </div>
         <div className="pl-3">
-          <b className="block dark:text-white">
-            {typeGroupMessage === "0"
-              ? `${user.firstName} ${user.lastName}`
-              : generalNameGroup()}
-          </b>
+          <b className="block dark:text-white">{name}</b>
           <span className="text-gray-700 dark:text-gray-300 text-sm">
             Đang hoạt động
           </span>
@@ -88,6 +83,7 @@ function ContentChatTop(props) {
             </svg>
           </li>
           <li
+            onClick={() => setShowRight(!showRight)}
             className="py-2.5 px-1 mx-1 rounded-full 
               dark:text-white cursor-pointer"
           >

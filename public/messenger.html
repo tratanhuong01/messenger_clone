@@ -1159,7 +1159,427 @@
     <!-- main -->
 
     <!-- place show modal -->
-    <div class="w-full bg-gray-500 top-0 left-0 z-50 bg-opacity-50 fixed"></div>
+    <div class="w-full bg-gray-500 top-0 left-0 z-50 bg-opacity-50 fixed h-screen">
+        <!--modal color chat-->
+        <div id="modal-one" class="shadow-sm border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0 hidden
+        bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg 
+        sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3" style="transform: translate(-50%,-50%);z-index:10;">
+            <div class="w-full text-center">
+                <p class="text-xl font-semibold py-2.5 pb-4 dark:text-white">Màu</p>
+                <span onclick="closePost()" class="rounded-full text-gray-300 px-3 py-1 text-2xl font-semibold
+                        absolute right-2 bg-gray-600 top-2 cursor-pointer dark:text-gray-300">×</span>
+                <hr>
+            </div>
+            <div class="w-full py-4">
+                <ul class="w-full flex flex-wrap pl-2">
+                    <li onclick="selectColorMessage('006AD4','#006AD4')" id="006AD4Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="006AD4" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-006AD4">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('02B28D','#02B28D')" id="02B28DMain" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="02B28D" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-02B28D">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('4C9CF2','#4C9CF2')" id="4C9CF2Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="4C9CF2" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-4C9CF2">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('5B5B5B','#5B5B5B')" id="5B5B5BMain" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="5B5B5B" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-5B5B5B">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('68D400','#68D400')" id="68D400Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="68D400" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-68D400">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('692CF2','#692CF2')" id="692CF2Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="692CF2" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-692CF2">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('77A2F2','#77A2F2')" id="77A2F2Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="77A2F2" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-77A2F2">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('AB41D4','#AB41D4')" id="AB41D4Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="AB41D4" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-AB41D4">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('B51299','#B51299')" id="B51299Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="B51299" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-B51299">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('B76618','#B76618')" id="B76618Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="B76618" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-B76618">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('EDA600','#EDA600')" id="EDA600Main" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="EDA600" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-EDA600">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('EE046B','#EE046B')" id="EE046BMain" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="EE046B" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-EE046B">
+                        </div>
+                    </li>
+                    <li onclick="selectColorMessage('FF311E','#FF311E')" id="FF311EMain" class="w-20 h-20 p-8 rounded-full hover:bg-gray-300 
+                    dark:hover:bg-dark-third relative cursor-pointer">
+                        <div id="FF311E" class="mx-auto my-auto w-16 h-16 rounded-full 
+                        absolute top-2 right-2 bg-FF311E">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <input type="hidden" value="" id="TenMau" name="TenMau">
+            <input type="hidden" name="IDNhomTinNhan" id="IDNhomTinNhan" value="10045">
+            <input type="hidden" name="IDChat" id="IDChat" value="1000000010">
+            <div class="text-right pt-3">
+                <input onclick="closePost()" type="button" id="btnHuyXoaTinNhan" class="cursor-pointer w-1/5  border-none 
+                font-semibold text-blue-500 rounded-lg p-2 mx-2" value="Hủy">
+                <input onclick="changeColor()" type="button" id="btnXoaTinNhan" class="cursor-pointer w-1/4 bg-1877F2 border-none 
+                font-semibold text-white rounded-lg p-2 mx-2" value="Lưu">
+            </div>
+        </div>
+        <!--modal color chat-->
+
+        <!--modal nickname chat-->
+        <div id="modal-one" class="shadow-sm hidden border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0
+        bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg 
+        sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-5/12" style="transform: translate(-50%,-50%);z-index:10;">
+            <div class="w-full text-center">
+                <p class="text-xl font-semibold py-2.5 pb-4 dark:text-white">Biệt danh</p>
+                <span onclick="closePost()" class="rounded-full dark:bg-dark-third text-gray-700 
+                    px-3 py-1 text-2xl font-semibold absolute right-2 bg-gray-300 top-2 cursor-pointer 
+                    dark:text-white">×</span>
+                <hr>
+            </div>
+            <div id="all" class="w-full dark:bg-dark-second wrapper-content-right 
+            overflow-y-auto" style="max-height: 420px;">
+                <div class="w-full cursor-pointer p-2.5 flex hover:bg-gray-200 dark:hover:bg-dark-third 
+                rounded-lg">
+                    <div class="w-1/12">
+                        <img src="http://res.cloudinary.com/tratahuong01/image/upload/v1623289152/Avatar/d5peo862j01zy9btpuee.jpg"
+                            class="w-12 h-12 object-cover rounded-full" alt="">
+                    </div>
+                    <div class="w-10/12 pl-3">
+                        <p onclick="eventOpenOrCloseEditNickName('1000000001')" class="flex items-center flex-wrap "
+                            id="1000000001unactiveNickName">
+                            <span id="1000000001topNickName" class="w-full font-semibold block dark:text-white">
+                                Trà Hưởng
+                            </span><br>
+                            <span id="1000000001bottomNickName" class="w-full text-sm text-gray-700 dark:text-white py-0.5 
+                            flex items-center">
+                                Đặt biệt danh
+                            </span>
+                        </p>
+                        <input type="text" id="1000000001inputNickName" class="w-full p-1.5 mt-1 border-2 border-solid 
+                        border-blue-500 rounded-xl bg-gray-100 dark:bg-dark-third hidden dark:text-white
+                        flex justify-center items-center">
+                    </div>
+                    <div onclick="eventOpenOrCloseEditNickName('1000000001')" class="w-1/12 text-center flex">
+                        <i class="fas fa-pen-nib cursor-pointer dark:text-white 
+                        ml-5 text-xl flex items-center" id="1000000001penEditNickName"></i>
+                        <i class="fas fa-check cursor-pointer dark:text-white 
+                        ml-5 text-xl flex items-center hidden" id="1000000001checkedEditNickName"></i>
+                    </div>
+                </div>
+                <div class="w-full cursor-pointer p-2.5 flex hover:bg-gray-200 dark:hover:bg-dark-third 
+                rounded-lg">
+                    <div class="w-1/12">
+                        <img src="http://res.cloudinary.com/tratahuong01/image/upload/v1621521396/Avatar/qfzqjz4texxoaslcrgmv.jpg"
+                            class="w-12 h-12 object-cover rounded-full" alt="">
+                    </div>
+                    <div class="w-10/12 pl-3">
+                        <p class="flex items-center flex-wrap " id="1000000005unactiveNickName">
+                            <span id="1000000005topNickName" class="w-full font-semibold block dark:text-white">
+                                hiếu androrid
+                            </span><br>
+                            <span id="1000000005bottomNickName" class="w-full text-sm text-gray-700 dark:text-white py-0.5 
+                            flex items-center">
+                                Hiếu Nguyễn
+                            </span>
+                        </p>
+                        <input type="text" id="1000000005inputNickName" class="w-full p-1.5 mt-1 border-2 border-solid 
+                        border-blue-500 rounded-xl bg-gray-100 dark:bg-dark-third hidden dark:text-white
+                        flex justify-center items-center">
+                    </div>
+                    <div onclick="eventOpenOrCloseEditNickName('1000000005')" class="w-1/12 text-center flex">
+                        <i class="fas fa-pen-nib cursor-pointer dark:text-white 
+                        ml-5 text-xl flex items-center" id="1000000005penEditNickName"></i>
+                        <i class="fas fa-check cursor-pointer dark:text-white 
+                        ml-5 text-xl flex items-center hidden" id="1000000005checkedEditNickName"></i>
+                    </div>
+                </div>
+                <div class="w-full cursor-pointer p-2.5 flex hover:bg-gray-200 dark:hover:bg-dark-third 
+                rounded-lg">
+                    <div class="w-1/12">
+                        <img src="http://res.cloudinary.com/tratahuong01/image/upload/v1619959559/Avatar/d2ec0nuvl9fdpufknf12.jpg"
+                            class="w-12 h-12 object-cover rounded-full" alt="">
+                    </div>
+                    <div class="w-10/12 pl-3">
+                        <p class="flex items-center flex-wrap ">
+                            <span id="1000000002topNickName" class="w-full font-semibold block dark:text-white">
+                                Canh Nguyen
+                            </span><br>
+                            <span id="1000000002bottomNickName" class="w-full text-sm text-gray-700 dark:text-white py-0.5 
+                            flex items-center">
+                                Đặt biệt danh
+                            </span>
+                        </p>
+                        <input type="text" id="1000000002inputNickName" class="w-full p-1.5 mt-1 border-2 border-solid 
+                        border-blue-500 rounded-xl bg-gray-100 dark:bg-dark-third hidden dark:text-white
+                        flex justify-center items-center">
+                    </div>
+                    <div onclick="eventOpenOrCloseEditNickName('1000000002')" class="w-1/12 text-center flex">
+                        <i class="fas fa-pen-nib cursor-pointer dark:text-white 
+                        ml-5 text-xl flex items-center" id="1000000002penEditNickName"></i>
+                        <i class="fas fa-check cursor-pointer dark:text-white 
+                        ml-5 text-xl flex items-center hidden" id="1000000002checkedEditNickName"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--modal nickname chat-->
+
+        <!--modal member chat-->
+        <div id="modal-one" class=" w-11/12 fixed top-50per left-50per dark:bg-dark-second hidden 
+        transform-translate-50per pb-2 pt-2 opacity-100 bg-white z-50 border-2 border-solid border-gray-300 
+         sm:w-4/5 sm:mt-12 lg:w-3/5 xl:w-5/12 xl:mt-4 dark:border-dark-main shadow-1 rounded-lg">
+            <div class="w-full bg-white dark:bg-dark-second pl-2 pr-4 fixed top-2 block z-10">
+                <span onclick="closePost()" class="bg-gray-300 px-2.5 dark:text-white font-semibold
+                rounded-full dark:bg-dark-second cursor-pointer absolute text-3xl top-2 right-4">
+                    ×
+                </span>
+                <ul class="w-full flex mb-2">
+                    <li onclick="" class="font-semibold text-blue-500 px-4 py-3 border-b-4 border-solid
+                    border-blue-500 cursor-pointer">
+                        Tất cả
+                    </li>
+                    <li class="font-semibold text-gray-700 px-4 py-3 cursor-pointer dark:text-white 
+                    hover:bg-gray-200 dark:hover:bg-dark-third" onclick="">
+                        Quản trị viên
+                    </li>
+                </ul>
+            </div>
+            <div id="all" class="w-full dark:bg-dark-second pt-16 wrapper-content-right 
+            overflow-y-auto" style="max-height: 420px;height: 420px;">
+                <div class="w-full hover:bg-gray-200 dark:hover:bg-dark-third 
+                flex cursor-pointer relative p-2">
+                    <div class="w-1/12">
+                        <img src="http://res.cloudinary.com/tratahuong01/image/upload/v1623289152/Avatar/d5peo862j01zy9btpuee.jpg"
+                            class="w-12 h-12 object-cover 
+                        rounded-full" alt="">
+                    </div>
+                    <div class="w-10/12 flex pl-3">
+                        <p class="flex items-center flex-wrap">
+                            <span class="w-full font-semibold dark:text-white">
+                                Trà Hưởng
+                            </span>
+                        </p>
+                    </div>
+                    <div class="w-1/12 flex justify-center">
+                        <i class="bx bx-dots-horizontal-rounded text-3xl flex 
+                        items-center cursor-pointer dark:text-white"></i>
+                    </div>
+                    <div class="w-72 absolute hidden border-2 border-solid border-gray-300 
+                    shadow-lg dark:border-dark-third top-10 right-0 bg-gray-100 dark:bg-dark-second">
+                        <ul class="w-full">
+                            <li onclick="" class="w-full px-2.5 py-1.5 hover:bg-gray-300 dark:hover:bg-dark-third  
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold">
+                                Tin nhắn
+                            </li>
+                            <li onclick="" class="w-full  px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third  font-semibold">
+                                Xem trang cá nhân
+                            </li>
+                            <li onclick="" class="w-full px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold">
+                                Chỉ định làm quản trị viên
+                            </li>
+                            <li onclick="" class="w-full  px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold text-gray-800">
+                                Xóa thành viên
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-full hover:bg-gray-200 dark:hover:bg-dark-third 
+                flex cursor-pointer relative p-2">
+                    <div class="w-1/12">
+                        <img src="http://res.cloudinary.com/tratahuong01/image/upload/v1619959559/Avatar/d2ec0nuvl9fdpufknf12.jpg"
+                            class="w-12 h-12 object-cover 
+                        rounded-full" alt="">
+                    </div>
+                    <div class="w-10/12 flex pl-3">
+                        <p class="flex items-center flex-wrap">
+                            <span class="w-full font-semibold dark:text-white">
+                                Canh Nguyen
+                            </span>
+                        </p>
+                    </div>
+                    <div class="w-1/12 flex justify-center">
+                        <i class="bx bx-dots-horizontal-rounded text-3xl flex 
+                        items-center cursor-pointer dark:text-white"></i>
+                    </div>
+                    <div class="w-72 absolute hidden border-2 border-solid border-gray-300 
+                    shadow-lg dark:border-dark-third top-10 right-0 bg-gray-100 dark:bg-dark-second">
+                        <ul class="w-full">
+                            <li onclick="" class="w-full px-2.5 py-1.5 hover:bg-gray-300 dark:hover:bg-dark-third  
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold">
+                                Tin nhắn
+                            </li>
+                            <li onclick="" class="w-full  px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third  font-semibold">
+                                Xem trang cá nhân
+                            </li>
+                            <li onclick="" class="w-full px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold">
+                                Chỉ định làm quản trị viên
+                            </li>
+                            <li onclick="" class="w-full  px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold text-gray-800">
+                                Xóa thành viên
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-full hover:bg-gray-200 dark:hover:bg-dark-third 
+                flex cursor-pointer relative p-2">
+                    <div class="w-1/12">
+                        <img src="http://res.cloudinary.com/tratahuong01/image/upload/v1621521396/Avatar/qfzqjz4texxoaslcrgmv.jpg"
+                            class="w-12 h-12 object-cover 
+                        rounded-full" alt="">
+                    </div>
+                    <div class="w-10/12 flex pl-3">
+                        <p class="flex items-center flex-wrap">
+                            <span class="w-full font-semibold dark:text-white">
+                                Hiếu Nguyễn
+                            </span>
+                        </p>
+                    </div>
+                    <div class="w-1/12 flex justify-center">
+                        <i class="bx bx-dots-horizontal-rounded text-3xl flex 
+                        items-center cursor-pointer dark:text-white"></i>
+                    </div>
+                    <div class="w-72 absolute hidden border-2 border-solid border-gray-300 
+                    shadow-lg dark:border-dark-third top-10 right-0 bg-gray-100 dark:bg-dark-second">
+                        <ul class="w-full">
+                            <li onclick="" class="w-full px-2.5 py-1.5 hover:bg-gray-300 dark:hover:bg-dark-third  
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold">
+                                Tin nhắn
+                            </li>
+                            <li onclick="" class="w-full  px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third  font-semibold">
+                                Xem trang cá nhân
+                            </li>
+                            <li onclick="" class="w-full px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold">
+                                Chỉ định làm quản trị viên
+                            </li>
+                            <li onclick="" class="w-full  px-2.5 py-1.5  hover:bg-gray-300 dark:hover:bg-dark-third   
+                            cursor-pointer dark:text-white text-xm border-b-2 border-solid border-gray-300 
+                            dark:border-dark-third font-semibold text-gray-800">
+                                Xóa thành viên
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--modal member chat-->
+
+        <!--modal change name chat-->
+        <div id="modal-one" class="shadow-sm border hidden border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0
+        bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg 
+        sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3" style="transform: translate(-50%,-50%);z-index:10;">
+            <div class="w-full text-center">
+                <p class="text-xl font-semibold py-2.5 pb-4 dark:text-white">
+                    Đổi tên đoạn chat
+                </p>
+                <span onclick="closePost()" class="rounded-full text-gray-300 px-3 py-1 text-2xl font-semibold
+                absolute right-2 bg-gray-600 top-2 cursor-pointer dark:text-gray-300">×</span>
+                <hr>
+            </div>
+            <div class="w-full p-4">
+                <p class="text-xs dark:text-white font-semibold py-2">
+                    Mọi người đều biết khi tên nhóm chat thay đổi.
+                </p>
+                <input oninput="onChangeInputChangeNameChat(this)" type="text" class="w-full p-2.5 border-2 border-solid font-semibold rounded-lg
+                border-blue-500 bg-gray-100 dark:bg-dark-third dark:text-white" name="" id="inputChangeNameChat">
+            </div>
+            <div class="text-right pt-3">
+                <input onclick="closePost()" type="button" id="" class="cursor-pointer w-1/5  border-none 
+                font-semibold text-blue-500 rounded-lg p-2 mx-2" value="Hủy">
+                <input
+                    onclick="changeNameChat('10044','{&quot;IDTaiKhoan&quot;:&quot;1000000001&quot;,&quot;MatKhau&quot;:&quot;8f4b4f8d10b7606b8f65f50259a4b3ac&quot;,&quot;Ho&quot;:&quot;Trà&quot;,&quot;Ten&quot;:&quot;Hưởng&quot;,&quot;Email&quot;:&quot;tratanhuong01@gmail.com&quot;,&quot;SoDienThoai&quot;:null,&quot;CodeEmail&quot;:&quot;327794&quot;,&quot;CodeSoDienThoai&quot;:null,&quot;AnhDaiDien&quot;:&quot;http://res.cloudinary.com/tratahuong01/image/upload/v1623289152/Avatar/d5peo862j01zy9btpuee.jpg&quot;,&quot;AnhBia&quot;:&quot;http://res.cloudinary.com/tratahuong01/image/upload/v1623289164/CoverImage/ws78fdicxqcvxelti1xv.jpg&quot;,&quot;GioiTinh&quot;:&quot;Nam&quot;,&quot;NgaySinh&quot;:&quot;2001-10-01&quot;,&quot;MoTa&quot;:&quot;Dev&quot;,&quot;LanDangNhap&quot;:0,&quot;LoaiTaiKhoan&quot;:0,&quot;XacMinh&quot;:2,&quot;TinhTrang&quot;:0,&quot;NgayTao&quot;:&quot;2021-02-08 18:22:57&quot;,&quot;ThoiGianHoatDong&quot;:&quot;2021-06-28 14:51:05&quot;,&quot;DarkMode&quot;:0}')"
+                    type="button" id="btnChangeNameChat"
+                    class="w-1/4 border-none font-semibold text-white rounded-lg p-2 mx-2 cursor-not-allowed bg-gray-500"
+                    value="Lưu" disabled="disabled">
+            </div>
+        </div>
+        <!--modal change name chat-->
+
+        <!--modal leave chat-->
+        <div id="modal-one" class="shadow-sm border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0
+        bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg 
+        sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3" style="transform: translate(-50%,-50%);z-index:10;">
+            <div class="w-full text-center">
+                <p class="text-xl font-semibold py-2.5 pb-4 dark:text-white">
+                    Rời khỏi nhóm chat ?
+                </p>
+                <span onclick="closePost()" class="rounded-full text-gray-300 px-3 py-1 text-2xl font-semibold
+                absolute right-2 bg-gray-600 top-2 cursor-pointer dark:text-gray-300">×</span>
+                <hr>
+            </div>
+            <div class="w-full p-4">
+                <p class="text-base dark:text-white font-semibold py-2">
+                    Bạn sẽ không nhận được tin nhắn từ cuộc trò chuyện này nữa và mọi người sẽ thấy bạn rời nhóm.
+                </p>
+            </div>
+            <div class="text-right pt-3">
+                <input onclick="closePost()" type="button" id="" class="cursor-pointer w-1/5  border-none 
+                font-semibold text-blue-500 rounded-lg p-2 mx-2" value="Hủy">
+                <input onclick="" type="button" id="btnOutGroup" class="cursor-pointer
+                w-1/4 bg-gray-500 border-none 
+                font-semibold text-white rounded-lg p-2 mx-2" value="Rời khỏi nhóm">
+            </div>
+        </div>
+        <!--modal leave chat-->
+
+    </div>
     <!-- place show modal -->
 
 </body>
