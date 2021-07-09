@@ -8,6 +8,7 @@ import ItemMemberChoose from "./ItemMemberChoose/ItemMemberChoose";
 import NameGroup from "./NameGroup/NameGroup";
 import api from "../../../../api/api";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 ModalCreateGroup.propTypes = {};
 
@@ -49,6 +50,8 @@ function ModalCreateGroup(props) {
     setStatusChoosed("Đã chọn");
   };
 
+  const history = useHistory();
+
   const showAllFriends = userCurrent.map((item, index) => {
     return (
       <ItemMemberChoose
@@ -88,9 +91,8 @@ function ModalCreateGroup(props) {
     return listUserNew;
   };
 
-  const createGroup = () => {
-    console.log(nameGroup, colorGroup, memberChoose);
-  };
+  const createGroup = () => {};
+
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 

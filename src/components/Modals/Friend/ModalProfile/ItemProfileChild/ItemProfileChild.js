@@ -1,9 +1,9 @@
 import React from "react";
 
-ItemProfileChild.propTypes = {};
-
 function ItemProfileChild(props) {
+  //
   const { position } = props;
+
   return (
     <div
       className={`w-20 h-20 rounded-full border-2 border-solid border-indigo-500 shadow-lg 

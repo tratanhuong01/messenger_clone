@@ -1,9 +1,9 @@
 import React from "react";
 
-ImageAvatar.propTypes = {};
-
 function ImageAvatar(props) {
+  //
   const { user } = props;
+
   return (
     <div className="w-40 h-40 mx-auto relative">
       <img

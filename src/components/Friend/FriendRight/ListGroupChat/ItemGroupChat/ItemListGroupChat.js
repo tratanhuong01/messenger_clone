@@ -1,6 +1,22 @@
 import React from "react";
+import ItemGroupChat from "../../../../ItemChat/ItemGroupChat/ItemGroupChat";
+import * as process from "../../../../../functions/process";
+import { useSelector } from "react-redux";
 
 function ItemListGroupChat(props) {
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
+  const { item } = props;
+
+  const { user, name } = process.dataUsersChat(item, isLogin.user.id);
+
   return (
     <div
       className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative py-10 
@@ -12,25 +28,28 @@ function ItemListGroupChat(props) {
       >
         &times;
       </span>
-      <div className="w-full flex mb-2 mt-1 justity-center">
-        <img
-          src="./images/male/4.jpg"
-          className="w-28 h-28 object-cover 
-          rounded-full mx-auto"
-          alt=""
+      <div className="w-full flex mb-2 mt-1 h-28 justity-center">
+        <ItemGroupChat
+          user={user}
+          width="w-18"
+          height="h-18"
+          margin=""
+          padding=""
+          widthParent="w-28"
+          heightParent="w-28"
         />
       </div>
       <p
         className="w-full font-semibold text-center cursor-pointer my-2 
       dark:text-white"
       >
-        Lớp chính trị
+        {name}
       </p>
       <p
         className="w-full font-semibold text-center text-xs cursor-pointer 
         text-gray-500 dark:text-gray-300"
       >
-        38 thành viên
+        {item.length} thành viên
       </p>
     </div>
   );

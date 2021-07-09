@@ -1,9 +1,9 @@
 import React from "react";
 
-ConnectFriend.propTypes = {};
-
 function ConnectFriend(props) {
+  //
   const { user, setShowConnectFriend } = props;
+
   return (
     <>
       <div className="w-full my-2 flex justify-center">

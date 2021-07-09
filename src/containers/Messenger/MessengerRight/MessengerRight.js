@@ -22,6 +22,7 @@ function MessengerRight(props) {
   const { messages } = states;
 
   let index = -1;
+
   if (messages.list === null) {
   } else {
     index = messages.list.findIndex((item) => item[0].idGroupMessage === slug);
@@ -29,13 +30,20 @@ function MessengerRight(props) {
 
   useEffect(() => {
     if (messages.list !== null) {
-      dispatch(messagesAction.getAllMessageByGroup(messages.list[index]));
+      dispatch(
+        messagesAction.getAllMessageByGroup(
+          messages.list[index === -1 ? 0 : index]
+        )
+      );
     }
   }, [dispatch, index, messages.list]);
 
   return (
     <div className="w-full md:w-7/12 xl:w-3/4 flex h-full">
-      {messages.list === null || index === -1 || messages.data === null ? (
+      {messages.list === null ||
+      index === -1 ||
+      messages.data === null ||
+      typeof slug === "undefined" ? (
         <EmptyMessage />
       ) : (
         <>

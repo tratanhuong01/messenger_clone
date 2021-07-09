@@ -4,21 +4,14 @@ import ButtonCancel from "../../General/ButtonCancel/ButtonCancel";
 import ButtonSave from "../../General/ButtonSave/ButtonSave";
 import FormInputSearch from "./FormInputSearch/FormInputSearch";
 import * as usersAction from "../../../../actions/users/index";
-import { connect } from "react-redux";
-
-ModalAddFriend.propTypes = {};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    searchUserByEmailOrPhone: (search) => {
-      dispatch(usersAction.searchUserByEmailOrPhone(search));
-    },
-  };
-};
+import { useDispatch } from "react-redux";
 
 function ModalAddFriend(props) {
+  //
   const [search, setSearch] = useState("");
-  const { searchUserByEmailOrPhone } = props;
+
+  const dispatch = useDispatch();
+
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
@@ -33,7 +26,9 @@ function ModalAddFriend(props) {
           <div className="flex my-2 justify-end">
             <ButtonCancel />
             <ButtonSave
-              onClick={searchUserByEmailOrPhone}
+              onClick={() =>
+                dispatch(usersAction.searchUserByEmailOrPhone(search))
+              }
               search={search}
               label={"Tìm kiếm"}
             />
@@ -44,4 +39,4 @@ function ModalAddFriend(props) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(ModalAddFriend);
+export default ModalAddFriend;

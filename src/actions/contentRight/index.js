@@ -48,7 +48,15 @@ export const loadListConnectFriend = (list) => {
 
 export const loadListGroupRequest = (id) => {
   return (dispatch) => {
-    dispatch(loadListGroup([]));
+    dispatch(changeContentToLoading());
+    return api(`getListGroupMessageById/${id}`, "GET", null, null)
+      .then((res) => {
+        dispatch(loadListGroup(res.data));
+        dispatch(changeLoadingToContent());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 

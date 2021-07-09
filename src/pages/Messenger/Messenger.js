@@ -1,21 +1,24 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import * as Config from "../../constants/Config";
 import MainMessenger from "../../containers/Messenger/MainMessenger";
 import ShowModal from "../../containers/ShowModal/ShowModal";
 
-Messenger.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-  };
-};
-
 function Messenger(props) {
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
   const history = useHistory();
-  const { isLogin, match } = props;
+
+  const { match } = props;
+
   useEffect(() => {
     if (isLogin.isLogin) {
       history.push(
@@ -28,6 +31,7 @@ function Messenger(props) {
       history.push(Config.PAGE_LOGIN);
     }
   }, [isLogin, history]);
+
   return (
     <div className="w-full dark:bg-dark-main h-screen relative">
       <MainMessenger match={match} />
@@ -36,4 +40,4 @@ function Messenger(props) {
   );
 }
 
-export default connect(mapStateToProps, null)(withRouter(Messenger));
+export default withRouter(Messenger);

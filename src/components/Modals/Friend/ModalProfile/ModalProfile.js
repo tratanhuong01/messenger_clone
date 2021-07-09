@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ImageAvatar from "./ImageAvatar/ImageAvatar";
 import ImageCover from "./ImageCover/ImageCover";
 import ItemProfileChild from "./ItemProfileChild/ItemProfileChild";
@@ -8,32 +8,29 @@ import FriendUser from "./FriendUser/FriendUser";
 import ConnectFriend from "./ConnectFriend/ConnectFriend";
 import * as relationshipUsersAction from "../../../../actions/relationshipusers/index";
 
-ModalProfile.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-    profile: state.profile,
-  };
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    closeModal: () => {
-      dispatch(modalsAction.closeModal());
-    },
-    loadInformationProfile: (idMain, idView) => {
-      dispatch(relationshipUsersAction.loadInformationProfile(idMain, idView));
-    },
-  };
-};
-
 function ModalProfile(props) {
-  const { closeModal, user, isLogin, profile, loadInformationProfile } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+      profile: state.profile,
+    };
+  });
+
+  const dispatch = useDispatch();
+
+  const { isLogin, profile } = states;
+
+  const { user } = props;
+
   const [showConnectFriend, setShowConnectFriend] = useState(false);
+
   useEffect(() => {
-    loadInformationProfile(isLogin.user.id, user.id);
-  }, [loadInformationProfile, isLogin, user]);
+    dispatch(
+      relationshipUsersAction.loadInformationProfile(isLogin.user.id, user.id)
+    );
+  }, [dispatch, isLogin, user]);
+
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
@@ -41,7 +38,7 @@ function ModalProfile(props) {
     >
       <div className="w-full relative">
         <span
-          onClick={closeModal}
+          onClick={() => dispatch(modalsAction.closeModal())}
           className="rounded-full dark:bg-dark-third text-gray-700 z-50 cursor-pointer dark:text-white 
            px-3 py-1 text-2xl font-semibold absolute -right-3 bg-gray-300 -top-3"
         >
@@ -95,4 +92,4 @@ function ModalProfile(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalProfile);
+export default ModalProfile;

@@ -1,9 +1,9 @@
 import React from "react";
 
-ButtonSave.propTypes = {};
-
 function ButtonSave(props) {
+  //
   const { label, search, onClick, disabled } = props;
+
   return (
     <button
       type="button"

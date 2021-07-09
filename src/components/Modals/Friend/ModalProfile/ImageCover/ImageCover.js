@@ -1,8 +1,7 @@
 import React from "react";
 
-ImageCover.propTypes = {};
-
 function ImageCover(props) {
+  //
   return (
     <div className="w-full h-56 relative">
       <img

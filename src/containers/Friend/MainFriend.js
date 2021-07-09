@@ -4,6 +4,7 @@ import FriendRight from "./FriendRight/FriendRight";
 import Header from "../../components/Header/Header";
 
 function MainFriend(props) {
+  //
   return (
     <div className="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">
       <Header id="header" />

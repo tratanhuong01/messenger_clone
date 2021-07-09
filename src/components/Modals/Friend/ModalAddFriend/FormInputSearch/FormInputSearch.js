@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
-FormInputSearch.propTypes = {};
-
 function FormInputSearch(props) {
+  //
   const { setSearch } = props;
+
   const [valueSearch, setValueSearch] = useState("");
+
   const onChange = (event) => {
     setValueSearch(event.target.value);
     setSearch(event.target.value);
   };
+
   return (
     <div className="m-2 w-full pl-2 pr-6">
       <label className="w-full text-sm text-gray-700 dark:text-gray-300">

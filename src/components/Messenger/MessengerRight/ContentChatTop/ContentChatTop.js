@@ -11,7 +11,7 @@ function ContentChatTop(props) {
   const colorChat = item[0].colorChat;
 
   return (
-    <div className="w-full pt-1 flex shadow ">
+    <div className="w-full pt-3 flex shadow ">
       <div className="w-1/2 pl-3 flex ">
         <div className="">
           {typeGroupMessage === "0" ? (

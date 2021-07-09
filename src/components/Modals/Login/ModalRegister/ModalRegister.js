@@ -4,31 +4,22 @@ import { useForm } from "react-hook-form";
 import * as Config from "../../../../constants/Config";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as usersAction from "../../../../actions/users/index";
-import * as modalsAction from "../../../../actions/modals/index";
 import LoadingSubmitModal from "../../General/LoadingSubmitModal";
 
-ModalRegister.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    loading: state.loading,
-  };
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    closeModal: () => {
-      dispatch(modalsAction.closeModal());
-    },
-    registerAccountRequest: (user) => {
-      dispatch(usersAction.registerAccountRequest(user));
-    },
-  };
-};
-
 function ModalRegister(props) {
+  //
+  const states = useSelector((state) => {
+    return {
+      loading: state.loading,
+    };
+  });
+
+  const { loading } = states;
+
+  const dispatch = useDispatch();
+
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("Họ không được để trống !!"),
     lastName: Yup.string().required("Tên không được để trống !!"),
@@ -49,6 +40,7 @@ function ModalRegister(props) {
       .required("Phải chọn giới tính !!")
       .nullable("Phải chọn giới tính !!"),
   });
+
   const {
     handleSubmit,
     register,
@@ -56,14 +48,17 @@ function ModalRegister(props) {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+
   const [stateEmailAgain, setStateEmailAgain] = useState(false);
+
   const checkIsEmail = (event) => {
     if (Config.REGEX_EMAIL.test(event.target.value)) setStateEmailAgain(true);
   };
-  const { registerAccountRequest, loading } = props;
+
   const onHandleSubmit = (user) => {
-    registerAccountRequest(user);
+    dispatch(usersAction.registerAccountRequest(user));
   };
+
   return (
     <div
       style={{ height: "600px" }}
@@ -278,4 +273,4 @@ function ModalRegister(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalRegister);
+export default ModalRegister;

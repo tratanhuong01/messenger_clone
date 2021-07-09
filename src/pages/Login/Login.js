@@ -2,22 +2,21 @@ import React from "react";
 import MainLogin from "../../containers/Login/MainLogin/MainLogin";
 import ShowModal from "../../containers/ShowModal/ShowModal";
 import * as Config from "../../constants/Config";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
-Login.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-  };
-};
+import { useSelector } from "react-redux";
 
 function Login(props) {
-  const { isLogin } = props;
-  if (isLogin.isLogin) {
-    return <Redirect to={Config.PAGE_MESSENGER} />;
-  }
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
+  if (isLogin.isLogin) return <Redirect to={Config.PAGE_MESSENGER} />;
+
   return (
     <div className="w-full h-screen relative">
       <MainLogin />
@@ -26,4 +25,4 @@ function Login(props) {
   );
 }
 
-export default connect(mapStateToProps, null)(Login);
+export default Login;

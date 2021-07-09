@@ -1,8 +1,7 @@
 import React from "react";
 
-LoadingSubmitModal.propTypes = {};
-
 function LoadingSubmitModal(props) {
+  //
   return (
     <div
       className="w-full h-full bg-opacity-50 bg-white 

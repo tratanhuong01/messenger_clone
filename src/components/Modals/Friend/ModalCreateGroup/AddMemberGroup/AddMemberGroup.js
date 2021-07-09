@@ -24,8 +24,8 @@ function AddMemberGroup(props) {
         {memberChoose.length <= 0 ? (
           <ContentEditable
             placeholder="Nhập họ tên , email , số điện thoại để tìm..."
-            className="w-full border-gray-300 shadow-lg my-2 py-2 px-10 rounded-lg 
-            border-2 border-solid flex dark:text-gray-300"
+            className="w-full border-gray-300 shadow-lg my-2 py-2 px-10 rounded-lg
+            border-2 border-solid flex dark:text-gray-300  "
             html={data}
             onChange={searchUsers}
           />
@@ -33,7 +33,7 @@ function AddMemberGroup(props) {
           <div
             placeholder="Nhập họ tên , email , số điện thoại để tìm..."
             className="w-full border-gray-300 shadow-lg my-2 py-2 px-10 rounded-lg 
-            border-2 border-solid flex dark:text-gray-300"
+            border-2 border-solid flex dark:text-gray-300 max-h-28 overflow-y-auto wrapper-content-right"
           >
             <MainItemMemberTag
               memberChoose={memberChoose}
