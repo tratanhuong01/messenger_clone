@@ -34,7 +34,7 @@ function CustomChatCenter(props) {
             ""
           ) : (
             <ItemCustomChatCenter
-              onClick={() => dispatch(modalsAction.openModalChangeColorChat())}
+              onClick={() => dispatch(modalsAction.openModalChangeNameGroup())}
               icon={{ icon: "fas fa-users", type: 0 }}
               name={"Đổi tên đoạn chat"}
             />

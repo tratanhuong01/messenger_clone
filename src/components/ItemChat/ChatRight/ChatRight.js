@@ -8,7 +8,7 @@ import FeelMessageRight from "../FeelMessageRight/FeelMessageRight";
 ChatRight.propTypes = {};
 
 function ChatRight(props) {
-  const { item } = props;
+  const { item, index } = props;
   const data = () => {
     const content = JSON.parse(item.content);
     switch (content.type) {
@@ -22,11 +22,11 @@ function ChatRight(props) {
           />
         );
       case 1:
-        return <ChatImage />;
+        return <ChatImage key={index} />;
       case 2:
-        return <ChatSticker />;
+        return <ChatSticker key={index} />;
       case 3:
-        return <ChatGif />;
+        return <ChatGif key={index} />;
       default:
         break;
     }

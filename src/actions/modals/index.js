@@ -73,3 +73,9 @@ export const openModalMemberGroupChat = () => {
     type: Types.OPEN_MODAL_MEMBER_GROUP_CHAT,
   };
 };
+
+export const openModalChangeNameGroup = () => {
+  return {
+    type: Types.OPEN_MODAL_CHANGE_NAME_GROUP,
+  };
+};

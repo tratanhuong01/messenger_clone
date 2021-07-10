@@ -89,9 +89,9 @@ function ModalCreateGroup(props) {
           : element.userRelationshipUser.phone;
 
       if (
-        email.indexOf(data) !== -1 ||
-        phone.indexOf(data) !== -1 ||
-        fullName.toLowerCase().indexOf(data) !== -1
+        email.toLowerCase().indexOf(data.toLowerCase()) !== -1 ||
+        phone.toLowerCase().indexOf(data.toLowerCase()) !== -1 ||
+        fullName.toLowerCase().toLowerCase().indexOf(data.toLowerCase()) !== -1
       ) {
         listUserNew.push(element);
       }

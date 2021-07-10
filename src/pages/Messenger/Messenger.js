@@ -33,10 +33,12 @@ function Messenger(props) {
   }, [isLogin, history]);
 
   return (
-    <div className="w-full dark:bg-dark-main h-screen relative">
-      <MainMessenger match={match} />
-      <ShowModal />
-    </div>
+    isLogin.isLogin && (
+      <div className="w-full dark:bg-dark-main h-screen relative">
+        <MainMessenger match={match} />
+        <ShowModal />
+      </div>
+    )
   );
 }
 

@@ -1,17 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import * as modalsAction from "../../../actions/modals/index";
 
 function ItemGroupChat(props) {
   //
   const { width, height, widthParent, heightParent, padding, margin, user } =
     props;
 
-  const dispatch = useDispatch();
-
   return (
     <div
-      onClick={() => dispatch(modalsAction.openModalMemberGroupChat())}
       className={`${widthParent} ${heightParent} ${margin} ${padding} relative mx-auto`}
     >
       <img

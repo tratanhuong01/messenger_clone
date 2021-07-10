@@ -10,7 +10,7 @@ ChatLeft.propTypes = {};
 
 function ChatLeft(props) {
   //
-  const { item } = props;
+  const { item, index } = props;
 
   const dispatch = useDispatch();
 
@@ -19,14 +19,20 @@ function ChatLeft(props) {
     switch (content.type) {
       case 0:
         return (
-          <ChatText margin="" item={item} content={content} messages="left" />
+          <ChatText
+            margin=""
+            item={item}
+            content={content}
+            key={index}
+            messages="left"
+          />
         );
       case 1:
-        return <ChatImage margin="" />;
+        return <ChatImage margin="" key={index} />;
       case 2:
-        return <ChatSticker margin="" />;
+        return <ChatSticker margin="" key={index} />;
       case 3:
-        return <ChatGif margin="" />;
+        return <ChatGif margin="" key={index} />;
       default:
         return "";
     }

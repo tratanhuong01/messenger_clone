@@ -1,6 +1,7 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as contentRightAction from "../contentRight/index";
+import * as modalsAction from "../modals/index";
 
 export const addGroupMessageRequestSingle = (groupMessage) => {
   const headers = {
@@ -172,5 +173,84 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+};
+
+export const updateColorChatRequest = (data) => {
+  return (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const content = {
+      data: [
+        {
+          id: 0,
+          content: `${data.user.lastName} đã thay đổi màu sắc cuộc trò chuyện.`,
+          src: "",
+        },
+      ],
+      type: 0,
+    };
+    const mess = {
+      id: null,
+      groupMessage: data.group,
+      userMesages: data.user,
+      content: JSON.stringify(content),
+      nickName: null,
+      stateMessage: 0,
+      typeMessage: 1,
+      dateCreated: null,
+    };
+    return api(
+      `updateGroupMessage/colorChat/${data.id}/${data.color}`,
+      "GET",
+      null,
+      null
+    )
+      .then((res) => {
+        api("messages", "POST", mess, { headers })
+          .then((res) => {
+            dispatch(updateColorChat("#" + data.color));
+            dispatch(modalsAction.closeModal());
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const updateColorChat = (color) => {
+  return {
+    type: Types.UPDATE_COLOR_CHAT,
+    color,
+  };
+};
+
+export const updateNameGroupMessageRequest = (name, id) => {
+  return (dispatch) => {
+    return api(
+      `updateGroupMessage/nameGroupMessage/${id}/${name}`,
+      "GET",
+      null,
+      null
+    )
+      .then((res) => {
+        dispatch(updateNameGroupMessage(name));
+        dispatch(modalsAction.closeModal());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const updateNameGroupMessage = (name) => {
+  return {
+    type: Types.UPDATE_NAME_GROUP_MESSAGE,
+    name,
   };
 };

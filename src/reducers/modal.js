@@ -7,7 +7,8 @@ import ModalChangeNickName from "../components/Modals/Messenger/ModalChangeNickN
 import ModalChangeIconChat from "../components/Modals/Messenger/ModalChangeIconChat/ModalChangeIconChat";
 import ModalChangeColor from "../components/Modals/Messenger/ModalChangeColor/ModalChangeColor";
 import ModalWarningLeaveGroup from "../components/Modals/Messenger/ModalWarningLeaveGroup/ModalWarningLeaveGroup";
-import ModalMemberChat from "../components/Modals/Messenger/ModalMemberChat/ModalMemberChat";
+import ModalChangeNameChat from "../components/Modals/Messenger/ModalChangeNameChat/ModalChangeNameChat";
+import ModalAddMemberGroup from "../components/Modals/Messenger/ModalAddMemberGroup/ModalAddMemberGroup";
 const initialState = {
   StateModal: false,
   DataModal: "",
@@ -74,7 +75,13 @@ const myReducer = (state = initialState, action) => {
     case Types.OPEN_MODAL_MEMBER_GROUP_CHAT:
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       state.StateModal = true;
-      state.DataModal = <ModalMemberChat />;
+      state.DataModal = <ModalAddMemberGroup />;
+      return { ...state };
+    //
+    case Types.OPEN_MODAL_CHANGE_NAME_GROUP:
+      document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
+      state.StateModal = true;
+      state.DataModal = <ModalChangeNameChat />;
       return { ...state };
     //
     default:

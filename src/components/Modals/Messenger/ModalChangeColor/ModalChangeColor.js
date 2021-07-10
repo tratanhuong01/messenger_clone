@@ -2,20 +2,42 @@ import React, { useState } from "react";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
 import * as Types from "../../../../constants/ActionTypes";
 import ItemColor from "./ItemColor/ItemColor";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../../../actions/modals/index";
+import * as groupMessagesAcion from "../../../../actions/groupmessage/index";
 
 function ModalChangeColor(props) {
   //
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { messages, isLogin } = states;
+
   const dispatch = useDispatch();
 
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState(null);
+
+  const [disabled, setDisabled] = useState(false);
 
   const showAllColors = Types.COLOR_CHAT.map((item, index) => {
     return (
       <ItemColor item={item} key={index} color={color} setColor={setColor} />
     );
   });
+
+  const change = () => {
+    const data = {
+      color: color.replaceAll("#", ""),
+      group: messages.group,
+      user: isLogin.user,
+    };
+    setDisabled(true);
+    dispatch(groupMessagesAcion.updateColorChatRequest(data));
+  };
 
   return (
     <div
@@ -41,10 +63,13 @@ function ModalChangeColor(props) {
           Hủy
         </button>
         <button
-          onClick={() => console.log(color)}
+          onClick={change}
           type="button"
-          className="cursor-pointer w-1/4 bg-1877F2 border-none 
-          font-semibold text-white rounded-lg p-2 mx-2"
+          className={`cursor-pointer w-1/4 border-none font-semibold 
+          text-white rounded-lg p-2 mx-2 ${
+            disabled === false && color === null ? "bg-gray-500" : " bg-1877F2"
+          }`}
+          disabled={disabled === false && color === null ? true : false}
         >
           Lưu
         </button>

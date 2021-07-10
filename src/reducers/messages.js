@@ -6,6 +6,7 @@ const initialState = {
   data: null,
   color: null,
   name: null,
+  group: null,
 };
 const myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,9 +17,15 @@ const myReducer = (state = initialState, action) => {
     //
     case Types.GET_ALL_MESSAGES_BY_GROUP:
       state.data = action.data;
-      state.color = action.data[0].colorChat;
-      const { name } = process.dataUsersChat(action.data, action.idUser);
-      state.name = name;
+      if (
+        typeof action.data !== "undefined" &&
+        typeof action.group !== "undefined"
+      ) {
+        state.color = action.data[0].colorChat;
+        const { name } = process.dataUsersChat(action.data, action.idUser);
+        state.name = name;
+        state.group = action.group;
+      }
       return { ...state };
     //
     case Types.UPDATE_COLOR_CHAT:
