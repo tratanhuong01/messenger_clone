@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import TimeChat from "../../../ItemChat/TimeChat/TimeChat";
+// import TimeChat from "../../../ItemChat/TimeChat/TimeChat";
 import ChatRight from "../../../ItemChat/ChatRight/ChatRight";
 import ChatLeft from "../../../ItemChat/ChatLeft/ChatLeft";
 import ChatCenter from "../../../ItemChat/ChatCenter/ChatCenter";

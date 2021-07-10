@@ -24,6 +24,7 @@ function Friend(props) {
       history.push(Config.PAGE_LOGIN);
     }
   }, [isLogin, history]);
+  
   return (
     <div className="w-full dark:bg-dark-main h-screen relative">
       <MainFriend />

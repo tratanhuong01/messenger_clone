@@ -1,16 +1,23 @@
 import React from "react";
-
-GifControl.propTypes = {};
+import { useSelector } from "react-redux";
 
 function GifControl(props) {
-  const { item } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+    };
+  });
+
+  const { messages } = states;
+
   return (
     <li
       className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full 
       dark:hover:bg-dark-third"
     >
       <svg
-        fill={item[0].colorChat}
+        fill={messages.color}
         className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji"
         height="20px"
         width="20px"

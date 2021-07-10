@@ -1,8 +1,29 @@
 import React from "react";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
 import ItemNickName from "./ItemNickName/ItemNickName";
+import { useSelector } from "react-redux";
 
 function ModalChangeNickName(props) {
+  //
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+    };
+  });
+
+  const { messages } = states;
+
+  let users = [];
+
+  messages.data.forEach((element) => {
+    let index = users.findIndex((item) => item.idUser === element.idUser);
+    if (element.typeMessage === "-1" && index === -1) users.push(element);
+  });
+
+  const showAllUsers = users.map((item, index) => {
+    return <ItemNickName item={item} key={index} />;
+  });
+
   return (
     <div
       className="shadow-sm  border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0
@@ -21,8 +42,7 @@ function ModalChangeNickName(props) {
         overflow-y-auto"
         style={{ maxHeight: "420px" }}
       >
-        <ItemNickName />
-        <ItemNickName />
+        {showAllUsers}
       </div>
     </div>
   );

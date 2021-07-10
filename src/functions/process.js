@@ -34,6 +34,8 @@ export const dataUsersChat = (item, idUser) => {
     name:
       item[0].typeGroupMessage === "0"
         ? `${user.firstName} ${user.lastName}`
-        : generalNameGroup(item),
+        : item[0].nameGroupMessage === null
+        ? generalNameGroup(item)
+        : item[0].nameGroupMessage,
   };
 };

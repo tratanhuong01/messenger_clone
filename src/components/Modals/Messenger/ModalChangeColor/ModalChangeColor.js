@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
 import * as Types from "../../../../constants/ActionTypes";
 import ItemColor from "./ItemColor/ItemColor";
@@ -7,11 +7,14 @@ import * as modalsAction from "../../../../actions/modals/index";
 
 function ModalChangeColor(props) {
   //
-
   const dispatch = useDispatch();
 
+  const [color, setColor] = useState("");
+
   const showAllColors = Types.COLOR_CHAT.map((item, index) => {
-    return <ItemColor item={item} key={index} />;
+    return (
+      <ItemColor item={item} key={index} color={color} setColor={setColor} />
+    );
   });
 
   return (
@@ -38,6 +41,7 @@ function ModalChangeColor(props) {
           Hủy
         </button>
         <button
+          onClick={() => console.log(color)}
           type="button"
           className="cursor-pointer w-1/4 bg-1877F2 border-none 
           font-semibold text-white rounded-lg p-2 mx-2"

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 // import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 import ItemSingleChat from "../../../ItemChat/ItemSingleChat/ItemSingleChat";
@@ -110,9 +110,7 @@ function ItemChatLeft(props) {
                 <div
                   className="w-1/4 flex pr-3 text-gray-500 inline-block whitespace-nowrap
                   overflow-ellipsis overflow-hidden"
-                >
-                  3 ngày
-                </div>
+                ></div>
               </div>
             </div>
             <div

@@ -20,7 +20,7 @@ function ContentChat(props) {
 
   const item = messages.data;
 
-  const { user, name } = process.dataUsersChat(item, isLogin.user.id);
+  const { user } = process.dataUsersChat(item, isLogin.user.id);
 
   return (
     <div
@@ -29,7 +29,6 @@ function ContentChat(props) {
       } h-full max-h-full overflow-hidden flex flex-col`}
     >
       <ContentChatTop
-        name={name}
         item={item}
         user={user}
         typeGroupMessage={item[0].typeGroupMessage}

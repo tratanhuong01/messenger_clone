@@ -17,10 +17,10 @@ function ControlChat(props) {
     >
       <div className="w-32 flex">
         <ul className="mr-3 w-full flex py-2">
-          <AddModalControl item={item} />
-          <AddFileControl item={item} />
-          <StickerControl item={item} />
-          <GifControl item={item} />
+          <AddModalControl />
+          <AddFileControl />
+          <StickerControl />
+          <GifControl />
         </ul>
       </div>
       <div className="w-9/12 relative">

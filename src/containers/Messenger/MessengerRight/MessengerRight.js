@@ -14,12 +14,13 @@ function MessengerRight(props) {
   const states = useSelector((state) => {
     return {
       messages: state.messages,
+      isLogin: state.isLogin,
     };
   });
 
   const { slug } = props;
 
-  const { messages } = states;
+  const { messages, isLogin } = states;
 
   let index = -1;
 
@@ -32,14 +33,18 @@ function MessengerRight(props) {
     if (messages.list !== null) {
       dispatch(
         messagesAction.getAllMessageByGroup(
-          messages.list[index === -1 ? 0 : index]
+          messages.list[index === -1 ? 0 : index],
+          isLogin.user.id
         )
       );
     }
-  }, [dispatch, index, messages.list]);
+  }, [dispatch, index, messages.list, isLogin]);
 
   return (
-    <div className="w-full md:w-7/12 xl:w-3/4 flex h-full">
+    <div
+      className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 
+    dark:border-dark-second "
+    >
       {messages.list === null ||
       index === -1 ||
       messages.data === null ||

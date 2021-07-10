@@ -18,8 +18,8 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     //
     case Types.LOGOUT:
-      state.isLogin = false;
       state.user = null;
+      state.isLogin = false;
       localStorage.removeItem("user");
       return { ...state };
     //

@@ -7,7 +7,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
     "Content-Type": "application/json",
   };
   const data = {
-    id: "",
+    id: null,
     nameGroupMessage: null,
     colorChat: "#ccc",
     iconChat: "😱",
@@ -90,5 +90,87 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
 export const addGroupMessage = () => {
   return {
     type: Types.ADD_GROUP_MESSAGE,
+  };
+};
+
+export const addGroupMessageRequestGroup = (groupMessage) => {
+  return (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const data = {
+      id: "",
+      nameGroupMessage: groupMessage.groupMessage.nameGroup,
+      colorChat: groupMessage.groupMessage.colorChat,
+      iconChat: "😱",
+      typeGroupMessage: 1,
+      dateCreated: "",
+    };
+    const content = {
+      data: [
+        {
+          id: 0,
+          content: `${groupMessage.user.lastName} đã tạo nhóm này.`,
+          src: "",
+        },
+      ],
+      type: -1,
+    };
+    return api("groupmessage", "POST", data, { headers })
+      .then((resGM) => {
+        let newDataMess = [];
+        api("getIdNewMessage", "GET", null, null)
+          .then((res) => {
+            let id = Number(res.data.id);
+            groupMessage.users.forEach((element) => {
+              id++;
+              newDataMess.push({
+                id: id,
+                groupMessage: resGM.data,
+                userMesages: element.userRelationshipUser,
+                content: null,
+                nickName: null,
+                stateMessage: 0,
+                typeMessage: -1,
+                dateCreated: null,
+              });
+            });
+            id++;
+            newDataMess.push({
+              id: id,
+              groupMessage: resGM.data,
+              userMesages: groupMessage.user,
+              content: null,
+              nickName: null,
+              stateMessage: 0,
+              typeMessage: -1,
+              dateCreated: null,
+            });
+            id++;
+            newDataMess.push({
+              id: id,
+              groupMessage: resGM.data,
+              userMesages: groupMessage.user,
+              content: JSON.stringify(content),
+              nickName: null,
+              stateMessage: 0,
+              typeMessage: 1,
+              dateCreated: null,
+            });
+            api("messagesGroup", "POST", newDataMess, { headers })
+              .then((res) => {
+                console.log("success");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };

@@ -19,7 +19,7 @@ function CustomChatTop(props) {
 
   const item = messages.data;
 
-  const { user, name } = process.dataUsersChat(item, isLogin.user.id);
+  const { user } = process.dataUsersChat(item, isLogin.user.id);
 
   return (
     <div className="w-full mt-2">
@@ -44,7 +44,9 @@ function CustomChatTop(props) {
           user={user}
         />
       )}
-      <p className="font-semibold text-center dark:text-white">{name}</p>
+      <p className="font-semibold text-center dark:text-white">
+        {messages.name}
+      </p>
       <p className="font-semibold text-center text-sm text-gray-600 dark:text-gray-300">
         Đang hoạt động
       </p>

@@ -7,19 +7,20 @@ import ColorGroup from "./ColorGroup/ColorGroup";
 import ItemMemberChoose from "./ItemMemberChoose/ItemMemberChoose";
 import NameGroup from "./NameGroup/NameGroup";
 import api from "../../../../api/api";
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
-
-ModalCreateGroup.propTypes = {};
-
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.isLogin,
-  };
-};
+import { useDispatch, useSelector } from "react-redux";
+import * as groupMessagesAction from "../../../../actions/groupmessage/index";
 
 function ModalCreateGroup(props) {
-  const [nameGroup, setNameGroup] = useState("");
+  //
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
+  const [nameGroup, setNameGroup] = useState(null);
   const [colorGroup, setColorGroup] = useState("");
   const [memberChoose, setMemberChoose] = useState([]);
   const [allMember, setAllMember] = useState([]);
@@ -27,7 +28,6 @@ function ModalCreateGroup(props) {
   const [statusChoosed, setStatusChoosed] = useState("Tất cả");
   const [submitStatus, setSubmitStatus] = useState(true);
   const [data, setData] = useState("");
-  const { isLogin } = props;
 
   useEffect(() => {
     api(`relationshipuser/${isLogin.user.id}`, "GET", null, null)
@@ -40,6 +40,8 @@ function ModalCreateGroup(props) {
       });
   }, [isLogin]);
 
+  const dispatch = useDispatch();
+
   const all = () => {
     setUserCurrent(allMember);
     setStatusChoosed("Tất cả");
@@ -50,7 +52,14 @@ function ModalCreateGroup(props) {
     setStatusChoosed("Đã chọn");
   };
 
-  const history = useHistory();
+  const groupMessage = {
+    groupMessage: {
+      nameGroup: nameGroup,
+      colorChat: colorGroup,
+    },
+    user: isLogin.user,
+    users: memberChoose,
+  };
 
   const showAllFriends = userCurrent.map((item, index) => {
     return (
@@ -90,8 +99,6 @@ function ModalCreateGroup(props) {
 
     return listUserNew;
   };
-
-  const createGroup = () => {};
 
   return (
     <div
@@ -146,7 +153,11 @@ function ModalCreateGroup(props) {
           <div className="flex my-2 justify-end">
             <ButtonCancel />
             <ButtonSave
-              onClick={createGroup}
+              onClick={() =>
+                dispatch(
+                  groupMessagesAction.addGroupMessageRequestGroup(groupMessage)
+                )
+              }
               label={"Tạo nhóm"}
               disabled={submitStatus}
             />
@@ -157,4 +168,4 @@ function ModalCreateGroup(props) {
   );
 }
 
-export default connect(mapStateToProps, null)(ModalCreateGroup);
+export default ModalCreateGroup;

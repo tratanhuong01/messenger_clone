@@ -1,9 +1,16 @@
 import React from "react";
-
-AddModalControl.propTypes = {};
+import { useSelector } from "react-redux";
 
 function AddModalControl(props) {
-  const { item } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+    };
+  });
+
+  const { messages } = states;
+
   return (
     <div className="flex">
       <div className="cursor-pointer fill-65676B ">
@@ -12,7 +19,7 @@ function AddModalControl(props) {
           dark:hover:bg-dark-third p-1 "
         >
           <svg
-            fill={item[0].colorChat}
+            fill={messages.color}
             className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji tftn3vyl"
             height="20px"
             width="20px"
