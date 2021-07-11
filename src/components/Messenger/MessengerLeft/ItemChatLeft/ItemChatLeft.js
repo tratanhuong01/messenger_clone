@@ -69,6 +69,20 @@ function ItemChatLeft(props) {
             case -1:
               main = JSON.parse(item[item.length - 1].content).data[0].content;
               break;
+            case 3:
+              let dt = JSON.parse(item[item.length - 1].content);
+              let string =
+                JSON.parse(dt.data[0].src).id === isLogin.user.id
+                  ? "bạn"
+                  : JSON.parse(dt.data[0].src).firstName +
+                    " " +
+                    JSON.parse(dt.data[0].src).lastName;
+              main = `${
+                item[item.length - 1].idUser === isLogin.user.id
+                  ? "Bạn"
+                  : item[item.length - 1].lastName
+              } ${dt.data[0].content} ${string} vào nhóm .`;
+              break;
             default:
               main =
                 (item[item.length - 1].idUser === idUser

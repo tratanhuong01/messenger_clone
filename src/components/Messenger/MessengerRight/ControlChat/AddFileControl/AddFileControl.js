@@ -11,16 +11,29 @@ function AddFileControl(props) {
 
   const { messages } = states;
 
+  const { setImagePreview, imagePreview } = props;
+
+  const onChange = (event) => {
+    let imagePreviews = [...imagePreview];
+    let files = event.target.files;
+    for (let index = 0; index < files.length; index++) {
+      const element = files[index];
+      imagePreviews.push(element);
+    }
+    setImagePreview(imagePreviews);
+  };
+
   return (
     <>
       <input
+        onChange={onChange}
         className="hidden"
         type="file"
         name="fileImage[]"
         id="fileImageChatMain"
         multiple="multiple"
       />
-      <label>
+      <label htmlFor="fileImageChatMain">
         <li
           className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full 
           dark:hover:bg-dark-third"

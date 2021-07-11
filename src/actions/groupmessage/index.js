@@ -161,7 +161,7 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
             });
             api("messagesGroup", "POST", newDataMess, { headers })
               .then((res) => {
-                console.log("success");
+                dispatch(modalsAction.closeModal());
               })
               .catch((err) => {
                 console.log(err);
@@ -243,7 +243,7 @@ export const updateNameGroupMessageRequest = (data) => {
       data: [
         {
           id: 0,
-          content: `đã đổi tên cuộc trò chuyện thành`,
+          content: `đã đổi tên cuộc trò chuyện thành ${data.name}`,
           src: "",
         },
       ],

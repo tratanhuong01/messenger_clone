@@ -31,7 +31,7 @@ function MainMessenger(props) {
     );
     dispatch(relationshipUsersAction.loadListFriendRequest(isLogin.user.id));
   }, [isLogin, dispatch, match]);
-  console.log(messages);
+
   return (
     <div className="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">
       {localStorage && localStorage.getItem("user") ? (

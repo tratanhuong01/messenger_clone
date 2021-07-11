@@ -62,9 +62,10 @@ export const openModalChangeColorChat = () => {
   };
 };
 
-export const openModalWarningLeaveGroup = () => {
+export const openModalWarningLeaveGroup = (data) => {
   return {
     type: Types.OPEN_MODAL_WARNING_LEAVE_GROUP,
+    data,
   };
 };
 

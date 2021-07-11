@@ -1,6 +1,7 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as actions from "../../actions/index";
+import * as modalsAction from "../../actions/modals/index";
 
 export const addMessageRequest = (message) => {
   const headers = {
@@ -91,5 +92,82 @@ export const updateNickNameByUser = (name) => {
   return {
     type: Types.UPDATE_NAME_GROUP_MESSAGE,
     name,
+  };
+};
+
+export const addMemberToGroupMessageRequest = (data) => {
+  return async (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    let rs = await api("getIdNewMessage", "GET", null, null);
+
+    if (rs.status !== 200) console.log("error");
+
+    let id = rs.data.id;
+
+    let listNew = [];
+
+    data.list.forEach((element) => {
+      id++;
+      listNew.push({
+        id: id,
+        groupMessage: data.group,
+        userMesages: element.userRelationshipUser,
+        content: null,
+        nickName: null,
+        stateMessage: 0,
+        typeMessage: -1,
+        dateCreated: null,
+      });
+    });
+
+    data.list.forEach((element) => {
+      id++;
+      listNew.push({
+        id: id,
+        groupMessage: data.group,
+        userMesages: data.user,
+        content: JSON.stringify({
+          data: [
+            {
+              id: 0,
+              content: `đã thêm`,
+              src: JSON.stringify(element.userRelationshipUser),
+            },
+          ],
+          type: 3,
+        }),
+        nickName: null,
+        stateMessage: 0,
+        typeMessage: 1,
+        dateCreated: null,
+      });
+    });
+
+    rs = await api("messagesGroup", "POST", listNew, { headers });
+
+    if (rs.status !== 200) console.log("error");
+
+    dispatch(modalsAction.closeModal());
+    dispatch(
+      actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+    );
+  };
+};
+
+export const deleteUserOutGroupRequest = (data) => {
+  return (dispatch) => {
+    return api(`deleteMessages/${data.group.id}/${data.userDelete.idUser}`)
+      .then((res) => {
+        dispatch(modalsAction.closeModal());
+        dispatch(
+          actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };

@@ -11,8 +11,11 @@ function StickerControl(props) {
 
   const { messages } = states;
 
+  const { onClick } = props;
+
   return (
     <li
+      onClick={onClick}
       className="float-left cursor-pointer p-1 fill-65676B  hover:bg-gray-200 rounded-full 
       dark:hover:bg-dark-third"
     >

@@ -11,8 +11,11 @@ const checkMemberChat = (item) => {
   let newUserChat = [];
   for (let index = 0; index < item.length; index++) {
     const element = item[index];
-    if (newUserChat.findIndex((item) => item.idUser === element.idUser) === -1)
-      newUserChat.push(element);
+    if (element.typeMessage === "-1")
+      if (
+        newUserChat.findIndex((item) => item.idUser === element.idUser) === -1
+      )
+        newUserChat.push(element);
   }
   return newUserChat;
 };

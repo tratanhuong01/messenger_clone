@@ -6,6 +6,7 @@ import ItemMemberChat from "./ItemMemberChat/ItemMemberChat";
 import * as modalsAction from "../../../../actions/modals/index";
 import ItemChoosed from "./ItemChoosed/ItemChoosed";
 import * as process from "../../../../functions/process";
+import * as messagesAction from "../../../../actions/messages/index";
 
 function ModalAddMemberGroup(props) {
   //
@@ -96,6 +97,12 @@ function ModalAddMemberGroup(props) {
     setFriendCurrent(arrayNew);
   };
 
+  const data = {
+    user: isLogin.user,
+    list: itemChoosed,
+    group: messages.group,
+  };
+
   return (
     <div
       className="w-11/12 fixed top-50per left-50per dark:bg-dark-second transform-translate-50per 
@@ -148,6 +155,9 @@ function ModalAddMemberGroup(props) {
           Hủy
         </button>
         <button
+          onClick={() =>
+            dispatch(messagesAction.addMemberToGroupMessageRequest(data))
+          }
           type="button"
           className={`cursor-not-allowed w-1/4 border-none font-semibold text-white 
           rounded-lg p-2.5 mx-2 ${disabled ? "bg-gray-500" : "bg-blue-500"}`}

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import ModalViewMemberChat from "../ModalViewMemberChat/ModalViewMemberChat";
 
 function ItemMember(props) {
   //
   const { item, leader } = props;
+
+  const [show, setShow] = useState(false);
 
   return (
     <li
@@ -22,11 +25,13 @@ function ItemMember(props) {
           <p className="text-xs text-gray-500">Quản trị viên</p>
         )}
       </div>
-      <div className="w-10 flex justify-center">
+      <div className="w-10 flex justify-center relative">
         <span
+          onClick={() => setShow(!show)}
           className="bx bx-dots-horizontal-rounded text-2xl flex items-center 
-        dark:text-gray-300"
+          dark:text-gray-300"
         ></span>
+        {show && <ModalViewMemberChat data={item} setShow={setShow} />}
       </div>
     </li>
   );

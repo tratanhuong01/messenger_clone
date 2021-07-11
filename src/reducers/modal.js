@@ -69,7 +69,7 @@ const myReducer = (state = initialState, action) => {
     case Types.OPEN_MODAL_WARNING_LEAVE_GROUP:
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       state.StateModal = true;
-      state.DataModal = <ModalWarningLeaveGroup />;
+      state.DataModal = <ModalWarningLeaveGroup data={action.data} />;
       return { ...state };
     //
     case Types.OPEN_MODAL_MEMBER_GROUP_CHAT:
