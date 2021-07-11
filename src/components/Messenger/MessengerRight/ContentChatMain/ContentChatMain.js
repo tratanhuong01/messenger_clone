@@ -33,18 +33,21 @@ function ContentChatMain(props) {
         ) : (
           <FirstGroupChat item={item} key={index} user={user} />
         );
-      case 0:
+      default:
         return (
           <div key={index + "372183217387"}>
             <TimeChat
               time={itemMain.dateCreated}
               key={index + "372183217387"}
             />
-            <ChatCenter item={item} key={index + "372183748217"} />
+            <ChatCenter
+              item={item}
+              itemMain={itemMain}
+              user={isLogin.user}
+              key={index + "372183748217"}
+            />
           </div>
         );
-      default:
-        return "";
     }
   };
   const showAllMessages = item.map((ele, index) => {

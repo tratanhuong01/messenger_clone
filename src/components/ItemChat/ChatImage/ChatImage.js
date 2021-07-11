@@ -1,7 +1,5 @@
 import React from "react";
 
-ChatImage.propTypes = {};
-
 function ChatImage(props) {
   //
   const { magrin } = props;

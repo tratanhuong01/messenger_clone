@@ -1,12 +1,45 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as messagesAction from "../../../../../actions/messages/index";
 
 function ItemNickName(props) {
   //
   const { item } = props;
 
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { messages, isLogin } = states;
+
   const [show, setShow] = useState(false);
 
-  const [nickName, setNickName] = useState(item.nickName);
+  const [nickName, setNickName] = useState(
+    item.nickName === null ? "" : item.nickName
+  );
+
+  const data = {
+    data: {
+      userMain: isLogin.user,
+      user: item,
+      group: messages.group,
+    },
+    nickName: {
+      idGroupMessage: item.idGroupMessage,
+      idUser: item.idUser,
+      nameNickName: nickName,
+    },
+  };
+
+  const dispatch = useDispatch();
+
+  const handleChangeNickname = () => {
+    dispatch(messagesAction.updateNickNameByUserRequest(data));
+    setShow(false);
+  };
 
   return (
     <div
@@ -27,16 +60,16 @@ function ItemNickName(props) {
           }`}
         >
           <span className="w-full font-semibold block dark:text-white">
-            {item.nickName === null
-              ? `${item.firstName} ${item.lastName}`
-              : item.nickName}
+            {nickName === "" ? `${item.firstName} ${item.lastName}` : nickName}
           </span>
           <br />
           <span
             className="w-full text-sm text-gray-700 dark:text-white py-0.5 
-              flex items-center"
+              flex items-center font-semibold"
           >
-            Đặt biệt danh
+            {nickName === ""
+              ? "Đặt biệt danh"
+              : `${item.firstName} ${item.lastName}`}
           </span>
         </p>
         <input
@@ -55,7 +88,7 @@ function ItemNickName(props) {
           ml-5 text-xl flex items-center ${show === false ? "" : "hidden"}`}
         ></i>
         <i
-          onClick={() => setShow(false)}
+          onClick={() => handleChangeNickname()}
           className={`fas fa-check cursor-pointer dark:text-white 
           ml-5 text-xl flex items-center ${show === true ? "" : "hidden"}`}
         ></i>

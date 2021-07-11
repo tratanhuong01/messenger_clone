@@ -17,7 +17,7 @@ function ContentChatTop(props) {
 
   return (
     <div className="w-full pt-3 flex shadow ">
-      <div className="w-1/2 pl-3 flex ">
+      <div className="w-2/3 pl-3 flex ">
         <div className="">
           {typeGroupMessage === "0" ? (
             <ItemSingleChat
@@ -41,14 +41,19 @@ function ContentChatTop(props) {
             />
           )}
         </div>
-        <div className="pl-3">
-          <b className="block dark:text-white">{messages.name}</b>
+        <div className="pl-3 flex flex-col">
+          <b
+            className="block dark:text-white inline-block whitespace-nowrap 
+            overflow-ellipsis overflow-hidden max-w-full pr-4"
+          >
+            {messages.name}
+          </b>
           <span className="text-gray-700 dark:text-gray-300 text-sm">
             Đang hoạt động
           </span>
         </div>
       </div>
-      <div className="w-1/2 ml-auto">
+      <div className="w-1/3 ml-auto">
         <ul className="ml-auto flex float-right">
           <li
             className="py-2 px-1 mx-1 rounded-full 

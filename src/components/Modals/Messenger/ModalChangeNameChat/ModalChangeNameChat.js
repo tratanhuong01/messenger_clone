@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../../../actions/modals/index";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
+import * as groupMessagesAction from "../../../../actions/groupmessage/index";
 
 function ModalChangeNameChat(props) {
   //
   const dispatch = useDispatch();
+
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { messages, isLogin } = states;
 
   const [disabled, setDisabled] = useState(true);
 
@@ -15,6 +25,14 @@ function ModalChangeNameChat(props) {
     setName(e.target.value);
     e.target.value.length > 0 ? setDisabled(false) : setDisabled(true);
   };
+
+  const data = {
+    name: name,
+    id: messages.group.id,
+    group: messages.group,
+    user: isLogin.user,
+  };
+
   return (
     <div
       className="shadow-sm border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0
@@ -50,9 +68,14 @@ function ModalChangeNameChat(props) {
           Hủy
         </button>
         <button
+          onClick={() =>
+            dispatch(groupMessagesAction.updateNameGroupMessageRequest(data))
+          }
           type="button"
-          className={`cursor-not-allowed w-1/4 border-none font-semibold text-white 
-          rounded-lg p-2 mx-2 ${disabled ? "bg-gray-500" : "bg-blue-500"}`}
+          className={`w-1/4 border-none font-semibold text-white 
+          rounded-lg p-2 mx-2 ${
+            disabled ? "bg-gray-500 cursor-not-allowed " : "bg-blue-500"
+          }`}
           disabled={disabled}
         >
           Lưu

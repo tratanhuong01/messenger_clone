@@ -2,6 +2,7 @@ import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as contentRightAction from "../contentRight/index";
 import * as modalsAction from "../modals/index";
+import * as actions from "../index";
 
 export const addGroupMessageRequestSingle = (groupMessage) => {
   const headers = {
@@ -185,7 +186,7 @@ export const updateColorChatRequest = (data) => {
       data: [
         {
           id: 0,
-          content: `${data.user.lastName} đã thay đổi màu sắc cuộc trò chuyện.`,
+          content: `đã thay đổi màu sắc cuộc trò chuyện.`,
           src: "",
         },
       ],
@@ -202,7 +203,7 @@ export const updateColorChatRequest = (data) => {
       dateCreated: null,
     };
     return api(
-      `updateGroupMessage/colorChat/${data.id}/${data.color}`,
+      `updateGroupMessage/colorChat/${data.group.id}/${data.color}`,
       "GET",
       null,
       null
@@ -212,6 +213,9 @@ export const updateColorChatRequest = (data) => {
           .then((res) => {
             dispatch(updateColorChat("#" + data.color));
             dispatch(modalsAction.closeModal());
+            dispatch(
+              actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group)
+            );
           })
           .catch((err) => {
             console.log(err);
@@ -230,17 +234,46 @@ export const updateColorChat = (color) => {
   };
 };
 
-export const updateNameGroupMessageRequest = (name, id) => {
+export const updateNameGroupMessageRequest = (data) => {
   return (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const content = {
+      data: [
+        {
+          id: 0,
+          content: `đã đổi tên cuộc trò chuyện thành`,
+          src: "",
+        },
+      ],
+      type: 2,
+    };
+    const mess = {
+      id: null,
+      groupMessage: data.group,
+      userMesages: data.user,
+      content: JSON.stringify(content),
+      nickName: null,
+      stateMessage: 0,
+      typeMessage: 1,
+      dateCreated: null,
+    };
     return api(
-      `updateGroupMessage/nameGroupMessage/${id}/${name}`,
+      `updateGroupMessage/nameGroupMessage/${data.id}/${data.name}`,
       "GET",
       null,
       null
     )
       .then((res) => {
-        dispatch(updateNameGroupMessage(name));
-        dispatch(modalsAction.closeModal());
+        api("messages", "POST", mess, { headers })
+          .then((res) => {
+            dispatch(updateNameGroupMessage(data.name));
+            dispatch(modalsAction.closeModal());
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);

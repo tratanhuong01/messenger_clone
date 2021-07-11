@@ -54,7 +54,7 @@ function ModalCreateGroup(props) {
 
   const groupMessage = {
     groupMessage: {
-      nameGroup: nameGroup,
+      nameGroup: nameGroup === "" ? null : nameGroup,
       colorChat: colorGroup,
     },
     user: isLogin.user,

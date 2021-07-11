@@ -6,8 +6,6 @@ import ChatSticker from "../ChatSticker/ChatSticker";
 import ChatText from "../ChatText/ChatText";
 import * as modalsAction from "../../../actions/modals/index";
 
-ChatLeft.propTypes = {};
-
 function ChatLeft(props) {
   //
   const { item, index } = props;

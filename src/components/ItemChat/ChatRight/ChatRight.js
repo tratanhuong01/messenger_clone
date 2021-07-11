@@ -5,10 +5,10 @@ import ChatSticker from "../ChatSticker/ChatSticker";
 import ChatGif from "../ChatGif/ChatGif";
 import FeelMessageRight from "../FeelMessageRight/FeelMessageRight";
 
-ChatRight.propTypes = {};
-
 function ChatRight(props) {
+  //
   const { item, index } = props;
+
   const data = () => {
     const content = JSON.parse(item.content);
     switch (content.type) {
@@ -31,6 +31,7 @@ function ChatRight(props) {
         break;
     }
   };
+
   return (
     <div className="mess-user chat-rights z-0 w-full py-1 flex relative">
       <div className="mess-user-feel z-50 hidden h-auto relative">

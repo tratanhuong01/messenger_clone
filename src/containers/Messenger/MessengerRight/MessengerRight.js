@@ -15,6 +15,8 @@ function MessengerRight(props) {
     };
   });
 
+  const [stateApi, setStateApi] = useState(false);
+
   const dispatch = useDispatch();
 
   const { isLogin, messages } = states;
@@ -37,6 +39,7 @@ function MessengerRight(props) {
             res.data
           )
         );
+        setStateApi(true);
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +51,7 @@ function MessengerRight(props) {
       className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 
     dark:border-dark-second "
     >
-      {index === -1 ? (
+      {index === -1 || stateApi === false ? (
         <EmptyMessage />
       ) : (
         <>

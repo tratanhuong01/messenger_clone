@@ -21,7 +21,7 @@ function FirstGroupChat(props) {
       <p className="text-center text-gray-900 font-semibold dark:text-white">
         <span className="py-1.5 text-sm font-semibold dark:text-gray-300 ">
           Ensonet
-        </span>{" "}
+        </span>
         <br />
         <span className="text-sm font-semibold dark:text-gray-300">
           {item.data[0].content}

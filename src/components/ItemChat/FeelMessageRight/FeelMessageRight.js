@@ -1,8 +1,7 @@
 import React from "react";
 
-FeelMessage.propTypes = {};
-
 function FeelMessage(props) {
+  //
   return (
     <div className="mess-user-feel z-50 hidden h-auto relative">
       <div

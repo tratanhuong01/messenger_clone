@@ -5,12 +5,21 @@ import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 import ItemSingleChat from "../../../ItemChat/ItemSingleChat/ItemSingleChat";
 import * as Config from "../../../../constants/Config";
 import * as process from "../../../../functions/process";
+import { useSelector } from "react-redux";
 
 function ItemChatLeft(props) {
   //
   const { item, idUser, slug } = props;
 
   const { user, name } = process.dataUsersChat(item, idUser);
+
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
 
   const contentChild = (item, main, idUser) => {
     switch (main.type) {
@@ -31,7 +40,7 @@ function ItemChatLeft(props) {
           item.idUser === idUser ? "Bạn" : item.lastName + " :"
         } đã gửi một gif.`;
       default:
-        return `${item.idUser === idUser ? "Bạn" : item.lastName + " : "} ${
+        return `${item.idUser === idUser ? "Bạn" : item.lastName + " : "}${
           main.data[0].content
         }`;
     }
@@ -44,10 +53,32 @@ function ItemChatLeft(props) {
         main = JSON.parse(item[item.length - 1].content);
         return contentChild(item[item.length - 1], main, idUser);
       case "1":
-        main =
-          item[item.length - 1].content !== null
-            ? JSON.parse(item[item.length - 1].content).data[0].content
-            : "";
+        main = "";
+        if (item[item.length - 1].content !== null) {
+          switch (JSON.parse(item[item.length - 1].content).type) {
+            case 1:
+              main = process.gereral(
+                isLogin.user,
+                item[item.length - 1],
+                JSON.parse(
+                  JSON.parse(item[item.length - 1].content).data[0].src
+                ),
+                JSON.parse(item[item.length - 1].content)
+              );
+              break;
+            case -1:
+              main = JSON.parse(item[item.length - 1].content).data[0].content;
+              break;
+            default:
+              main =
+                (item[item.length - 1].idUser === idUser
+                  ? "Bạn "
+                  : item[item.length - 1].lastName) +
+                " " +
+                JSON.parse(item[item.length - 1].content).data[0].content;
+              break;
+          }
+        }
         return main;
       default:
         return "";
@@ -94,15 +125,18 @@ function ItemChatLeft(props) {
             )}
           </div>
           <div className="w-4/5 hidden md:block">
-            <div className="w-full">
-              <span className="float-left font-semibold dark:text-gray-300">
+            <div className="w-full text-left">
+              <span
+                className="w-full font-semibold dark:text-gray-300 inline-block whitespace-nowrap
+                overflow-ellipsis overflow-hidden max-w-full pr-4"
+              >
                 {name}
               </span>
             </div>
             <div className="w-full flex py-1 text-sm flex  md:pr-3 xl:pr-0">
-              <div className="w-full flex dark:text-white font-semibold">
+              <div className="w-full flex text-left dark:text-white font-semibold">
                 <div
-                  className="max-w-3/4 inline-block whitespace-nowrap
+                  className="max-w-3/4 inline-block whitespace-nowrap text-left 
                   overflow-ellipsis overflow-hidden pr-1 text-gray-500"
                 >
                   {processContent()}
@@ -110,7 +144,9 @@ function ItemChatLeft(props) {
                 <div
                   className="w-1/4 flex pr-3 text-gray-500 inline-block whitespace-nowrap
                   overflow-ellipsis overflow-hidden"
-                ></div>
+                >
+                  3 ngày
+                </div>
               </div>
             </div>
             <div

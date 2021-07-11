@@ -1,7 +1,5 @@
 import React from "react";
 
-ChatSticker.propTypes = {};
-
 function ChatSticker(props) {
   return (
     <div
