@@ -20,6 +20,7 @@ function ListGroupChat(props) {
   return (
     <>
       <FriendLeftList
+        onClick={() => ""}
         label="Danh sách nhóm"
         icon="fa fa-users"
         bgColor="bg-indigo-500"

@@ -4,8 +4,10 @@ import * as Types from "../../../../../../constants/ActionTypes";
 
 function ModalSticker(props) {
   //
+  const { setShow } = props;
+
   const showAllStickers = Types.STICKER.map((item, index) => {
-    return <ItemSticker sticker={item} key={index} />;
+    return <ItemSticker sticker={item} key={index} setShow={setShow} />;
   });
 
   return (

@@ -214,7 +214,10 @@ export const updateColorChatRequest = (data) => {
             dispatch(updateColorChat("#" + data.color));
             dispatch(modalsAction.closeModal());
             dispatch(
-              actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group)
+              actions.loadAllMessageOfUserByIdRequest(
+                data.user.id,
+                data.group.id
+              )
             );
           })
           .catch((err) => {
@@ -270,6 +273,12 @@ export const updateNameGroupMessageRequest = (data) => {
           .then((res) => {
             dispatch(updateNameGroupMessage(data.name));
             dispatch(modalsAction.closeModal());
+            dispatch(
+              actions.loadAllMessageOfUserByIdRequest(
+                data.user.id,
+                data.group.id
+              )
+            );
           })
           .catch((err) => {
             console.log(err);

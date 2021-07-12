@@ -19,7 +19,7 @@ function ModalViewMemberChat(props) {
 
   const { isLogin, messages } = states;
 
-  const { data, setShow } = props;
+  const { data, setShow, leader } = props;
 
   let datas = { ...data };
 
@@ -46,13 +46,6 @@ function ModalViewMemberChat(props) {
     chat();
   }, []);
 
-  const dataMain = {
-    userDelete: datas,
-    user: isLogin.user,
-    group: messages.group,
-    type: 0,
-  };
-
   return (
     <div
       className="w-72 absolute border-2 border-solid border-gray-300 z-50 shadow-lg 
@@ -60,14 +53,16 @@ function ModalViewMemberChat(props) {
     >
       {idGroupMessage !== null && (
         <ul className="w-full">
-          <ChildEditMember
-            onClick={() => {
-              history.push(`${Config.PAGE_MESSENGER}/${idGroupMessage}`);
-            }}
-            label="Tin nhắn"
-            id={idGroupMessage}
-            link={true}
-          />
+          {datas.idUser !== leader.idUser && (
+            <ChildEditMember
+              onClick={() => {
+                history.push(`${Config.PAGE_MESSENGER}/${idGroupMessage}`);
+              }}
+              label="Tin nhắn"
+              id={idGroupMessage}
+              link={true}
+            />
+          )}
           <ChildEditMember
             data={datas}
             onClick={(item) => {
@@ -76,13 +71,41 @@ function ModalViewMemberChat(props) {
             }}
             label="Xem trang cá nhân"
           />
-          <ChildEditMember label="Chỉ định làm quản trị viên" />
-          <ChildEditMember
-            onClick={() => {
-              dispatch(modalsAction.openModalWarningLeaveGroup(dataMain));
-            }}
-            label="Xóa thành viên"
-          />
+          {datas.idUser !== leader.idUser && (
+            <ChildEditMember label="Chỉ định làm quản trị viên" />
+          )}
+          {datas.idUser !== leader.idUser && (
+            <ChildEditMember
+              onClick={() => {
+                dispatch(
+                  modalsAction.openModalWarningLeaveGroup({
+                    userDelete: datas,
+                    user: isLogin.user,
+                    group: messages.group,
+                    type: 0,
+                  })
+                );
+              }}
+              label="Xóa thành viên"
+            />
+          )}
+          {datas.idUser === isLogin.user.id && (
+            <ChildEditMember
+              onClick={() => {
+                dispatch(
+                  modalsAction.openModalWarningLeaveGroup({
+                    userDelete: datas,
+                    user: isLogin.user,
+                    group: messages.group,
+                    type: 1,
+                  })
+                );
+              }}
+              label="Rời khỏi nhóm"
+              id={idGroupMessage}
+              link={false}
+            />
+          )}
         </ul>
       )}
     </div>

@@ -49,7 +49,7 @@ function MessengerRight(props) {
   return (
     <div
       className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 
-    dark:border-dark-second "
+      dark:border-dark-second "
     >
       {index === -1 || stateApi === false ? (
         <EmptyMessage />

@@ -102,3 +102,25 @@ export const getAllUsers = () => {
       });
   };
 };
+
+export const updateDarkModeByUser = (user, typeCurrent) => {
+  return (dispatch) => {
+    if (typeCurrent === 0) typeCurrent = 1;
+    else typeCurrent = 0;
+    return api(
+      `updateUser/darkMode/${typeCurrent}/${user.id}`,
+      "GET",
+      null,
+      null
+    )
+      .then((res) => {
+        let userChange = { ...user };
+        userChange.darkMode = typeCurrent;
+        dispatch(login(userChange));
+        localStorage.setItem("user", JSON.stringify(userChange));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};

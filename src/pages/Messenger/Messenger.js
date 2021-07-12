@@ -21,6 +21,8 @@ function Messenger(props) {
 
   useEffect(() => {
     if (isLogin.isLogin) {
+      document.getElementById("root").classList =
+        isLogin.user.darkMode === 0 ? "" : "dark";
       history.push(
         Config.PAGE_MESSENGER +
           (typeof match.params.slug === "undefined"

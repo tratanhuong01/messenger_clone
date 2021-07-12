@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import TimeChat from "../../../ItemChat/TimeChat/TimeChat";
 import ChatRight from "../../../ItemChat/ChatRight/ChatRight";
 import ChatLeft from "../../../ItemChat/ChatLeft/ChatLeft";
@@ -57,15 +57,15 @@ function ContentChatMain(props) {
         return showChild(main, ele.typeGroupMessage, user, index, ele);
       case "2":
         return isLogin.user.id === ele.idUser ? (
-          <>
-            <TimeChat time={item.dateCreated} key={index} />
+          <Fragment key={index}>
+            <TimeChat time={ele.dateCreated} key={index + "jdkhsaj"} />
             <ChatRight item={ele} key={index} index={index} />
-          </>
+          </Fragment>
         ) : (
-          <>
-            <TimeChat time={item.dateCreated} key={index} />
+          <Fragment key={index}>
+            <TimeChat time={ele.dateCreated} key={index + "jdkhsaj"} />
             <ChatLeft item={ele} key={index} index={index} />
-          </>
+          </Fragment>
         );
       default:
         return "";
@@ -75,7 +75,7 @@ function ContentChatMain(props) {
   return (
     <div
       className="w-full p-1 wrapper-content-right overflow-y-auto overflow-x-hidden relative"
-      style={{ height: "570px", maxHeight: "570px" }}
+      style={{ height: "565px", maxHeight: "565px" }}
       id="content__chat"
     >
       {showAllMessages}

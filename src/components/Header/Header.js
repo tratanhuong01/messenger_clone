@@ -141,6 +141,14 @@ function Header(props) {
             <div className="flex float-right">
               <div className="w-12 h-12 mr-1 flex justify-center relative">
                 <span
+                  onClick={() =>
+                    dispatch(
+                      usersAction.updateDarkModeByUser(
+                        isLogin.user,
+                        isLogin.user.darkMode
+                      )
+                    )
+                  }
                   className="bx bxs-moon cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
                  rounded-full flex items-center justify-center text-xl"
                 ></span>

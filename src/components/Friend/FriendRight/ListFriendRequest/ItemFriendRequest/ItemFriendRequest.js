@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as relationshipsActions from "../../../../../actions/relationshipusers/index";
+import * as modalsAction from "../../../../../actions/modals/index";
 
 function ItemFriendRequest(props) {
   //
@@ -31,13 +32,17 @@ function ItemFriendRequest(props) {
       </span>
       <div className="w-full flex mb-2 mt-1 justity-center">
         <img
+          onClick={() => dispatch(modalsAction.openModalProfile(item))}
           src={item.avatar}
-          className="w-24 h-24  object-cover 
+          className="w-24 h-24  object-cover cursor-pointer 
           rounded-full mx-auto"
           alt=""
         />
       </div>
-      <p className="w-full font-semibold text-center cursor-pointer mb-1 dark:text-white">
+      <p
+        onClick={() => dispatch(modalsAction.openModalProfile(item))}
+        className="w-full font-semibold text-center cursor-pointer mb-1 dark:text-white"
+      >
         {`${item.firstName} ${item.lastName}`}
       </p>
       <p

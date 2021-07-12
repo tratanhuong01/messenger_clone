@@ -17,9 +17,15 @@ function ModalChangeNameChat(props) {
 
   const { messages, isLogin } = states;
 
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(
+    messages.group.nameGroupMessage === null ? true : false
+  );
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState(
+    messages.group.nameGroupMessage === null
+      ? ""
+      : messages.group.nameGroupMessage
+  );
 
   const onChange = (e) => {
     setName(e.target.value);
@@ -76,7 +82,7 @@ function ModalChangeNameChat(props) {
           rounded-lg p-2 mx-2 ${
             disabled ? "bg-gray-500 cursor-not-allowed " : "bg-blue-500"
           }`}
-          disabled={disabled}
+          disabled={name.length > 0 && disabled === false ? false : true}
         >
           Lưu
         </button>

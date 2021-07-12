@@ -83,6 +83,20 @@ function ItemChatLeft(props) {
                   : item[item.length - 1].lastName
               } ${dt.data[0].content} ${string} vào nhóm .`;
               break;
+            case 4:
+              let res = JSON.parse(item[item.length - 1].content);
+              let strings =
+                JSON.parse(res.data[0].src).id === isLogin.user.id
+                  ? "bạn"
+                  : JSON.parse(res.data[0].src).user.firstName +
+                    " " +
+                    JSON.parse(res.data[0].src).user.lastName;
+              main = `${
+                item[item.length - 1].idUser === isLogin.user.id
+                  ? "Bạn"
+                  : item[item.length - 1].lastName
+              } ${res.data[0].content} ${strings} vào nhóm .`;
+              break;
             default:
               main =
                 (item[item.length - 1].idUser === idUser
@@ -98,7 +112,6 @@ function ItemChatLeft(props) {
         return "";
     }
   };
-
   const history = useHistory();
 
   return (
@@ -159,7 +172,7 @@ function ItemChatLeft(props) {
                   className="w-1/4 flex pr-3 text-gray-500 inline-block whitespace-nowrap
                   overflow-ellipsis overflow-hidden"
                 >
-                  3 ngày
+                  {process.timeGeneralLeft(item[item.length - 1].dateCreated)}
                 </div>
               </div>
             </div>

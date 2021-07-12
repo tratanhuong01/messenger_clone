@@ -19,12 +19,14 @@ function Friend(props) {
 
   useEffect(() => {
     if (isLogin.isLogin) {
+      document.getElementById("root").classList =
+        isLogin.user.darkMode === 0 ? "" : "dark";
       history.push(Config.PAGE_FRIEND);
     } else {
       history.push(Config.PAGE_LOGIN);
     }
   }, [isLogin, history]);
-  
+
   return (
     <div className="w-full dark:bg-dark-main h-screen relative">
       <MainFriend />

@@ -17,14 +17,19 @@ function ChatRight(props) {
           <ChatText
             margin="ml-auto"
             item={item}
-            content={content}
-            messages=""
+            content={content.data[0].content}
           />
         );
       case 1:
         return <ChatImage key={index} />;
       case 2:
-        return <ChatSticker key={index} />;
+        return (
+          <ChatSticker
+            key={index}
+            sticker={JSON.parse(content.data[0].src)}
+            margin={"ml-auto"}
+          />
+        );
       case 3:
         return <ChatGif key={index} />;
       default:

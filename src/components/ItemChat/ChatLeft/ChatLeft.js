@@ -4,13 +4,11 @@ import ChatGif from "../ChatGif/ChatGif";
 import ChatImage from "../ChatImage/ChatImage";
 import ChatSticker from "../ChatSticker/ChatSticker";
 import ChatText from "../ChatText/ChatText";
-import * as modalsAction from "../../../actions/modals/index";
+// import * as modalsAction from "../../../actions/modals/index";
 
 function ChatLeft(props) {
   //
   const { item, index } = props;
-
-  const dispatch = useDispatch();
 
   const data = () => {
     const content = JSON.parse(item.content);
@@ -20,7 +18,7 @@ function ChatLeft(props) {
           <ChatText
             margin=""
             item={item}
-            content={content}
+            content={content.data[0].content}
             key={index}
             messages="left"
           />
@@ -28,7 +26,13 @@ function ChatLeft(props) {
       case 1:
         return <ChatImage margin="" key={index} />;
       case 2:
-        return <ChatSticker margin="" key={index} />;
+        return (
+          <ChatSticker
+            key={index}
+            sticker={JSON.parse(content.data[0].src)}
+            margin={"mr-auto"}
+          />
+        );
       case 3:
         return <ChatGif margin="" key={index} />;
       default:
@@ -57,12 +61,7 @@ function ChatLeft(props) {
                 <i className="far fa-smile text-xm"></i>
               </li>
               <li className="px-1.5 rounded-full hover:bg-gray-300 dark:hover:bg-dark-third">
-                <i
-                  onClick={() =>
-                    dispatch(modalsAction.openModalWarningLeaveGroup())
-                  }
-                  className="far fa-trash-alt text-xm"
-                ></i>
+                <i className="far fa-trash-alt text-xm"></i>
               </li>
             </ul>
           </div>

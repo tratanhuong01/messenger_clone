@@ -3,23 +3,40 @@ import api from "../../api/api";
 import * as actions from "../../actions/index";
 import * as modalsAction from "../../actions/modals/index";
 
-export const addMessageRequest = (message) => {
+export const addMessageRequest = (data) => {
   const headers = {
     "Content-Type": "application/json",
   };
-
+  const content = {
+    data: [
+      {
+        id: 0,
+        content: data.content,
+        src: JSON.stringify(data.child),
+      },
+    ],
+    type: data.type,
+  };
+  const mess = {
+    id: null,
+    groupMessage: data.group,
+    userMesages: data.user,
+    content: JSON.stringify(content),
+    nickName: null,
+    stateMessage: 0,
+    typeMessage: 2,
+    dateCreated: null,
+  };
   return (dispatch) => {
-    return api("messages", "POST", message, { headers })
-      .then((res) => {})
+    return api("messages", "POST", mess, { headers })
+      .then((res) => {
+        dispatch(
+          actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+        );
+      })
       .catch((err) => {
         console.log(err);
       });
-  };
-};
-
-export const addMessage = () => {
-  return {
-    type: Types.ADD_MESSAGE,
   };
 };
 
@@ -159,12 +176,51 @@ export const addMemberToGroupMessageRequest = (data) => {
 
 export const deleteUserOutGroupRequest = (data) => {
   return (dispatch) => {
-    return api(`deleteMessages/${data.group.id}/${data.userDelete.idUser}`)
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const content = {
+      data: [
+        {
+          id: 0,
+          content: `đã xóa`,
+          src: JSON.stringify({
+            user: data.userDelete,
+          }),
+        },
+      ],
+      type: 4,
+    };
+    const mess = {
+      id: null,
+      groupMessage: data.group,
+      userMesages: data.user,
+      content: JSON.stringify(content),
+      nickName: null,
+      stateMessage: 0,
+      typeMessage: 1,
+      dateCreated: null,
+    };
+    return api(
+      `deleteMessages/${data.group.id}/${data.userDelete.idUser}`,
+      "DELETE",
+      null,
+      { headers }
+    )
       .then((res) => {
-        dispatch(modalsAction.closeModal());
-        dispatch(
-          actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
-        );
+        api("messages", "POST", mess, { headers })
+          .then((res) => {
+            dispatch(modalsAction.closeModal());
+            dispatch(
+              actions.loadAllMessageOfUserByIdRequest(
+                data.user.id,
+                data.group.id
+              )
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);

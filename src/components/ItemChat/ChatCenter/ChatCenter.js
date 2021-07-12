@@ -25,6 +25,16 @@ function ChatCenter(props) {
         return `${itemMain.idUser === user.id ? "Bạn" : itemMain.lastName} ${
           item.data[0].content
         } ${string} vào nhóm .`;
+      case 4:
+        let dt =
+          JSON.parse(item.data[0].src).id === user.id
+            ? "bạn"
+            : JSON.parse(item.data[0].src).user.firstName +
+              " " +
+              JSON.parse(item.data[0].src).user.lastName;
+        return `${itemMain.idUser === user.id ? "Bạn" : itemMain.lastName} ${
+          item.data[0].content
+        } ${dt} khỏi nhóm .`;
       case 1:
         return process.gereral(
           user,

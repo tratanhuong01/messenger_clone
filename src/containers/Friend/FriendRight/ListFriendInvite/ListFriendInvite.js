@@ -21,6 +21,7 @@ function ListFriendInvite(props) {
     <>
       <div className="w-full flex cursor-pointer hover:bg-gray-200">
         <FriendLeftList
+          onClick={() => ""}
           label="Danh sách lời mời"
           icon="bx bx-user-plus"
           bgColor="bg-green-500"

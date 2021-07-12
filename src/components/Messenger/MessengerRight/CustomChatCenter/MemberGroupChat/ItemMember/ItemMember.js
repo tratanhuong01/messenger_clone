@@ -31,7 +31,9 @@ function ItemMember(props) {
           className="bx bx-dots-horizontal-rounded text-2xl flex items-center 
           dark:text-gray-300"
         ></span>
-        {show && <ModalViewMemberChat data={item} setShow={setShow} />}
+        {show && (
+          <ModalViewMemberChat data={item} setShow={setShow} leader={leader} />
+        )}
       </div>
     </li>
   );

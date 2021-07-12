@@ -29,7 +29,7 @@ function ModalWarningLeaveGroup(props) {
             {`${data.userDelete.firstName} ${data.userDelete.lastName}`} sẽ
             không nhận được tin nhắn từ cuộc trò chuyện này nữa và mọi người sẽ
             thấy thông báo{" "}
-            {`${data.userDelete.firstName} ${data.userDelete.lastName}`} bị đuổi
+            {`${data.userDelete.firstName} ${data.userDelete.lastName}`} bị xóa
             khỏi nhóm .
           </p>
         ) : (
@@ -53,11 +53,10 @@ function ModalWarningLeaveGroup(props) {
             dispatch(messagesAction.deleteUserOutGroupRequest(data));
           }}
           type="button"
-          className="cursor-pointer
-          w-1/4 bg-gray-500 border-none 
+          className="cursor-pointer bg-gray-500 border-none 
           font-semibold text-white rounded-lg p-2 mx-2"
         >
-          Rời khỏi nhóm
+          {data.type === 0 ? "Xóa thành viên" : "Rời khỏi nhóm"}
         </button>
       </div>
     </div>

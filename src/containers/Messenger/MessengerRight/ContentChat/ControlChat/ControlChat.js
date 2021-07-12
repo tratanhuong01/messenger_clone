@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddFileControl from "../../../../../components/Messenger/MessengerRight/ControlChat/AddFileControl/AddFileControl";
 import AddModalControl from "../../../../../components/Messenger/MessengerRight/ControlChat/AddModalControl/AddModalControl";
 import StickerControl from "../../../../../components/Messenger/MessengerRight/ControlChat/StickerControl/StickerControl";
@@ -10,18 +10,20 @@ import ModalImage from "../../../../../components/Messenger/MessengerRight/Contr
 
 function ControlChat(props) {
   //
-  const { item } = props;
+  const { item, messages, isLogin } = props;
 
   const [show, setShow] = useState(false);
 
   const [imagePreview, setImagePreview] = useState([]);
+
+  useEffect(() => {}, [messages]);
 
   return (
     <div
       className="w-full bg-white dark:bg-dark-second relative z-20 pt-2 pb-3 px-1 flex 
       dark:border-dark-third border-t-2 border-solid border-gray-300 items-end relative"
     >
-      {show && <ModalSticker />}
+      {show && <ModalSticker setShow={setShow} />}
       {imagePreview.length > 0 && (
         <ModalImage
           imagePreview={imagePreview}
@@ -40,7 +42,7 @@ function ControlChat(props) {
         </ul>
       </div>
       <div className="w-9/12 relative">
-        <InputChatControl />
+        <InputChatControl messages={messages} isLogin={isLogin} />
       </div>
       <SendIconControl item={item} />
     </div>

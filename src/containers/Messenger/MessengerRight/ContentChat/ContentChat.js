@@ -36,7 +36,7 @@ function ContentChat(props) {
         showRight={showRight}
       />
       <ContentChatMain item={item} user={user} />
-      <ControlChat item={item} />
+      <ControlChat item={item} messages={messages} isLogin={isLogin} />
     </div>
   );
 }

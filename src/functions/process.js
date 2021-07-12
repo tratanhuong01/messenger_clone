@@ -86,3 +86,68 @@ export const gereral = (user, itemMain, userChange, item) => {
     }
   }
 };
+
+export const timeGeneral = (time) => {
+  let startDate = new Date(time);
+  let endDate = new Date();
+  let __sec__ = (endDate.getTime() - startDate.getTime()) / 1000;
+  let __min__ = __sec__ / 60;
+  // let __hour__ = __sec__ / 3600;
+  let result = time.replace(".0", "");
+  let array = result.split(" ");
+  let year = array[0].split("-")[0];
+  let month = array[0].split("-")[1];
+  let day = array[0].split("-")[2];
+
+  let second = array[1].split(":")[2];
+  let minute = array[1].split(":")[1];
+  let hour = array[1].split(":")[0];
+
+  if (__sec__ <= 60) {
+    result = `${hour} : ${minute} : ${second}`;
+  } else if (__min__ < 60) {
+    result = `${hour} : ${minute} : ${second}`;
+  } else if (hour < 24) {
+    result = `${hour} : ${minute} : ${second}`;
+  } else {
+    result = `${year} , ${day} tháng ${month} , ${hour} : ${minute} : ${second}`;
+  }
+  return result;
+};
+
+export const timeGeneralLeft = (time) => {
+  let startDate = new Date(time);
+  let endDate = new Date();
+  let sec = (endDate.getTime() - startDate.getTime()) / 1000;
+  let result = "";
+  let min = Math.round(sec / 60);
+  let hour = Math.round(sec / 3600);
+  let day = Math.round(sec / 86400);
+  let week = Math.round(sec / 604800);
+  let month = Math.round(sec / 2629440);
+  let year = Math.round(sec / 31553280);
+  if (sec <= 60) {
+    result = "Vừa xong";
+  } else if (min < 60) {
+    if (min === 1) {
+      result = `1 phút`;
+    } else {
+      result = `${min} phút`;
+    }
+  } else if (hour < 24) {
+    if (hour === 1) {
+      result = `1 giờ`;
+    } else {
+      result = `${hour} giờ`;
+    }
+  } else if (day < 7) {
+    result = `${day} ngày `;
+  } else if (week < 4.3) {
+    result = `${week} tuần`;
+  } else if (month < 12) {
+    result = `${month} tháng`;
+  } else {
+    return `${year} năm`;
+  }
+  return result;
+};
