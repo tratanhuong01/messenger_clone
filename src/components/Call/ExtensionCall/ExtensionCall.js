@@ -2,6 +2,9 @@ import React from "react";
 import ItemExtensionCall from "./ItemExtensionCall/ItemExtensionCall";
 
 function ExtensionCall(props) {
+  //
+  const { match } = props;
+
   return (
     <div
       className="p-2 flex justify-center absolute bottom-6 transform 
@@ -14,15 +17,14 @@ function ExtensionCall(props) {
         addClass="text-gray-300"
       />
       <ItemExtensionCall
-        icon={"bx bxs-video-off"}
-        disabled={true}
+        icon={
+          match.match.params.typeCall === "videoCall"
+            ? "bx bxs-video"
+            : "bx bxs-video-off"
+        }
         addClass="text-gray-300"
       />
-      <ItemExtensionCall
-        icon={"bx bxs-microphone"}
-        disabled={true}
-        addClass="text-gray-300"
-      />
+      <ItemExtensionCall icon={"bx bxs-microphone"} addClass="text-gray-300" />
       <ItemExtensionCall
         icon={"bx bxs-phone"}
         disabled={true}

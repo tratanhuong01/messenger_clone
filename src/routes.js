@@ -27,9 +27,9 @@ const routes = [
     main: () => <Friend />,
   },
   {
-    path: `/call`,
+    path: `/call/:typeCall/:id`,
     exact: true,
-    main: () => <Call />,
+    main: (match) => <Call match={match} />,
   },
   {
     path: "",

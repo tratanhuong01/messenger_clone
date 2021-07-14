@@ -18,6 +18,9 @@ function ContentChatTop(props) {
 
   const { typeGroupMessage, user, setShowRight, showRight } = props;
 
+  const y = window.top.outerHeight / 2 + window.top.screenY - 720 / 2;
+  const x = window.top.outerWidth / 2 + window.top.screenX - 1200 / 2;
+
   return (
     <div className="w-full pt-3 flex shadow ">
       <div className="w-2/3 pl-3 flex ">
@@ -61,9 +64,10 @@ function ContentChatTop(props) {
           <li
             onClick={() =>
               window.open(
-                "../call",
+                `../call/audioCall/${messages.group.id}`,
                 "name",
-                "toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=1100,height=800"
+                `toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=1200,height=720,
+                top=${y},left=${x},title="Cuộc gọi âm thanh - Messenger"`
               )
             }
             className="py-2 px-1 mx-1 rounded-full 
@@ -87,6 +91,14 @@ function ContentChatTop(props) {
             </svg>
           </li>
           <li
+            onClick={() =>
+              window.open(
+                `../call/videoCall/${messages.group.id}`,
+                "name",
+                `toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=1200,height=720,
+                top=${y},left=${x}`
+              )
+            }
             className="py-2 px-1 mx-1 rounded-full 
               dark:text-white cursor-pointer"
           >
