@@ -47,6 +47,7 @@ function MemberGroupChat(props) {
         <ul className="w-full">
           {showMembers}
           <li
+            onClick={() => dispatch(modalsAction.openModalMemberGroupChat())}
             className="w-full py-3 px-4 hover:bg-gray-200 dark:hover:bg-dark-third flex 
             cursor-pointer rounded-sm"
           >
@@ -56,10 +57,7 @@ function MemberGroupChat(props) {
               bg-gray-400 dark:bg-dark-second text-2xl cursor-pointer dark:text-gray-300 text-gray-700"
               ></span>
             </div>
-            <div
-              onClick={() => dispatch(modalsAction.openModalMemberGroupChat())}
-              className="w-full flex items-center dark:text-gray-300 flex-wrap"
-            >
+            <div className="w-full flex items-center dark:text-gray-300 flex-wrap">
               <p className="mb-0.5 w-full font-semibold">Thêm người</p>
             </div>
           </li>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import ChatGif from "../ChatGif/ChatGif";
 import ChatImage from "../ChatImage/ChatImage";
 import ChatSticker from "../ChatSticker/ChatSticker";

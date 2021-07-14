@@ -7,6 +7,7 @@ const initialState = {
   color: null,
   name: null,
   group: null,
+  icon: "",
 };
 const myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,6 +26,7 @@ const myReducer = (state = initialState, action) => {
         const { name } = process.dataUsersChat(action.data, action.idUser);
         state.name = name;
         state.group = action.group;
+        state.icon = action.group.iconChat;
       }
       return { ...state };
     //
@@ -34,6 +36,10 @@ const myReducer = (state = initialState, action) => {
     //
     case Types.UPDATE_NAME_GROUP_MESSAGE:
       state.name = action.name;
+      return { ...state };
+
+    case Types.UPDATE_ICON_CHAT_MESSAGE:
+      state.icon = action.icon;
       return { ...state };
     default:
       return state;

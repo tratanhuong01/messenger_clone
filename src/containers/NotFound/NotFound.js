@@ -21,7 +21,8 @@ function NotFound(props) {
         </p>
         <p className="text-center my-6">
           <Link
-            to={Config.PAGE_MESSENGER}
+            // to={Config.PAGE_MESSENGER}
+            to={"call"}
             className="px-3 py-3 rounded-lg 
               font-semibold text-blue-500"
           >

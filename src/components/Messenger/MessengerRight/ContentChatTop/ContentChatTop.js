@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 import ItemSingleChat from "../../../ItemChat/ItemSingleChat/ItemSingleChat";
 
@@ -10,6 +11,8 @@ function ContentChatTop(props) {
       messages: state.messages,
     };
   });
+
+  const history = useHistory();
 
   const { messages } = states;
 
@@ -56,6 +59,13 @@ function ContentChatTop(props) {
       <div className="w-1/3 ml-auto">
         <ul className="ml-auto flex float-right">
           <li
+            onClick={() =>
+              window.open(
+                "../call",
+                "name",
+                "toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=1100,height=800"
+              )
+            }
             className="py-2 px-1 mx-1 rounded-full 
               dark:text-white cursor-pointer"
           >

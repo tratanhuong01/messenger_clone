@@ -296,3 +296,58 @@ export const updateNameGroupMessage = (name) => {
     name,
   };
 };
+
+export const updateIonChatMessageRequest = (data) => {
+  return (dispatch) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const content = {
+      data: [
+        {
+          id: 0,
+          content: `đã đổi biểu tưởng cảm xúc thành ${data.data.icon}`,
+          src: "",
+        },
+      ],
+      type: 5,
+    };
+    const mess = {
+      id: null,
+      groupMessage: data.group,
+      userMesages: data.user,
+      content: JSON.stringify(content),
+      nickName: null,
+      stateMessage: 0,
+      typeMessage: 1,
+      dateCreated: null,
+    };
+    return api("updateGroupMessage/iconChat", "PUT", data.data, null)
+      .then((res) => {
+        api("messages", "POST", mess, { headers })
+          .then((res) => {
+            dispatch(updateIconChatMessage(data.data.icon));
+            dispatch(modalsAction.closeModal());
+            dispatch(
+              actions.loadAllMessageOfUserByIdRequest(
+                data.user.id,
+                data.group.id
+              )
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const updateIconChatMessage = (icon) => {
+  return {
+    type: Types.UPDATE_ICON_CHAT_MESSAGE,
+    icon,
+  };
+};

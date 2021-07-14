@@ -91,3 +91,6 @@
 .dark .dark\:border-white {
   border-color: white !important;
 }
+.transform .rotate-135 {
+  transform: rotate(135deg);
+}

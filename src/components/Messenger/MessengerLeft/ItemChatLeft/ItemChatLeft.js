@@ -26,22 +26,22 @@ function ItemChatLeft(props) {
       case 0:
         return `${item.idUser === idUser ? "You : " : item.lastName + " : "} ${
           main.data[0].content
-        }`;
+        } · `;
       case 1:
         return `${
-          item.idUser === idUser ? "Bạn" : item.lastName + " :"
-        } đã gửi ${main.data.length} hình ảnh.`;
+          item.idUser === idUser ? "Bạn" : item.lastName + " : "
+        } đã gửi ${main.data.length} hình ảnh · `;
       case 2:
         return `${
-          item.idUser === idUser ? "Bạn" : item.lastName + " :"
-        } đã gửi một nhãn dán.`;
+          item.idUser === idUser ? "Bạn" : item.lastName + " : "
+        } đã gửi một nhãn dán · `;
       case 3:
         return `${
-          item.idUser === idUser ? "Bạn" : item.lastName + " :"
-        } đã gửi một gif.`;
+          item.idUser === idUser ? "Bạn" : item.lastName + " : "
+        } đã gửi một gif · `;
       default:
         return `${item.idUser === idUser ? "Bạn" : item.lastName + " : "}${
-          main.data[0].content
+          main.data[0].content + " · "
         }`;
     }
   };

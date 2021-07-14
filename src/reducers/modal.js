@@ -4,15 +4,17 @@ import ModalProfile from "../components/Modals/Friend/ModalProfile/ModalProfile"
 import ModalAddFriend from "../components/Modals/Friend/ModalAddFriend/ModalAddFriend";
 import ModalCreateGroup from "../components/Modals/Friend/ModalCreateGroup/ModalCreateGroup";
 import ModalChangeNickName from "../components/Modals/Messenger/ModalChangeNickName/ModalChangeNickName";
-import ModalChangeIconChat from "../components/Modals/Messenger/ModalChangeIconChat/ModalChangeIconChat";
 import ModalChangeColor from "../components/Modals/Messenger/ModalChangeColor/ModalChangeColor";
 import ModalWarningLeaveGroup from "../components/Modals/Messenger/ModalWarningLeaveGroup/ModalWarningLeaveGroup";
 import ModalChangeNameChat from "../components/Modals/Messenger/ModalChangeNameChat/ModalChangeNameChat";
 import ModalAddMemberGroup from "../components/Modals/Messenger/ModalAddMemberGroup/ModalAddMemberGroup";
+import ModalEmojii from "../components/Modals/Messenger/ModalEmojii/ModalEmojii";
+
 const initialState = {
   StateModal: false,
   DataModal: "",
 };
+
 const myReducer = (state = initialState, action) => {
   switch (action.type) {
     //
@@ -57,7 +59,7 @@ const myReducer = (state = initialState, action) => {
     case Types.OPEN_MODAL_CHANGE_ICON_CHAT:
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       state.StateModal = true;
-      state.DataModal = <ModalChangeIconChat />;
+      state.DataModal = <ModalEmojii />;
       return { ...state };
     //
     case Types.OPEN_MODAL_CHANGE_NICK_NAME:

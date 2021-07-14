@@ -151,3 +151,29 @@ export const timeGeneralLeft = (time) => {
   }
   return result;
 };
+
+export const searchUser = (data, list) => {
+  let listUserNew = [];
+
+  list.forEach((element) => {
+    let fullName = `${element.userRelationshipUser.firstName} ${element.userRelationshipUser.lastName}`;
+    let email =
+      element.userRelationshipUser.email === null
+        ? ""
+        : element.userRelationshipUser.email;
+    let phone =
+      element.userRelationshipUser.phone === null
+        ? ""
+        : element.userRelationshipUser.phone;
+
+    if (
+      email.toLowerCase().indexOf(data.toLowerCase()) !== -1 ||
+      phone.toLowerCase().indexOf(data.toLowerCase()) !== -1 ||
+      fullName.toLowerCase().toLowerCase().indexOf(data.toLowerCase()) !== -1
+    ) {
+      listUserNew.push(element);
+    }
+  });
+
+  return listUserNew;
+};

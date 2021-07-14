@@ -11,10 +11,6 @@ function ChatCenter(props) {
         return `${itemMain.idUser === user.id ? "Bạn" : itemMain.lastName} ${
           item.data[0].content
         } `;
-      case 2:
-        return `${itemMain.idUser === user.id ? "Bạn" : itemMain.lastName} ${
-          item.data[0].content
-        } `;
       case 3:
         let string =
           JSON.parse(item.data[0].src).id === user.id
@@ -44,7 +40,9 @@ function ChatCenter(props) {
         );
 
       default:
-        return "";
+        return `${itemMain.idUser === user.id ? "Bạn" : itemMain.lastName} ${
+          item.data[0].content
+        } `;
     }
   };
   return (

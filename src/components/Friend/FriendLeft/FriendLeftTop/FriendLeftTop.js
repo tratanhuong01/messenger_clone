@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as modalsAction from "../../../../actions/modals/index";
+import * as process from "../../../../functions/process";
 
 function FriendLeftTop(props) {
   //
   const dispatch = useDispatch();
+
+  const { listFriendsCurrent, setListFriendsCurrent } = props;
+
+  const [data, setData] = useState("");
+
+  const onChange = (event) => {
+    setData(event.target.value);
+    const cloneList = [...listFriendsCurrent];
+    setListFriendsCurrent(process.searchUser(event.target.value, cloneList));
+  };
 
   return (
     <div className="w-full my-2 flex relative">
@@ -14,6 +25,8 @@ function FriendLeftTop(props) {
           placeholder="Tìm kiếm"
           className="w-full rounded-full py-2 bg-gray-200 dark:text-gray-300 
           pl-11 pr-3 flex items-center dark:bg-dark-third"
+          onChange={onChange}
+          value={data}
         />
         <i
           className="bx bx-search-alt-2 absolute left-7 top-1 text-gray-700 

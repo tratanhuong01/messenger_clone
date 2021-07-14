@@ -37,8 +37,12 @@ function ItemNickName(props) {
   const dispatch = useDispatch();
 
   const handleChangeNickname = () => {
-    dispatch(messagesAction.updateNickNameByUserRequest(data));
-    setShow(false);
+    if (item.nickName === nickName) {
+      setShow(false);
+    } else {
+      dispatch(messagesAction.updateNickNameByUserRequest(data));
+      setShow(false);
+    }
   };
 
   return (
@@ -79,6 +83,16 @@ function ItemNickName(props) {
           ${show === true ? "" : "hidden"}`}
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.keyCode === 13) {
+              if (item.nickName === nickName) {
+                setShow(false);
+              } else {
+                dispatch(messagesAction.updateNickNameByUserRequest(data));
+                setShow(false);
+              }
+            }
+          }}
         />
       </div>
       <div className="w-1/12 text-center flex">

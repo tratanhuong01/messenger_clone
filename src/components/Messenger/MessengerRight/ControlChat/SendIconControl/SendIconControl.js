@@ -1,13 +1,20 @@
 import React from "react";
-
-SendIconControl.propTypes = {};
+import { useSelector } from "react-redux";
 
 function SendIconControl(props) {
-  const { item } = props;
+  //
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+    };
+  });
+
+  const { messages } = states;
+
   return (
     <div className="w-12 pt-1 zoom flex jusitfy-center">
       <span className="cursor-pointer zoom text-xl flex items-center mb-2">
-        {item[0].iconChat}
+        {messages.icon}
       </span>
     </div>
   );

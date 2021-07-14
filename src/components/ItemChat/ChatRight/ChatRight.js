@@ -38,17 +38,10 @@ function ChatRight(props) {
   };
 
   return (
-    <div className="mess-user chat-rights z-0 w-full py-1 flex relative">
-      <div className="mess-user-feel z-50 hidden h-auto relative">
-        <div
-          className="cursor-pointer color-word absolute top-1/2 pl-2"
-          style={{ transform: "translateY(-50%)" }}
-        >
-          <ul className="w-full flex relative">
-            <FeelMessageRight />
-          </ul>
-        </div>
-      </div>
+    <div className="mess-user chat-rights z-0 w-full py-1 flex relative justify-end">
+      <ul className="flex relative">
+        <FeelMessageRight />
+      </ul>
       <div className="mess-user-r1 pl-2 flex mr-4" style={{ width: "inherit" }}>
         {data()}
         <span

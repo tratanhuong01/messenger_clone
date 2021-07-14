@@ -3,6 +3,7 @@ import NotFound from "./containers/NotFound/NotFound";
 import Login from "./pages/Login/Login";
 import Messenger from "./pages/Messenger/Messenger";
 import Friend from "./pages/Friend/Friend";
+import Call from "./pages/Call/Call";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: Config.PAGE_FRIEND,
     exact: true,
     main: () => <Friend />,
+  },
+  {
+    path: `/call`,
+    exact: true,
+    main: () => <Call />,
   },
   {
     path: "",

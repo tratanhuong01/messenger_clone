@@ -3,7 +3,7 @@ import React from "react";
 function FeelMessage(props) {
   //
   return (
-    <div className="mess-user-feel z-50 hidden h-auto relative">
+    <div className="mess-user-feel z-50 hidden h-auto relative mr-10">
       <div
         className="cursor-pointer color-word absolute top-1/2 pl-2"
         style={{ transform: "translateY(-50%)" }}
