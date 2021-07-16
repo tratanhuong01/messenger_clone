@@ -21,7 +21,6 @@ function Friend(props) {
     if (isLogin.isLogin) {
       document.getElementById("root").classList =
         isLogin.user.darkMode === 0 ? "" : "dark";
-      history.push(Config.PAGE_FRIEND);
     } else {
       history.push(Config.PAGE_LOGIN);
     }

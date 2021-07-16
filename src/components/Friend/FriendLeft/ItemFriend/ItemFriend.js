@@ -18,20 +18,16 @@ function ItemFriend(props) {
 
   const [idGroupMessage, setIdGroupMessage] = useState(null);
 
-  const chat = async () => {
-    const result = await api(
-      `getGroupMessage/${isLogin.user.id}/${item.userRelationshipUser.id}`,
-      "GET",
-      null,
-      null
-    );
-    if (result.status !== 200) console.log("error", result.status);
-    else {
-      setIdGroupMessage(result.data.groupMessage.id);
-    }
-  };
-
   useEffect(() => {
+    async function chat() {
+      const result = await api(
+        `getGroupMessage/${isLogin.user.id}/${item.userRelationshipUser.id}`,
+        "GET",
+        null,
+        null
+      );
+      if (result.data !== "") setIdGroupMessage(result.data.groupMessage.id);
+    }
     chat();
   }, []);
 

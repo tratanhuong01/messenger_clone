@@ -9,6 +9,7 @@ import ModalWarningLeaveGroup from "../components/Modals/Messenger/ModalWarningL
 import ModalChangeNameChat from "../components/Modals/Messenger/ModalChangeNameChat/ModalChangeNameChat";
 import ModalAddMemberGroup from "../components/Modals/Messenger/ModalAddMemberGroup/ModalAddMemberGroup";
 import ModalEmojii from "../components/Modals/Messenger/ModalEmojii/ModalEmojii";
+import ModalWarningMessage from "../components/Modals/Messenger/ModalWarningMessage/ModalWarningMessage";
 
 const initialState = {
   StateModal: false,
@@ -86,6 +87,11 @@ const myReducer = (state = initialState, action) => {
       state.DataModal = <ModalChangeNameChat />;
       return { ...state };
     //
+    case Types.OPEN_MODAL_WARNING_MESSGAE:
+      document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
+      state.StateModal = true;
+      state.DataModal = <ModalWarningMessage />;
+      return { ...state };
     default:
       return state;
   }

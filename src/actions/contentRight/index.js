@@ -2,40 +2,25 @@ import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 
 export const loadListConnectFriendRequest = (id) => {
-  return (dispatch) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    dispatch(changeContentToLoading());
-    return api(`users`, "GET", null, { headers })
-      .then((resUsers) => {
-        api(`getFriendProposal/${id}`, "GET", null, { headers })
-          .then((resProposal) => {
-            api(
-              "processUserTint",
-              "POST",
-              {
-                idMain: id,
-                userList: resUsers.data,
-                relationshipUserList: resProposal.data,
-              },
-              { headers }
-            )
-              .then((resMain) => {
-                dispatch(loadListConnectFriend(resMain.data));
-                dispatch(changeLoadingToContent());
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  return async (dispatch) => {
+    try {
+      dispatch(changeContentToLoading());
+      const allPromises = [
+        await api(`users`, "GET", null, null),
+        await api(`getFriendProposal/${id}`, "GET", null, null),
+      ];
+      const getResponses = await Promise.all(allPromises);
+      const data = {
+        idMain: id,
+        userList: getResponses[0].data,
+        relationshipUserList: getResponses[1].data,
+      };
+      const result = await api("processUserTint", "POST", data, null);
+      dispatch(loadListConnectFriend(result.data));
+      dispatch(changeLoadingToContent());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -47,16 +32,20 @@ export const loadListConnectFriend = (list) => {
 };
 
 export const loadListGroupRequest = (id) => {
-  return (dispatch) => {
-    dispatch(changeContentToLoading());
-    return api(`getListGroupMessageById/${id}`, "GET", null, null)
-      .then((res) => {
-        dispatch(loadListGroup(res.data));
-        dispatch(changeLoadingToContent());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  return async (dispatch) => {
+    try {
+      dispatch(changeContentToLoading());
+      const result = await api(
+        `getListGroupMessageById/${id}`,
+        "GET",
+        null,
+        null
+      );
+      dispatch(loadListGroup(result.data));
+      dispatch(changeLoadingToContent());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -68,16 +57,20 @@ export const loadListGroup = (list) => {
 };
 
 export const loadListInviteFriendRequest = (id) => {
-  return (dispatch) => {
-    dispatch(changeContentToLoading());
-    return api(`getInviteRequest/${id}/${1}`, "GET", null, null)
-      .then((res) => {
-        dispatch(loadListInviteFriend(res.data));
-        dispatch(changeLoadingToContent());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  return async (dispatch) => {
+    try {
+      dispatch(changeContentToLoading());
+      const result = await api(
+        `getInviteRequest/${id}/${1}`,
+        "GET",
+        null,
+        null
+      );
+      dispatch(loadListInviteFriend(result.data));
+      dispatch(changeLoadingToContent());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

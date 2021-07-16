@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 import ItemSingleChat from "../../../ItemChat/ItemSingleChat/ItemSingleChat";
 
@@ -11,8 +10,6 @@ function ContentChatTop(props) {
       messages: state.messages,
     };
   });
-
-  const history = useHistory();
 
   const { messages } = states;
 

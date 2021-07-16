@@ -23,12 +23,6 @@ function Messenger(props) {
     if (isLogin.isLogin) {
       document.getElementById("root").classList =
         isLogin.user.darkMode === 0 ? "" : "dark";
-      history.push(
-        Config.PAGE_MESSENGER +
-          (typeof match.params.slug === "undefined"
-            ? ""
-            : "/" + match.params.slug)
-      );
     } else {
       history.push(Config.PAGE_LOGIN);
     }

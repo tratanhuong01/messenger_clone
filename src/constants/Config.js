@@ -9,6 +9,13 @@ export const PAGE_LOGIN = "/login";
 //
 export const PAGE_FRIEND = "/friend";
 //
+export const PAGE_FRIEND_LIST_CONNECT_FRIEND = "/list-connect-friend";
+//
+export const PAGE_FRIEND_LIST_INVITE_FRIEND = "/list-invite-friend";
+//
+export const PAGE_FRIEND_LIST_GROUP = "/list-group";
+//
+
 export const REGEX_NUMBER_PHONE =
   /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/;
 //

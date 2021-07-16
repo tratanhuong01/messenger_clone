@@ -15,7 +15,6 @@ const myReducer = (state = initialState, action) => {
     case Types.LOAD_CONTENT_LIST_CONNECT_FRIEND:
       state.content = <ListFriendRequest />;
       state.active = 3;
-      console.log(action.list);
       state.list = action.list;
       return { ...state };
     case Types.LOAD_CONTENT_LIST_GROUP:

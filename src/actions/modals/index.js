@@ -1,5 +1,4 @@
 import * as Types from "../../constants/ActionTypes";
-// import api from "../../api/api";
 
 export const openModalRegister = () => {
   return {
@@ -78,5 +77,11 @@ export const openModalMemberGroupChat = () => {
 export const openModalChangeNameGroup = () => {
   return {
     type: Types.OPEN_MODAL_CHANGE_NAME_GROUP,
+  };
+};
+
+export const openModalWarningMessage = () => {
+  return {
+    type: Types.OPEN_MODAL_WARNING_MESSGAE,
   };
 };

@@ -24,7 +24,7 @@ function Call(props) {
       setTimeout(() => {
         setStateCall(true);
         audio.pause();
-      }, 5000);
+      }, 10000);
     }, 3000);
   }, []);
 

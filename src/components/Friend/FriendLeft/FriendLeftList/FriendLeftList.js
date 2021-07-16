@@ -11,7 +11,7 @@ function FriendLeftList(props) {
 
   const { contentRight } = states;
 
-  const { label, bgColor, icon, onClick, idUser, index } = props;
+  const { label, bgColor, icon, index, onClick, idUser } = props;
 
   return (
     <div
@@ -25,7 +25,7 @@ function FriendLeftList(props) {
       <div className="w-20">
         <div
           className={`w-14 h-14 rounded-full flex justify-center 
-          ${bgColor}`}
+        ${bgColor}`}
         >
           <span
             className={`${icon} text-4xl text-white flex items-center`}

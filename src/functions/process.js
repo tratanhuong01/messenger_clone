@@ -177,3 +177,23 @@ export const searchUser = (data, list) => {
 
   return listUserNew;
 };
+
+export const generalState = (listUser, userMain) => {
+  let data = {
+    view: [],
+    state: [],
+  };
+
+  listUser.forEach((element) => {
+    data.view.push({
+      id: element.id,
+      type: element.id === userMain.id ? 2 : 0,
+    });
+    data.state.push({
+      id: element.id,
+      type: 0,
+    });
+  });
+
+  return data;
+};

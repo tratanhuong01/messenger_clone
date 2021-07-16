@@ -4,90 +4,68 @@ import * as contentRightAction from "../contentRight/index";
 import * as groupMessagesAction from "../groupmessage/index";
 
 export const addRelationsipUserRequest = (relationship) => {
-  return (dispatch) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const dataSend = {
-      userRelationshipUser: relationship.userSend,
-      idRecivice: relationship.userRecivice.id,
-      status: 1,
-      block: 0,
-    };
-    const dataRecivice = {
-      userRelationshipUser: relationship.userRecivice,
-      idRecivice: relationship.userSend.id,
-      status: 2,
-      block: 0,
-    };
-    return api("relationshipuser", "POST", dataSend, { headers })
-      .then((res) => {
-        api("relationshipuser", "POST", dataRecivice, { headers })
-          .then((resMain) => {
-            api(`users`, "GET", null, { headers })
-              .then((resUsers) => {
-                api(
-                  `getFriendProposal/${relationship.userSend.id}`,
-                  "GET",
-                  null,
-                  { headers }
-                )
-                  .then((resProposal) => {
-                    api(
-                      "processUserTint",
-                      "POST",
-                      {
-                        userList: resUsers.data,
-                        relationshipUserList: resProposal.data,
-                      },
-                      { headers }
-                    )
-                      .then((resMain) => {
-                        dispatch(
-                          contentRightAction.loadListConnectFriend(resMain.data)
-                        );
-                        dispatch(contentRightAction.changeLoadingToContent());
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      });
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const dataSend = {
+    userRelationshipUser: relationship.userSend,
+    idRecivice: relationship.userRecivice.id,
+    status: 1,
+    block: 0,
+  };
+  const dataRecivice = {
+    userRelationshipUser: relationship.userRecivice,
+    idRecivice: relationship.userSend.id,
+    status: 2,
+    block: 0,
+  };
+  return async (dispatch) => {
+    try {
+      const allPromises = [
+        await api("relationshipuser", "POST", dataSend, null),
+        await api("relationshipuser", "POST", dataRecivice, null),
+        await api(`users`, "GET", null, null),
+        await api(
+          `getFriendProposal/${relationship.userSend.id}`,
+          "GET",
+          null,
+          null
+        ),
+      ];
+      const getResponses = await Promise.all(allPromises);
+      const userTint = await api(
+        "processUserTint",
+        "POST",
+        {
+          userList: getResponses[2].data,
+          relationshipUserList: getResponses[3].data,
+          idMain: relationship.userSend.id,
+        },
+        null
+      );
+      //
+      dispatch(contentRightAction.loadListConnectFriend(userTint.data));
+      dispatch(contentRightAction.changeLoadingToContent());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
 export const loadInformationProfile = (idMain, idView) => {
-  return (dispatch) => {
-    return api(
-      `checkStatusBetweenTwoUser/${idMain}/${idView}`,
-      "GET",
-      null,
-      null
-    )
-      .then((res) => {
-        if (res.data === "") {
-          dispatch(statusFriend(0));
-        } else {
-          dispatch(statusFriend(res.data.status));
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  return async (dispatch) => {
+    try {
+      const result = await api(
+        `checkStatusBetweenTwoUser/${idMain}/${idView}`,
+        "GET",
+        null,
+        null
+      );
+      if (result.data === "") {
+        dispatch(statusFriend(0));
+      } else {
+        dispatch(statusFriend(result.data.status));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -98,119 +76,92 @@ export const statusFriend = (status) => {
   };
 };
 
-export const updateStatusRelationShipRequest = (relationship) => {
-  return (dispatch) => {
-    const requestOne = api(
-      `updateStatusRelationShip/${relationship.userSend.id}/${relationship.userRecivice.id}`,
-      "GET",
-      null,
-      null
-    );
-    const requestTwo = api(
-      `updateStatusRelationShip/${relationship.userRecivice.id}/${relationship.userSend.id}`,
-      "GET",
-      null,
-      null
-    );
-    const requestFour = api(
-      `relationshipuser/${relationship.userSend.id}`,
-      "GET",
-      null,
-      null
-    );
-    return requestOne
-      .then((res) => {
-        requestTwo
-          .then((res) => {
-            api(
-              `getInviteRequest/${relationship.userSend.id}/${1}`,
-              "GET",
-              null,
-              null
-            )
-              .then((resListInvite) => {
-                relationship.listInvite = resListInvite.data;
-                requestFour
-                  .then((resFriend) => {
-                    dispatch(loadListFriend(resFriend.data));
-                    // console.log(resFriend.data);
-                    dispatch(
-                      groupMessagesAction.addGroupMessageRequestSingle(
-                        relationship
-                      )
-                    );
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+export const updateStatusRelationShipRequest = (relationships) => {
+  let relationship = { ...relationships };
+  const idSend = relationship.userSend.id;
+  const idRecivice = relationship.userRecivice.id;
+  return async (dispatch) => {
+    try {
+      const allPromises = [
+        await api(
+          `updateStatusRelationShip/${idSend}/${idRecivice}`,
+          "GET",
+          null,
+          null
+        ),
+        await api(
+          `updateStatusRelationShip/${idRecivice}/${idSend}`,
+          "GET",
+          null,
+          null
+        ),
+      ];
+      await Promise.all(allPromises);
+      const listInvite = await api(
+        `getInviteRequest/${idSend}/${1}`,
+        "GET",
+        null,
+        null
+      );
+      relationship.listInvite = listInvite.data;
+      const listFriend = await api(
+        `relationshipuser/${idSend}`,
+        "GET",
+        null,
+        null
+      );
+      //
+      dispatch(loadListFriend(listFriend.data));
+      dispatch(groupMessagesAction.addGroupMessageRequestSingle(relationship));
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
-export const deleteRelationShipRequest = (relationship) => {
-  return (dispatch) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    return api(
-      `relationshipuser/${relationship.userSend.id}/${relationship.userRecivice.id}`,
-      "GET",
-      null,
-      { headers }
-    )
-      .then((res) => {
-        api(
-          `relationshipuser/${relationship.userRecivice.id}/${relationship.userSend.id}`,
+export const deleteRelationShipRequest = (relationships) => {
+  let relationship = { ...relationships };
+  const idSend = relationship.userSend.id;
+  const idRecivice = relationship.userRecivice.id;
+  return async (dispatch) => {
+    try {
+      const allPromises = [
+        await api(
+          `relationshipuser/${idSend}/${idRecivice}`,
           "GET",
           null,
-          { headers }
-        )
-          .then((res) => {
-            api(
-              `getInviteRequest/${relationship.userSend.id}/${1}`,
-              "GET",
-              null,
-              null
-            )
-              .then((response) => {
-                dispatch(
-                  contentRightAction.loadListInviteFriend(response.data)
-                );
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          null
+        ),
+        await api(
+          `relationshipuser/${idRecivice}/${idSend}`,
+          "GET",
+          null,
+          null
+        ),
+      ];
+      await Promise.all(allPromises);
+      const result = await api(
+        `getInviteRequest/${idSend}/${1}`,
+        "GET",
+        null,
+        null
+      );
+      dispatch(contentRightAction.loadListInviteFriend(result.data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
 export const loadListFriendRequest = (id) => {
-  return (dispatch) => {
-    return api(`relationshipuser/${id}`, "GET", null, null)
-      .then((res) => {
-        dispatch(loadListFriend(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  return async (dispatch) => {
+    try {
+      const result = await api(`relationshipuser/${id}`, "GET", null, null);
+      //
+      dispatch(loadListFriend(result.data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

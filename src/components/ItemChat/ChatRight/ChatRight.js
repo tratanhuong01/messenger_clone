@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import ChatText from "../ChatText/ChatText";
 import ChatImage from "../ChatImage/ChatImage";
 import ChatSticker from "../ChatSticker/ChatSticker";
 import ChatGif from "../ChatGif/ChatGif";
-import FeelMessageRight from "../FeelMessageRight/FeelMessageRight";
+import FeelMessage from "../FeelMessage/FeelMessage";
 
 function ChatRight(props) {
   //
+  const ref = useRef(null);
+
   const { item, index } = props;
 
   const data = () => {
@@ -39,20 +41,16 @@ function ChatRight(props) {
 
   return (
     <div className="mess-user chat-rights z-0 w-full py-1 flex relative justify-end">
-      <ul className="flex relative">
-        <FeelMessageRight />
-      </ul>
-      <div className="mess-user-r1 pl-2 flex mr-4" style={{ width: "inherit" }}>
+      <FeelMessage
+        data="right"
+        postion={ref.current ? ref.current.children[0].offsetWidth + 100 : 0}
+      />
+      <div
+        ref={ref}
+        className="mess-user-r1 pl-2 flex mr-4"
+        style={{ width: "inherit" }}
+      >
         {data()}
-        <span
-          className="z-10 absolute cursor-pointer"
-          style={{
-            borderRadius: " 20px",
-            bottom: "-13px",
-            left: "82%",
-            whiteSpace: "nowrap",
-          }}
-        ></span>
       </div>
       <div className=" mess-user-r2 mess-user-r210045 " style={{ width: "4%" }}>
         <div className="w-full clear-both">

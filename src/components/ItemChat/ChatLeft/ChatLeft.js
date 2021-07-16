@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import ChatGif from "../ChatGif/ChatGif";
 import ChatImage from "../ChatImage/ChatImage";
 import ChatSticker from "../ChatSticker/ChatSticker";
 import ChatText from "../ChatText/ChatText";
-// import * as modalsAction from "../../../actions/modals/index";
+import FeelMessage from "../FeelMessage/FeelMessage";
 
 function ChatLeft(props) {
   //
+  const ref = useRef(null);
+
   const { item, index } = props;
 
   const data = () => {
@@ -48,24 +50,13 @@ function ChatLeft(props) {
           alt=""
         />
       </div>
-      <div className=" pl-2 flex z-50" style={{ width: "inherit" }}>
+      <div ref={ref} className=" pl-2 flex z-50" style={{ width: "inherit" }}>
         {data()}
-        <div className="mess-user-feel hidden h-auto relative ml-2">
-          <div
-            className="cursor-pointer color-word absolute top-1/2 pl-2"
-            style={{ transform: "translateY(-50%)" }}
-          >
-            <ul className="w-full flex relative">
-              <li className="feel-mess px-1 mr-1 rounded-full hover:bg-gray-300 dark:hover:bg-dark-third">
-                <i className="far fa-smile text-xm"></i>
-              </li>
-              <li className="px-1.5 rounded-full hover:bg-gray-300 dark:hover:bg-dark-third">
-                <i className="far fa-trash-alt text-xm"></i>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
+      <FeelMessage
+        data="left"
+        postion={ref.current ? ref.current.children[0].offsetWidth + 65 : 0}
+      />
     </div>
   );
 }

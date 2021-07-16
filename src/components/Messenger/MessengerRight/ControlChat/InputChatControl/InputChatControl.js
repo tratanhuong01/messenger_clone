@@ -1,22 +1,16 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ContentEditable from "react-contenteditable";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as messagesAction from "../../../../../actions/messages/index";
 
 function InputChatControl(props) {
   //
-  const text = useRef("");
-
-  const states = useSelector((state) => {
-    return {
-      isLogin: state.isLogin,
-      messages: state.messages,
-    };
-  });
 
   const dispatch = useDispatch();
 
-  const { isLogin, messages } = states;
+  let { isLogin, messages } = props;
+
+  const text = useRef("");
 
   const enter = (event) => {
     if (event.keyCode === 13) {
@@ -31,6 +25,10 @@ function InputChatControl(props) {
       );
     }
   };
+
+  useEffect(() => {
+    text.current = "";
+  }, [messages.data]);
 
   return (
     <div className="three-exten1 w-full relative">

@@ -22,6 +22,11 @@ const routes = [
     main: ({ match }) => <Messenger match={match} />,
   },
   {
+    path: `${Config.PAGE_FRIEND}/:name`,
+    exact: true,
+    main: (match) => <Friend match={match} />,
+  },
+  {
     path: Config.PAGE_FRIEND,
     exact: true,
     main: () => <Friend />,
