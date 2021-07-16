@@ -178,6 +178,26 @@ export const searchUser = (data, list) => {
   return listUserNew;
 };
 
+export const searchUserNotRelationship = (data, list) => {
+  let listUserNew = [];
+
+  list.forEach((element) => {
+    let fullName = `${element.firstName} ${element.lastName}`;
+    let email = element.email === null ? "" : element.email;
+    let phone = element.phone === null ? "" : element.phone;
+
+    if (
+      email.toLowerCase().indexOf(data.toLowerCase()) !== -1 ||
+      phone.toLowerCase().indexOf(data.toLowerCase()) !== -1 ||
+      fullName.toLowerCase().toLowerCase().indexOf(data.toLowerCase()) !== -1
+    ) {
+      listUserNew.push(element);
+    }
+  });
+
+  return listUserNew;
+};
+
 export const generalState = (listUser, userMain) => {
   let data = {
     view: [],

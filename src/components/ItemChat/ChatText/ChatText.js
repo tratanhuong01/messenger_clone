@@ -12,7 +12,7 @@ function ChatText(props) {
   };
 
   if (messages === "left") {
-    style.backgroundColor = "dark:bg-dark-third";
+    style.backgroundColor = "bg-gray-300 dark:bg-dark-third";
     delete style.color;
   }
 

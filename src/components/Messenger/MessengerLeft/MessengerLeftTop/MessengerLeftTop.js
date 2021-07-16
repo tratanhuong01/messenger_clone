@@ -1,8 +1,12 @@
-import React from "react";
-
-MessengerLeftTop.propTypes = {};
+import React, { useState } from "react";
+import ModalLeftTop from "./ModalLeftTop/ModalLeftTop";
 
 function MessengerLeftTop(props) {
+  //
+  const [show, setShow] = useState(false);
+
+  const { handle } = props;
+
   return (
     <div className="w-full flex py-2">
       <div
@@ -14,10 +18,12 @@ function MessengerLeftTop(props) {
       <div className="w-1/2 my-2 ml-auto hidden xl:block">
         <ul className="ml-auto flex float-right">
           <li
+            onClick={() => setShow(!show)}
             className="w-9 h-9 flex ml-2 bg-gray-300 dark:bg-dark-third rounded-full 
-            dark:text-gray-300 cursor-pointer flex justify-center"
+            dark:text-gray-300 cursor-pointer flex justify-center relative"
           >
             <span className="fas fa-ellipsis-h flex items-center"></span>
+            {show && <ModalLeftTop handle={handle} />}
           </li>
           <li
             className="w-9 h-9 flex ml-2 bg-gray-300 dark:bg-dark-third rounded-full 

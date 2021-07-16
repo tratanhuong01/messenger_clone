@@ -39,6 +39,15 @@ function CustomChatCenter(props) {
               name={"Đổi tên đoạn chat"}
             />
           )}
+          {messages.data[0].typeGroupMessage === "0" ? (
+            ""
+          ) : (
+            <ItemCustomChatCenter
+              // onClick={() => dispatch(modalsAction.openModalChangeNameGroup())}
+              icon={{ icon: "bx bx-images", type: 0 }}
+              name={"Thay đổi ảnh"}
+            />
+          )}
           <ItemCustomChatCenter
             onClick={() => dispatch(modalsAction.openModalChangeColorChat())}
             icon={{ icon: "fab fa-ussunnah", type: 0 }}
@@ -46,7 +55,7 @@ function CustomChatCenter(props) {
           />
           <ItemCustomChatCenter
             onClick={() => dispatch(modalsAction.openModalChangeIconChat())}
-            icon={{ icon: "✌️", type: 1 }}
+            icon={{ icon: messages.icon, type: 1 }}
             name={"Thay đổi biểu tượng cảm xúc"}
           />
           <ItemCustomChatCenter

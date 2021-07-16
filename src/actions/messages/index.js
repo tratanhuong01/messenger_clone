@@ -2,7 +2,7 @@ import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as actions from "../../actions/index";
 import * as modalsAction from "../../actions/modals/index";
-import * as process from "../../functions/process";
+// import * as process from "../../functions/process";
 
 export const addMessageRequest = (data) => {
   const content = {

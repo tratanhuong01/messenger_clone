@@ -22,12 +22,6 @@ function ItemListGroupChat(props) {
       className="w-22% mx-3 mb-6 flex flex-wrap p-2 bg-white relative py-10 
     dark:bg-dark-second item"
     >
-      <span
-        className="font-semibold text-xl cursor-pointer absolute top-2 
-        right-4 dark:text-gray-300"
-      >
-        &times;
-      </span>
       <div className="w-full flex mb-2 mt-1 h-28 justity-center">
         <ItemGroupChat
           user={user}

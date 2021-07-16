@@ -1,3 +1,19 @@
+@keyframes blackToWhite {
+  from {
+    background-color: black;
+  }
+  to {
+    background-color: white;
+  }
+}
+@keyframes whiteToBlack {
+  from {
+    background-color: black;
+  }
+  to {
+    background-color: white;
+  }
+}
 .bg-size\:5\:4 {
   background-size: 500% 400%;
 }

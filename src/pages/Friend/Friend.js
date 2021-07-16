@@ -20,7 +20,7 @@ function Friend(props) {
   useEffect(() => {
     if (isLogin.isLogin) {
       document.getElementById("root").classList =
-        isLogin.user.darkMode === 0 ? "" : "dark";
+        isLogin.user.darkMode === 0 ? "whiteToBlack" : "dark blackToWhite";
     } else {
       history.push(Config.PAGE_LOGIN);
     }

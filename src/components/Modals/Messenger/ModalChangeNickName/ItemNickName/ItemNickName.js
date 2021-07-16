@@ -57,7 +57,7 @@ function ItemNickName(props) {
           alt=""
         />
       </div>
-      <div className="w-10/12 pl-3">
+      <div onClick={() => setShow(true)} className="w-10/12 pl-3">
         <p
           className={`flex items-center flex-wrap ${
             show === false ? "" : "hidden"

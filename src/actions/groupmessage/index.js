@@ -3,7 +3,7 @@ import api from "../../api/api";
 import * as contentRightAction from "../contentRight/index";
 import * as modalsAction from "../modals/index";
 import * as actions from "../index";
-import * as process from "../../functions/process";
+// import * as process from "../../functions/process";
 
 export const addGroupMessageRequestSingle = (groupMessage) => {
   const data = {
@@ -26,10 +26,6 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
   };
   return async (dispatch) => {
     try {
-      let state = process.generalState(
-        [groupMessage.userSend, groupMessage.userRecivice],
-        groupMessage.userSend
-      );
       let result = await api("getIdNewMessage", "GET", null, null);
       let idGet = Number(result.data.id);
       result = await api("groupmessage", "POST", data, null);
@@ -40,7 +36,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
         userMesages: groupMessage.userSend,
         content: null,
         nickName: null,
-        stateMessage: 0,
+        stateMessage: null,
         typeMessage: -1,
         dateCreated: null,
       };
@@ -50,7 +46,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
         userMesages: groupMessage.userRecivice,
         content: null,
         nickName: null,
-        stateMessage: 0,
+        stateMessage: null,
         typeMessage: -1,
         dateCreated: null,
       };
@@ -60,7 +56,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
         userMesages: groupMessage.userRecivice,
         content: JSON.stringify(content),
         nickName: null,
-        stateMessage: JSON.stringify(state),
+        stateMessage: null,
         typeMessage: 1,
         dateCreated: null,
       };
@@ -118,7 +114,7 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
           userMesages: element.userRelationshipUser,
           content: null,
           nickName: null,
-          stateMessage: 0,
+          stateMessage: null,
           typeMessage: -1,
           dateCreated: null,
         });
@@ -129,7 +125,7 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
         userMesages: groupMessage.user,
         content: null,
         nickName: null,
-        stateMessage: 0,
+        stateMessage: null,
         typeMessage: -1,
         dateCreated: null,
       });
@@ -139,7 +135,7 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
         userMesages: groupMessage.user,
         content: JSON.stringify(content),
         nickName: null,
-        stateMessage: 0,
+        stateMessage: null,
         typeMessage: 1,
         dateCreated: null,
       });
@@ -168,7 +164,7 @@ export const updateColorChatRequest = (data) => {
     userMesages: data.user,
     content: JSON.stringify(content),
     nickName: null,
-    stateMessage: 0,
+    stateMessage: null,
     typeMessage: 1,
     dateCreated: null,
   };
@@ -220,7 +216,7 @@ export const updateNameGroupMessageRequest = (data) => {
     userMesages: data.user,
     content: JSON.stringify(content),
     nickName: null,
-    stateMessage: 0,
+    stateMessage: null,
     typeMessage: 1,
     dateCreated: null,
   };
@@ -271,7 +267,7 @@ export const updateIonChatMessageRequest = (data) => {
     userMesages: data.user,
     content: JSON.stringify(content),
     nickName: null,
-    stateMessage: 0,
+    stateMessage: null,
     typeMessage: 1,
     dateCreated: null,
   };
@@ -294,7 +290,7 @@ export const updateIonChatMessageRequest = (data) => {
   };
 };
 
-const updateIconChatMessage = (icon) => {
+export const updateIconChatMessage = (icon) => {
   return {
     type: Types.UPDATE_ICON_CHAT_MESSAGE,
     icon,
