@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ItemChatLeft from "../../../components/Messenger/MessengerLeft/ItemChatLeft/ItemChatLeft";
 import MainContentLeft from "../../../components/Messenger/MessengerLeft/MainContentLeft/MainContentLeft";
 import MessageWait from "../../../components/Messenger/MessengerLeft/MessageWait/MessageWait";
-import UserOnline from "../../../components/Messenger/MessengerLeft/UserOnline/UserOnline.";
+import UserOnline from "../../../components/Messenger/MessengerLeft/UserOnline/UserOnline";
 
 function MessengerLeft(props) {
   //
