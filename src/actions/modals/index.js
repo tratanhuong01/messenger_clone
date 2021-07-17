@@ -80,8 +80,16 @@ export const openModalChangeNameGroup = () => {
   };
 };
 
-export const openModalWarningMessage = () => {
+export const openModalWarningMessage = (item) => {
   return {
     type: Types.OPEN_MODAL_WARNING_MESSGAE,
+    item,
+  };
+};
+
+export const openModalFeelMessage = (data) => {
+  return {
+    type: Types.OPEN_MODAL_FEEL_MESSAGE,
+    data,
   };
 };

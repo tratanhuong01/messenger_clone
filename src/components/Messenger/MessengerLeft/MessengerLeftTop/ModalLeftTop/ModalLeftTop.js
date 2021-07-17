@@ -11,8 +11,8 @@ function ModalLeftTop(props) {
     >
       <div
         onClick={() => handle(1)}
-        className="w-full p-2 hover:bg-gray-200 dark:hover:bg-dark-third flex bg-gray-200 
-      dark:bg-dark-main"
+        className="w-full p-2 hover:bg-gray-300 dark:hover:bg-dark-third flex bg-gray-100 
+        dark:bg-dark-main"
       >
         <span
           className="bx bxs-user-check flex items-center text-xl dark:text-gray-300 
@@ -24,7 +24,7 @@ function ModalLeftTop(props) {
       </div>
       <div
         onClick={() => handle(2)}
-        className="w-full p-2 hover:bg-gray-200 dark:hover:bg-dark-third flex bg-gray-200 
+        className="w-full p-2 hover:bg-gray-300 dark:hover:bg-dark-third flex bg-gray-100 
       dark:bg-dark-main"
       >
         <span
@@ -36,7 +36,7 @@ function ModalLeftTop(props) {
         </span>
       </div>
       <div
-        className="w-full p-2 hover:bg-gray-200 dark:hover:bg-dark-third flex bg-gray-200 
+        className="w-full p-2 hover:bg-gray-300 dark:hover:bg-dark-third flex bg-gray-100 
       dark:bg-dark-main"
       >
         <span

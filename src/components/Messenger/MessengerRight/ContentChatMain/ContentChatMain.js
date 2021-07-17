@@ -51,7 +51,7 @@ function ContentChatMain(props) {
     }
   };
   const showAllMessages = item.map((ele, index) => {
-    const main = JSON.parse(ele.content);
+    const main = ele.content !== null ? JSON.parse(ele.content) : "";
     switch (ele.typeMessage) {
       case "1":
         return showChild(main, ele.typeGroupMessage, user, index, ele);

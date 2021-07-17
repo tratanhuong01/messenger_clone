@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions/index";
 import EmptyMessage from "../../components/Messenger/MessengerRight/EmptyMessage/EmptyMessage";
 import * as relationshipUsersAction from "../../actions/relationshipusers/index";
+import * as usersAction from "../../actions/users/index";
 
 function MainMessenger(props) {
   //
@@ -30,6 +31,7 @@ function MainMessenger(props) {
       )
     );
     dispatch(relationshipUsersAction.loadListFriendRequest(isLogin.user.id));
+    dispatch(usersAction.getAllUsersRequest());
   }, [isLogin, dispatch, match]);
 
   return (

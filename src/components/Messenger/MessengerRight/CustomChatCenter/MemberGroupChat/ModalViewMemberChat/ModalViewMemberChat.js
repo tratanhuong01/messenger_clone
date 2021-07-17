@@ -36,10 +36,8 @@ function ModalViewMemberChat(props) {
       null,
       null
     );
-    if (result.status !== 200) console.log("error", result.status);
-    else {
-      setIdGroupMessage(result.data.groupMessage.id);
-    }
+    if (result.data === "" || result.data === null) setIdGroupMessage("");
+    else setIdGroupMessage(result.data.groupMessage.id);
   };
 
   useEffect(() => {
@@ -53,7 +51,7 @@ function ModalViewMemberChat(props) {
     >
       {idGroupMessage !== null && (
         <ul className="w-full">
-          {datas.idUser !== leader.idUser && (
+          {isLogin.user.id !== datas.idUser ? (
             <ChildEditMember
               onClick={() => {
                 history.push(`${Config.PAGE_MESSENGER}/${idGroupMessage}`);
@@ -62,6 +60,8 @@ function ModalViewMemberChat(props) {
               id={idGroupMessage}
               link={true}
             />
+          ) : (
+            ""
           )}
           <ChildEditMember
             data={datas}
@@ -71,10 +71,14 @@ function ModalViewMemberChat(props) {
             }}
             label="Xem trang cá nhân"
           />
-          {datas.idUser !== leader.idUser && (
+          {datas.idUser !== leader.idUser &&
+          isLogin.user.id === leader.idUser ? (
             <ChildEditMember label="Chỉ định làm quản trị viên" />
+          ) : (
+            ""
           )}
-          {datas.idUser !== leader.idUser && (
+          {datas.idUser !== leader.idUser &&
+          isLogin.user.id === leader.idUser ? (
             <ChildEditMember
               onClick={() => {
                 dispatch(
@@ -88,6 +92,8 @@ function ModalViewMemberChat(props) {
               }}
               label="Xóa thành viên"
             />
+          ) : (
+            ""
           )}
           {datas.idUser === isLogin.user.id && (
             <ChildEditMember

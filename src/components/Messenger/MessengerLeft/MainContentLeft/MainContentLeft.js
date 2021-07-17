@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MessengerLeftSearch from "../MessengerLeftSearch/MessengerLeftSearch";
 import MessengerLeftTop from "../MessengerLeftTop/MessengerLeftTop";
 import SearchMessengerLeft from "../SearchMessengerLeft/SearchMessengerLeft";
-import api from "../../../../api/api";
 
 function MainContentLeft(props) {
   //
@@ -10,11 +9,23 @@ function MainContentLeft(props) {
 
   const [showAllMessage, setShowAllMessage] = useState(true);
 
+  const [dataSearch, setDataSearch] = useState({
+    value: "",
+    list: [],
+  });
+
   return (
     <div className={`w-full ${isShow && "hidden"}`}>
       <MessengerLeftTop handle={handle} />
-      <MessengerLeftSearch setShowAllMessage={setShowAllMessage} />
-      {showAllMessage !== false && <SearchMessengerLeft />}
+      <MessengerLeftSearch
+        setShowAllMessage={setShowAllMessage}
+        setDataSearch={setDataSearch}
+      />
+      <SearchMessengerLeft
+        showAllMessage={showAllMessage}
+        dataSearch={dataSearch}
+        setDataSearch={setDataSearch}
+      />
       <div
         className={`w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap 
         justify-center ${showAllMessage ? "" : "hidden"}`}

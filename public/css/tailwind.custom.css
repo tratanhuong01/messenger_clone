@@ -94,3 +94,6 @@
 .transform .rotate-135 {
   transform: rotate(135deg);
 }
+.max-w-11\/12 {
+  max-width: 91.6%;
+}

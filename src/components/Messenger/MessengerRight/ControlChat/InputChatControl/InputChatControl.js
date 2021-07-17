@@ -5,19 +5,25 @@ import * as messagesAction from "../../../../../actions/messages/index";
 
 function InputChatControl(props) {
   //
-
   const dispatch = useDispatch();
 
-  let { isLogin, messages } = props;
+  const { isLogin, messages } = props;
 
   const text = useRef("");
+
+  const group = useRef(messages.group);
+
+  useEffect(() => {
+    text.current = "";
+    group.current = messages.group;
+  }, [messages]);
 
   const enter = (event) => {
     if (event.keyCode === 13) {
       dispatch(
         messagesAction.addMessageRequest({
           content: text.current,
-          group: messages.group,
+          group: group.current,
           user: isLogin.user,
           type: 0,
           child: [],
@@ -25,10 +31,6 @@ function InputChatControl(props) {
       );
     }
   };
-
-  useEffect(() => {
-    text.current = "";
-  }, [messages.data]);
 
   return (
     <div className="three-exten1 w-full relative">

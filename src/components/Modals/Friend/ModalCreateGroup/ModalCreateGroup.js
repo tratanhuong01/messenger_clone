@@ -9,6 +9,8 @@ import NameGroup from "./NameGroup/NameGroup";
 import api from "../../../../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import * as groupMessagesAction from "../../../../actions/groupmessage/index";
+import { useHistory } from "react-router-dom";
+import * as Config from "../../../../constants/Config";
 
 function ModalCreateGroup(props) {
   //
@@ -100,6 +102,8 @@ function ModalCreateGroup(props) {
     return listUserNew;
   };
 
+  const history = useHistory();
+
   return (
     <div
       className="w-11/12 xl:w-1/3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
@@ -153,11 +157,12 @@ function ModalCreateGroup(props) {
           <div className="flex my-2 justify-end">
             <ButtonCancel />
             <ButtonSave
-              onClick={() =>
-                dispatch(
+              onClick={async () => {
+                await dispatch(
                   groupMessagesAction.addGroupMessageRequestGroup(groupMessage)
-                )
-              }
+                );
+                history.push(`${Config.PAGE_MESSENGER}`);
+              }}
               label={"Tạo nhóm"}
               disabled={submitStatus}
             />

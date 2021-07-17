@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import * as process from "../../../../functions/process";
+import React, { useState } from "react";
 
 function MessengerLeftSearch(props) {
   //
-  const { setShowAllMessage, setUserSearch, users } = props;
+  const { setShowAllMessage, setDataSearch } = props;
 
   const [show, setShow] = useState(false);
 
   const [data, setData] = useState("");
 
-  const search = () => {
-    let dataUsersChat = process.searchUserNotRelationship(data, users);
-    let clone = [...dataUsersChat];
-    setUserSearch(clone);
+  const search = (event) => {
+    setData();
+    setDataSearch({
+      value: event.target.value,
+      list: [],
+    });
   };
 
   return (
@@ -41,9 +42,7 @@ function MessengerLeftSearch(props) {
         bg-gray-200 dark:bg-dark-third dark:text-white`}
         placeholder="Tìm kiếm trên messenger"
         value={data}
-        onChange={(event) => {
-          setData(event.target.value);
-        }}
+        onChange={search}
       />
     </div>
   );

@@ -85,10 +85,11 @@ export const searchUserByEmailOrPhone = (search) => {
   };
 };
 
-export const getAllUsers = () => {
+export const getAllUsersRequest = () => {
   return async (dispatch) => {
     try {
-      await api("users", "GET", null, null);
+      const result = await api("users", "GET", null, null);
+      dispatch(getAllUsers(result.data));
     } catch (error) {
       console.log(error);
     }
@@ -114,5 +115,12 @@ export const updateDarkModeByUser = (user, typeCurrent) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const getAllUsers = (list) => {
+  return {
+    type: Types.GET_ALL_USERS,
+    list,
   };
 };

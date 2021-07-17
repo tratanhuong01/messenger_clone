@@ -16,7 +16,14 @@ function ChatText(props) {
     delete style.color;
   }
 
-  return (
+  return JSON.parse(JSON.parse(item.content).data[0].src).length > 0 ? (
+    <div
+      className={`relative break-all ${margin} border-none outline-none p-1.5 
+      rounded-lg relative dark:text-white text-3xl bg-opacity-80 cursor-pointer`}
+    >
+      {content}
+    </div>
+  ) : (
     <div
       className={`relative break-all ${margin} border-none outline-none p-1.5 
       rounded-lg relative dark:text-white ${style.backgroundColor} bg-opacity-80`}

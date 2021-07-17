@@ -4,6 +4,7 @@ import ChatImage from "../ChatImage/ChatImage";
 import ChatSticker from "../ChatSticker/ChatSticker";
 import ChatText from "../ChatText/ChatText";
 import FeelMessage from "../FeelMessage/FeelMessage";
+import NumberFeel from "../NumberFeel/NumberFeel";
 
 function ChatLeft(props) {
   //
@@ -50,10 +51,18 @@ function ChatLeft(props) {
           alt=""
         />
       </div>
-      <div ref={ref} className=" pl-2 flex z-50" style={{ width: "inherit" }}>
+      <div
+        ref={ref}
+        className="mess-user-r1 pl-2 flex z-50 relative"
+        style={{ width: "inherit" }}
+      >
         {data()}
+        {item.feelList.length > 0 && (
+          <NumberFeel item={item.feelList} message={item} />
+        )}
       </div>
       <FeelMessage
+        item={item}
         data="left"
         postion={ref.current ? ref.current.children[0].offsetWidth + 65 : 0}
       />

@@ -5,7 +5,7 @@ import * as modalsAction from "../../../actions/modals/index";
 
 function FeelMessage(props) {
   //
-  const { postion, data } = props;
+  const { postion, data, item } = props;
 
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ function FeelMessage(props) {
       style={{ transform: "translateY(-50%)", [data]: postion }}
     >
       <ul className="w-full flex relative">
-        {show && <Feel />}
+        {show && <Feel setShow={setShow} item={item} />}
         <li
           onClick={() => setShow(!show)}
           className="feel-mess px-1 mr-1 rounded-full hover:bg-gray-300 dark:hover:bg-dark-third"
@@ -25,7 +25,7 @@ function FeelMessage(props) {
           <i className="far fa-smile text-xm"></i>
         </li>
         <li
-          onClick={() => dispatch(modalsAction.openModalWarningMessage())}
+          onClick={() => dispatch(modalsAction.openModalWarningMessage(item))}
           className="px-1.5 rounded-full hover:bg-gray-300 dark:hover:bg-dark-third"
         >
           <i className="far fa-trash-alt text-xm"></i>

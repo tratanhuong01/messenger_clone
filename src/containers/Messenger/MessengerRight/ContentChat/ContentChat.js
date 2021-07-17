@@ -18,9 +18,7 @@ function ContentChat(props) {
 
   const { messages, isLogin } = states;
 
-  const item = messages.data;
-
-  const { user } = process.dataUsersChat(item, isLogin.user.id);
+  const { user } = process.dataUsersChat(messages.data, isLogin.user.id);
 
   return (
     <div
@@ -29,14 +27,14 @@ function ContentChat(props) {
       } h-full max-h-full overflow-hidden flex flex-col`}
     >
       <ContentChatTop
-        item={item}
+        item={messages.data}
         user={user}
-        typeGroupMessage={item[0].typeGroupMessage}
+        typeGroupMessage={messages.data[0].typeGroupMessage}
         setShowRight={setShowRight}
         showRight={showRight}
       />
-      <ContentChatMain item={item} user={user} />
-      <ControlChat item={item} messages={messages} isLogin={isLogin} />
+      <ContentChatMain item={messages.data} user={user} />
+      <ControlChat item={messages.data} messages={messages} isLogin={isLogin} />
     </div>
   );
 }

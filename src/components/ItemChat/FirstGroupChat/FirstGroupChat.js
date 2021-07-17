@@ -1,7 +1,9 @@
 import React from "react";
 
 function FirstGroupChat(props) {
+  //
   const { item, user } = props;
+
   return (
     <div className="w-full p-2 text-center">
       <div className="w-16 h-16 relative mx-auto">

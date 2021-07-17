@@ -21,6 +21,7 @@ function ItemGroupChat(props) {
         absolute bottom-0 left-0`}
         alt=""
       />
+      <span className="w-3.5 h-3.5 rounded-full bg-green-500 absolute bottom-0 right-0.5"></span>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
 import * as modalsAction from "../../../../actions/modals/index";
 
@@ -8,6 +8,16 @@ function ModalWarningMessage(props) {
   const dispatch = useDispatch();
 
   const [typeRemove, setTypeRemove] = useState(-1);
+
+  const { messageCurrent } = props;
+
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
 
   return (
     <div
@@ -24,29 +34,32 @@ function ModalWarningMessage(props) {
         <hr />
       </div>
       <div className="w-full">
-        <div className="w-full">
-          <div className="w-full p-6 pb-2 inline-block ">
-            <input
-              onChange={() => {
-                setTypeRemove(0);
-              }}
-              type="radio"
-              className="text-4xl pb-1"
-              style={{ transform: "scale(1.5)" }}
-              name="state"
-              value={"0"}
-            />
-            &nbsp; &nbsp; &nbsp;
-            <span className="font-bold dark:text-white">
-              Thu hồi với mọi người
-            </span>
+        {messageCurrent.idUser === isLogin.user.id && (
+          <div className="w-full">
+            <div className="w-full p-6 pb-2 inline-block ">
+              <input
+                onChange={() => {
+                  setTypeRemove(0);
+                }}
+                type="radio"
+                className="text-4xl pb-1"
+                style={{ transform: "scale(1.5)" }}
+                name="state"
+                value={"0"}
+              />
+              &nbsp; &nbsp; &nbsp;
+              <span className="font-bold dark:text-white">
+                Thu hồi với mọi người
+              </span>
+            </div>
+            <div className="w-11/12 pl-3 ml-auto dark:text-white">
+              Bạn sẽ gỡ vĩnh viễn tin nhắn này đối với tất cả các thành viên
+              trong đoạn chat. Họ sẽ thấy rằng bạn đã thu hồi tin nhắn và vẫn có
+              thể báo cáo tin nhắn đó.
+            </div>
           </div>
-          <div className="w-11/12 pl-3 ml-auto dark:text-white">
-            Bạn sẽ gỡ vĩnh viễn tin nhắn này đối với tất cả các thành viên trong
-            đoạn chat. Họ sẽ thấy rằng bạn đã thu hồi tin nhắn và vẫn có thể báo
-            cáo tin nhắn đó.
-          </div>
-        </div>
+        )}
+
         <div className="w-full">
           <div className="w-full p-6 pb-2 inline-block ">
             <input
