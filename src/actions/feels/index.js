@@ -45,7 +45,7 @@ export const deleteFeel = (data) => {
   return async (dispatch) => {
     try {
       await api(
-        `feel/${data.message.id}/${data.userFeel.id}`,
+        `deleteFeel/${data.message.idMessage}/${data.userFeel.id}`,
         "DELETE",
         null,
         null

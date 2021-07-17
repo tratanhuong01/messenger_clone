@@ -4,7 +4,7 @@ import * as modalsAction from "../../../actions/modals/index";
 
 function NumberFeel(props) {
   //
-  const { item, message } = props;
+  const { item, message, postion, data } = props;
 
   let listFeelDistinct = [];
 
@@ -34,7 +34,8 @@ function NumberFeel(props) {
         )
       }
       className="dark:bg-dark-second bg-gray-100 color-word px-2 py-1 cursor-pointer
-      rounded-3xl absolute -right-2 -bottom-4 flex justify-center"
+      rounded-3xl absolute -bottom-4 flex justify-center"
+      style={{ [data]: `${postion}px` }}
     >
       <b className="dark:text-white text-xs flex items-center">
         {allIcon}&nbsp;{item.length}

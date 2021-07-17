@@ -54,7 +54,12 @@ function ChatRight(props) {
       >
         {data()}
         {item.feelList.length > 0 && (
-          <NumberFeel item={item.feelList} message={item} />
+          <NumberFeel
+            data="right"
+            item={item.feelList}
+            message={item}
+            postion={-10}
+          />
         )}
       </div>
       <div className=" mess-user-r2 mess-user-r210045 " style={{ width: "4%" }}>

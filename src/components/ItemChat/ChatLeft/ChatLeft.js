@@ -58,7 +58,12 @@ function ChatLeft(props) {
       >
         {data()}
         {item.feelList.length > 0 && (
-          <NumberFeel item={item.feelList} message={item} />
+          <NumberFeel
+            data="left"
+            item={item.feelList}
+            message={item}
+            postion={ref.current ? ref.current.children[0].offsetWidth - 10 : 0}
+          />
         )}
       </div>
       <FeelMessage

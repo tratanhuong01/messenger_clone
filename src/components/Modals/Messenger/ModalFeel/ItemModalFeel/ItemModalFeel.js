@@ -1,17 +1,36 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import * as feelsAction from "../../../../../actions/feels/index";
 
 function ItemModalFeel(props) {
   //
-  const { item, message } = props;
+  const { item, message, dataFeel, setDataCurrent } = props;
 
   const states = useSelector((state) => {
     return {
       isLogin: state.isLogin,
+      messages: state.messages,
     };
   });
 
-  const { isLogin } = states;
+  const { isLogin, messages } = states;
+
+  const data = {
+    group: messages.group,
+    userFeel: isLogin.user,
+    message: message,
+  };
+
+  const dispatch = useDispatch();
+
+  const removeListFeel = () => {
+    let dataFeelClone = { ...dataFeel };
+    let index = dataFeelClone.listFeel.findIndex(
+      (item) => item.feelUser.id === isLogin.user.id
+    );
+    dataFeelClone.listFeel.splice(index, 1);
+    return dataFeelClone.listFeel;
+  };
 
   return (
     <div className="w-full py-2 flex">
@@ -24,8 +43,14 @@ function ItemModalFeel(props) {
           />
           <span className="absolute bottom-2 right-1">{item.iconFeel}</span>
         </div>
-        {message.idUser === isLogin.user.id ? (
-          <div className="px-3 cursor-pointer">
+        {item.feelUser.id === isLogin.user.id ? (
+          <div
+            onClick={() => {
+              dispatch(feelsAction.deleteFeel(data));
+              setDataCurrent(removeListFeel());
+            }}
+            className="px-3 cursor-pointer"
+          >
             <p className="pb-1 dark:text-white font-semibold">
               {`${item.feelUser.firstName} ${item.feelUser.lastName}`}
             </p>

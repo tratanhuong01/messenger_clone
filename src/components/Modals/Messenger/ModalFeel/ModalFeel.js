@@ -1,13 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
+import ItemCategoryModalFeel from "./ItemCategoryModalFeel/ItemCategoryModalFeel";
 import ItemModalFeel from "./ItemModalFeel/ItemModalFeel";
 
 function ModalFeel(props) {
   //
   const { data } = props;
 
-  const showListFeels = data.listFeel.map((item, index) => {
-    return <ItemModalFeel item={item} key={index} message={data.message} />;
+  const [current, setCurrent] = useState("All");
+
+  const [dataFeel, setDataFeel] = useState(data);
+
+  const [dataCurrent, setDataCurrent] = useState(dataFeel.listFeel);
+
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+    };
+  });
+
+  const { messages } = states;
+
+  useEffect(() => {
+    let index = messages.data.findIndex(
+      (item) => item.idMessage === dataFeel.message.idMessage
+    );
+    if (index !== -1)
+      setDataFeel({
+        listFeel: messages.data[index].feelList,
+        message: messages.data[index],
+      });
+  }, [messages.data]);
+
+  let listFeelDistinct = [];
+
+  dataFeel.listFeel.forEach((element) => {
+    let index = listFeelDistinct.findIndex(
+      (data) => data.typeFeel === element.typeFeel
+    );
+    if (index === -1) listFeelDistinct.push(element);
+  });
+
+  const showCategoryFeels = listFeelDistinct.map((dataItem, index) => {
+    let count = 0;
+    dataFeel.listFeel.forEach((element) => {
+      if (element.typeFeel === dataItem.typeFeel) count++;
+    });
+    return (
+      <ItemCategoryModalFeel
+        current={current}
+        type={dataItem.typeFeel}
+        value={`${dataItem.iconFeel} ${count}`}
+        key={index}
+        setCurrent={setCurrent}
+        setDataCurrent={setDataCurrent}
+        dataFeel={dataFeel}
+      />
+    );
+  });
+  const showListFeels = dataCurrent.map((item, index) => {
+    return (
+      <ItemModalFeel
+        item={item}
+        key={index}
+        message={dataFeel.message}
+        dataFeel={dataFeel}
+        setDataCurrent={setDataCurrent}
+      />
+    );
   });
 
   return (
@@ -19,18 +80,15 @@ function ModalFeel(props) {
       <div className="w-full bg-white dark:bg-dark-second pl-2 pr-4 fixed top-2 block z-10">
         <CloseModal />
         <ul className="w-full flex mb-2">
-          <li
-            className="font-semibold text-blue-500 px-4 py-3 border-b-4 border-solid
-            border-blue-500 cursor-pointer"
-          >
-            Tất cả
-          </li>
-          <li
-            className="font-semibold text-blue-500 px-4 py-3 cursor-pointer dark:text-white 
-            hover:bg-gray-200 dark:hover:bg-dark-third"
-          >
-            😆 &nbsp; 1
-          </li>
+          <ItemCategoryModalFeel
+            type={"All"}
+            value="Tất cả"
+            current={current}
+            dataFeel={dataFeel}
+            setCurrent={setCurrent}
+            setDataCurrent={setDataCurrent}
+          />
+          {showCategoryFeels}
         </ul>
       </div>
       <div
