@@ -5,6 +5,94 @@ import * as modalsAction from "../modals/index";
 import * as actions from "../index";
 // import * as process from "../../functions/process";
 
+export const addGroupMessageWaitRequest = (groupMessage) => {
+  const data = {
+    id: null,
+    nameGroupMessage: null,
+    colorChat: "#ccc",
+    iconChat: "😱",
+    typeGroupMessage: -1,
+    dateCreated: "",
+  };
+  const content = {
+    data: [
+      {
+        id: 0,
+        content: "Các bạn chưa là bạn bè trên Ensonet",
+        src: "",
+      },
+    ],
+    type: -1,
+  };
+  const contentWait = {
+    data: [
+      {
+        id: 0,
+        content: groupMessage.content,
+        src: "",
+      },
+    ],
+    type: 0,
+  };
+  return async (dispatch) => {
+    try {
+      let result = await api("getIdNewMessage", "GET", null, null);
+      let idGet = Number(result.data.id);
+      result = await api("groupmessage", "POST", data, null);
+      const group = result.data;
+      let messOne = {
+        id: ++idGet,
+        groupMessage: group,
+        userMesages: groupMessage.userSend,
+        content: null,
+        nickName: null,
+        stateMessage: null,
+        typeMessage: -1,
+        dateCreated: null,
+      };
+      let messTwo = {
+        id: ++idGet,
+        groupMessage: group,
+        userMesages: groupMessage.userRecivice,
+        content: null,
+        nickName: null,
+        stateMessage: null,
+        typeMessage: -1,
+        dateCreated: null,
+      };
+      let messThree = {
+        id: ++idGet,
+        groupMessage: group,
+        userMesages: groupMessage.userSend,
+        content: JSON.stringify(content),
+        nickName: null,
+        stateMessage: null,
+        typeMessage: 1,
+        dateCreated: null,
+      };
+      let messFour = {
+        id: ++idGet,
+        groupMessage: group,
+        userMesages: groupMessage.userSend,
+        content: JSON.stringify(contentWait),
+        nickName: null,
+        stateMessage: null,
+        typeMessage: 2,
+        dateCreated: null,
+      };
+      const allPromises = [
+        await api("messages", "POST", messOne, null),
+        await api("messages", "POST", messTwo, null),
+        await api("messages", "POST", messThree, null),
+        await api("messages", "POST", messFour, null),
+      ];
+      await Promise.all(allPromises);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const addGroupMessageRequestSingle = (groupMessage) => {
   const data = {
     id: null,

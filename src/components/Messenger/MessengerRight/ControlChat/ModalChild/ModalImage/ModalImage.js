@@ -29,8 +29,8 @@ function ModalImage(props) {
 
   return (
     <div
-      className="absolute rounded-2xl z-50 bg-white dark:bg-dark-second"
-      style={{ bottom: "100%", width: "500px" }}
+      className="absolute rounded-2xl z-50"
+      style={{ bottom: "100%", maxWidth: "500px" }}
     >
       <ul className="flex p-2 overflow-x-auto" style={{ maxWidth: "500px" }}>
         {showAllImagePreview}

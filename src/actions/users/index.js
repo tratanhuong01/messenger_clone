@@ -1,6 +1,8 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as modalsAction from "../modals/index";
+import * as Config from "../../constants/Config";
+import axios from "axios";
 
 export const registerAccountRequest = (user) => {
   return async (dispatch) => {

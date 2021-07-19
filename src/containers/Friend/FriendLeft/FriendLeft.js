@@ -28,7 +28,7 @@ function FriendLeft(props) {
       setListFriendsCurrent(friends.listFriends);
     }
     load();
-  }, [dispatch, isLogin, friends]);
+  }, [dispatch, isLogin]);
 
   const [listFriendsCurrent, setListFriendsCurrent] = useState(
     friends.listFriends

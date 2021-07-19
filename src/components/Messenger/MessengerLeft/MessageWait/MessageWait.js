@@ -1,9 +1,43 @@
-import React from "react";
-import ItemMessageWait from "./ItemMessageWait/ItemMessageWait";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import api from "../../../../api/api";
+import ItemChatLeft from "../ItemChatLeft/ItemChatLeft";
 
 function MessageWait(props) {
   //
   const { handle } = props;
+
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
+  const [messageWait, setMessageWait] = useState([]);
+
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const resList = await api(
+          `createAllMessagesUserWait/${isLogin.user.id}`,
+          "GET",
+          null,
+          null
+        );
+        setMessageWait(resList.data);
+        //
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetch();
+  }, [setMessageWait, isLogin]);
+
+  const showAllMessageWait = messageWait.map((item, index) => {
+    return <ItemChatLeft item={item} key={index} />;
+  });
 
   return (
     <div className="w-full">
@@ -26,10 +60,7 @@ function MessageWait(props) {
         className="w-full overflow-y-auto py-2"
         style={{ maxHeight: "585px" }}
       >
-        <ItemMessageWait />
-        <ItemMessageWait />
-        <ItemMessageWait />
-        <ItemMessageWait />
+        {showAllMessageWait}
       </div>
     </div>
   );

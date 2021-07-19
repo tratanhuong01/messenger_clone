@@ -7,19 +7,23 @@ function InputChatControl(props) {
   //
   const dispatch = useDispatch();
 
-  const { isLogin, messages } = props;
+  const { isLogin, messages, imagePreview } = props;
 
   const text = useRef("");
 
   const group = useRef(messages.group);
 
+  const images = useRef(imagePreview);
+
   useEffect(() => {
     text.current = "";
     group.current = messages.group;
-  }, [messages]);
+    images.current = imagePreview;
+  }, [messages, imagePreview]);
 
   const enter = (event) => {
     if (event.keyCode === 13) {
+      console.log("Data : ", images);
       dispatch(
         messagesAction.addMessageRequest({
           content: text.current,

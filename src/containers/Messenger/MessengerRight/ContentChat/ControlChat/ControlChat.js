@@ -40,7 +40,11 @@ function ControlChat(props) {
         </ul>
       </div>
       <div className="w-9/12 relative">
-        <InputChatControl messages={messages} isLogin={isLogin} />
+        <InputChatControl
+          messages={messages}
+          isLogin={isLogin}
+          imagePreview={imagePreview}
+        />
       </div>
       <SendIconControl item={item} />
     </div>

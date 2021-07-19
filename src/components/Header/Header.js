@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as modalsAction from "../../actions/modals/index";
 import * as usersAction from "../../actions/users/index";
+import * as Config from "../../constants/Config";
 
 function Header(props) {
   //
@@ -11,15 +13,14 @@ function Header(props) {
     };
   });
 
+  const history = useHistory();
+
   const { isLogin } = states;
 
   const dispatch = useDispatch();
 
   return (
-    <div
-      className="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second"
-      id="header"
-    >
+    <div className="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second">
       <div className="w-full flex px-2 my-1">
         <div className="w-1/2 flex ml-1 md:w-1/4 relative">
           <div
@@ -46,7 +47,12 @@ function Header(props) {
             </div>
           </div>
           <div className="pt-0.5">
-            <img className="w-12 p-0.5 sm:w-12" src="/images/logo.png" alt="" />
+            <img
+              onClick={() => history.push(Config.PAGE_MESSENGER)}
+              className="w-12 p-0.5 cursor-pointer"
+              src="/images/logo.png"
+              alt=""
+            />
           </div>
           <div className="mt-1 pl-4">
             <div className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">

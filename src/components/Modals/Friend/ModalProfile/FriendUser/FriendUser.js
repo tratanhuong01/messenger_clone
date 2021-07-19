@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as relationshipsAction from "../../../../../actions/relationshipusers/index";
 import * as Config from "../../../../../constants/Config";
 import * as modalsAction from "../../../../../actions/modals/index";
+import ButtonSwitch from "./ButtonSwitch/ButtonSwitch";
+import api from "../../../../../api/api";
 
 function FriendUser(props) {
   //
@@ -20,63 +22,29 @@ function FriendUser(props) {
   const dispatch = useDispatch();
 
   const relationship = {
-    idSend: isLogin.user.id,
-    idRecivice: user.id,
-  };
-
-  const ButtonSwitch = () => {
-    switch (profile.statusFriend) {
-      case 0:
-        return (
-          <button
-            onClick={() => setShowConnectFriend(true)}
-            className="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
-          py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5"
-          >
-            Kết bạn
-          </button>
-        );
-
-      case 1:
-        return (
-          <button
-            onClick={() =>
-              dispatch(
-                relationshipsAction.deleteRelationShipRequest(relationship)
-              )
-            }
-            className="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
-          py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5"
-          >
-            Hủy kết bạn
-          </button>
-        );
-
-      case 2:
-        return (
-          <button
-            onClick={() =>
-              dispatch(
-                relationshipsAction.updateStatusRelationShipRequest(
-                  relationship
-                )
-              )
-            }
-            className="border-2 border-solid border-white bg-indigo-500 text-white font-semibold rounded-full
-            py-2 px-8 hover:border-indigo-500 hover:bg-white hover:text-indigo-500 shadow-xl ml-5"
-          >
-            Đồng ý
-          </button>
-        );
-      default:
-        return "";
-    }
+    userSend: isLogin.user,
+    userRecivice: user,
   };
 
   const history = useHistory();
 
+  const [idGroupMessage, setIdGroupMessage] = useState(null);
+
+  useEffect(() => {
+    async function chat() {
+      const result = await api(
+        `getGroupMessage/${isLogin.user.id}/${user.id}`,
+        "GET",
+        null,
+        null
+      );
+      if (result.data !== "") setIdGroupMessage(result.data.groupMessage.id);
+    }
+    chat();
+  }, []);
+
   const chat = () => {
-    history.push(Config.PAGE_MESSENGER);
+    history.push(`${Config.PAGE_MESSENGER}/${idGroupMessage}`);
     dispatch(modalsAction.closeModal());
   };
 
@@ -90,7 +58,13 @@ function FriendUser(props) {
       >
         Nhắn tin
       </button>
-      <ButtonSwitch />
+      <ButtonSwitch
+        profile={profile}
+        setShowConnectFriend={setShowConnectFriend}
+        relationship={relationship}
+        dispatch={dispatch}
+        relationshipsAction={relationshipsAction}
+      />
     </div>
   );
 }

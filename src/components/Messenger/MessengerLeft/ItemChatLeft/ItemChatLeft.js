@@ -112,6 +112,7 @@ function ItemChatLeft(props) {
         return "";
     }
   };
+
   const history = useHistory();
 
   return (
@@ -129,7 +130,8 @@ function ItemChatLeft(props) {
           } `}
         >
           <div className="w-full flex justify-center md:w-1/5 mr-3">
-            {item[0].typeGroupMessage === "0" ? (
+            {item[0].typeGroupMessage === "0" ||
+            item[0].typeGroupMessage === "-1" ? (
               <ItemSingleChat
                 user={user}
                 width="w-14"

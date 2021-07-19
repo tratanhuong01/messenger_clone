@@ -22,3 +22,12 @@ export const REGEX_NUMBER_PHONE =
 export const REGEX_EMAIL =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 //
+
+export const CLOUDINARY_NAME = "tratanhuong01";
+//
+export const CLOUDINARY_API_KEY = "766394141822312";
+//
+export const CLOUDINARY_API_SECRET = "PNHwV43RnKYNC3MnK1ebW2dplqA";
+//
+export const CLOUDINARY_API_ENVIRONMENT_VARIABLE =
+  "CLOUDINARY_URL=cloudinary://766394141822312:PNHwV43RnKYNC3MnK1ebW2dplqA@tratahuong01";

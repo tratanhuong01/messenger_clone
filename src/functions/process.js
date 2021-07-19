@@ -47,9 +47,12 @@ export const dataUsersChat = (item, idUser) => {
   const user = item.length > 0 ? findUserChating(item, idUser) : null;
   const userChat = item.length > 0 ? checkMemberChat(item) : null;
   return {
-    user: item[0].typeGroupMessage === "0" ? user : userChat,
+    user:
+      item[0].typeGroupMessage === "0" || item[0].typeGroupMessage === "-1"
+        ? user
+        : userChat,
     name:
-      item[0].typeGroupMessage === "0"
+      item[0].typeGroupMessage === "0" || item[0].typeGroupMessage === "-1"
         ? checkSingle(item, idUser) === null
           ? `${user.firstName} ${user.lastName}`
           : checkSingle(item, idUser)
