@@ -29,7 +29,7 @@ function ItemFriend(props) {
       if (result.data !== "") setIdGroupMessage(result.data.groupMessage.id);
     }
     chat();
-  }, []);
+  }, [isLogin, item]);
 
   return (
     <Link

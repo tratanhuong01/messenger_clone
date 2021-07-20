@@ -19,11 +19,11 @@ function CustomChatTop(props) {
 
   const item = messages.data;
 
-  const { user } = process.dataUsersChat(item, isLogin.user.id);
+  const { user, image } = process.dataUsersChat(item, isLogin.user.id);
 
   return (
     <div className="w-full mt-2">
-      {item[0].typeGroupMessage === "0" ? (
+      {item[0].typeGroupMessage === "0" || image !== null ? (
         <ItemSingleChat
           width="w-16"
           height="h-16"
@@ -31,7 +31,7 @@ function CustomChatTop(props) {
           padding=""
           widthParent=""
           heightParent=""
-          user={user}
+          image={image}
         />
       ) : (
         <ItemGroupChat

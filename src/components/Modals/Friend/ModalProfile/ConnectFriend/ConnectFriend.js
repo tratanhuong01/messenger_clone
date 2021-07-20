@@ -24,7 +24,7 @@ function ConnectFriend(props) {
 
   const relationship = {
     userSend: isLogin.user,
-    userRecivice: user,
+    userReceive: user,
     content: hello,
   };
 

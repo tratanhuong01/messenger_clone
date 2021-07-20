@@ -13,7 +13,7 @@ function ContentChatTop(props) {
 
   const { messages } = states;
 
-  const { typeGroupMessage, user, setShowRight, showRight } = props;
+  const { typeGroupMessage, user, setShowRight, showRight, image } = props;
 
   const y = window.top.outerHeight / 2 + window.top.screenY - 720 / 2;
   const x = window.top.outerWidth / 2 + window.top.screenX - 1200 / 2;
@@ -22,7 +22,7 @@ function ContentChatTop(props) {
     <div className="w-full pt-3 flex shadow ">
       <div className="w-2/3 pl-3 flex ">
         <div className="">
-          {typeGroupMessage === "0" ? (
+          {typeGroupMessage === "0" || image !== null ? (
             <ItemSingleChat
               width="w-10"
               height="h-10"
@@ -30,7 +30,7 @@ function ContentChatTop(props) {
               padding=""
               widthParent=""
               heightParent=""
-              user={user}
+              image={image}
             />
           ) : (
             <ItemGroupChat

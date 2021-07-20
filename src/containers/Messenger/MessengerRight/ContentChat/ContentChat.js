@@ -18,17 +18,18 @@ function ContentChat(props) {
 
   const { messages, isLogin } = states;
 
-  const { user } = process.dataUsersChat(messages.data, isLogin.user.id);
+  const { user, image } = process.dataUsersChat(messages.data, isLogin.user.id);
 
   return (
     <div
-      className={`w-full ${
+      className={`w-full z-50 ${
         showRight ? "" : "xl:w-2/3"
       } h-full max-h-full overflow-hidden flex flex-col`}
     >
       <ContentChatTop
         item={messages.data}
         user={user}
+        image={image}
         typeGroupMessage={messages.data[0].typeGroupMessage}
         setShowRight={setShowRight}
         showRight={showRight}

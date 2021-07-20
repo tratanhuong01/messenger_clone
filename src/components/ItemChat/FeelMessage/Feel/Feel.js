@@ -14,7 +14,7 @@ function Feel(props) {
 
   return (
     <ul
-      className="-left-32 mb-2 absolute bottom-full flex flex-column dark:bg-dark-second bg-white 
+      className="-left-24 mb-2 absolute bottom-full flex flex-column dark:bg-dark-second bg-white 
       rounded-lg border-solid dark:border-dark-third border-gray-300 border rounded-3xl"
     >
       {showAllFeels}

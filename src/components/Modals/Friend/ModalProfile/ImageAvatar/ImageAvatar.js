@@ -18,8 +18,9 @@ function ImageAvatar(props) {
       setStateApiAvatar(false);
       const formData = new FormData();
       formData.append("multipartFile", event.target.files[0]);
-      formData.append("idUser", user.id);
-      const result = await api(`updateAvatar`, "POST", formData, null);
+      formData.append("id", user.id);
+      formData.append("publicId", "Messenger/AvatarUpdate/");
+      const result = await api(`updateImageSingle`, "POST", formData, null);
       if (localStorage && localStorage.getItem("user")) {
         await api(
           "updateAvatar",

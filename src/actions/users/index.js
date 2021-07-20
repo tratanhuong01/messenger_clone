@@ -1,9 +1,7 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as modalsAction from "../modals/index";
-import * as Config from "../../constants/Config";
-import axios from "axios";
-
+//
 export const registerAccountRequest = (user) => {
   return async (dispatch) => {
     try {
@@ -36,7 +34,7 @@ export const registerAccountRequest = (user) => {
     }
   };
 };
-
+//
 export const loginAccountRequest = (user) => {
   return async (dispatch) => {
     try {
@@ -53,20 +51,20 @@ export const loginAccountRequest = (user) => {
     }
   };
 };
-
+//
 export const login = (user) => {
   return {
     type: Types.LOGIN,
     user,
   };
 };
-
+//
 export const logout = () => {
   return {
     type: Types.LOGOUT,
   };
 };
-
+//
 export const searchUserByEmailOrPhone = (search) => {
   return async (dispatch) => {
     try {
@@ -86,7 +84,7 @@ export const searchUserByEmailOrPhone = (search) => {
     }
   };
 };
-
+//
 export const getAllUsersRequest = () => {
   return async (dispatch) => {
     try {
@@ -97,7 +95,7 @@ export const getAllUsersRequest = () => {
     }
   };
 };
-
+//
 export const updateDarkModeByUser = (user, typeCurrent) => {
   return async (dispatch) => {
     try {
@@ -119,10 +117,11 @@ export const updateDarkModeByUser = (user, typeCurrent) => {
     }
   };
 };
-
+//
 export const getAllUsers = (list) => {
   return {
     type: Types.GET_ALL_USERS,
     list,
   };
 };
+//

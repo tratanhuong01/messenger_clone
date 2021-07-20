@@ -32,7 +32,7 @@ function ModalCreateGroup(props) {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    api(`relationshipuser/${isLogin.user.id}`, "GET", null, null)
+    api(`relationshipUser/${isLogin.user.id}`, "GET", null, null)
       .then((res) => {
         setAllMember(res.data);
         setUserCurrent(res.data);

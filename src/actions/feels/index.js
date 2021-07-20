@@ -1,6 +1,6 @@
 import api from "../../api/api";
 import * as actions from "../../actions/index";
-
+//
 export const addFeelRequest = (data) => {
   let feel = {
     feelUser: data.userFeel,
@@ -40,7 +40,7 @@ export const addFeelRequest = (data) => {
     }
   };
 };
-
+//
 export const deleteFeel = (data) => {
   return async (dispatch) => {
     try {
@@ -60,3 +60,4 @@ export const deleteFeel = (data) => {
     }
   };
 };
+//

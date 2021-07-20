@@ -31,7 +31,7 @@ function ModalFeel(props) {
         listFeel: messages.data[index].feelList,
         message: messages.data[index],
       });
-  }, [messages.data]);
+  }, [messages.data, dataFeel]);
 
   let listFeelDistinct = [];
 

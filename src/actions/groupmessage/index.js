@@ -3,14 +3,14 @@ import api from "../../api/api";
 import * as contentRightAction from "../contentRight/index";
 import * as modalsAction from "../modals/index";
 import * as actions from "../index";
-// import * as process from "../../functions/process";
-
+import * as process from "../../functions/process";
+//
 export const addGroupMessageWaitRequest = (groupMessage) => {
   const data = {
     id: null,
     nameGroupMessage: null,
-    colorChat: "#ccc",
-    iconChat: "😱",
+    colorChat: "#FF5733",
+    iconChat: "✌️",
     typeGroupMessage: -1,
     dateCreated: "",
   };
@@ -38,7 +38,7 @@ export const addGroupMessageWaitRequest = (groupMessage) => {
     try {
       let result = await api("getIdNewMessage", "GET", null, null);
       let idGet = Number(result.data.id);
-      result = await api("groupmessage", "POST", data, null);
+      result = await api("groupMessage", "POST", data, null);
       const group = result.data;
       let messOne = {
         id: ++idGet,
@@ -53,7 +53,7 @@ export const addGroupMessageWaitRequest = (groupMessage) => {
       let messTwo = {
         id: ++idGet,
         groupMessage: group,
-        userMesages: groupMessage.userRecivice,
+        userMesages: groupMessage.userReceive,
         content: null,
         nickName: null,
         stateMessage: null,
@@ -92,13 +92,13 @@ export const addGroupMessageWaitRequest = (groupMessage) => {
     }
   };
 };
-
+//
 export const addGroupMessageRequestSingle = (groupMessage) => {
   const data = {
     id: null,
     nameGroupMessage: null,
-    colorChat: "#ccc",
-    iconChat: "😱",
+    colorChat: "#FF5733",
+    iconChat: "✌️",
     typeGroupMessage: 0,
     dateCreated: "",
   };
@@ -116,7 +116,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
     try {
       let result = await api("getIdNewMessage", "GET", null, null);
       let idGet = Number(result.data.id);
-      result = await api("groupmessage", "POST", data, null);
+      result = await api("groupMessage", "POST", data, null);
       const group = result.data;
       let messOne = {
         id: ++idGet,
@@ -131,7 +131,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
       let messTwo = {
         id: ++idGet,
         groupMessage: group,
-        userMesages: groupMessage.userRecivice,
+        userMesages: groupMessage.userReceive,
         content: null,
         nickName: null,
         stateMessage: null,
@@ -141,7 +141,7 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
       let messThree = {
         id: ++idGet,
         groupMessage: group,
-        userMesages: groupMessage.userRecivice,
+        userMesages: groupMessage.userReceive,
         content: JSON.stringify(content),
         nickName: null,
         stateMessage: null,
@@ -162,19 +162,19 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
     }
   };
 };
-
+//
 export const addGroupMessage = () => {
   return {
     type: Types.ADD_GROUP_MESSAGE,
   };
 };
-
+//
 export const addGroupMessageRequestGroup = (groupMessage) => {
   const data = {
     id: "",
     nameGroupMessage: groupMessage.groupMessage.nameGroup,
     colorChat: groupMessage.groupMessage.colorChat,
-    iconChat: "😱",
+    iconChat: "✌️",
     typeGroupMessage: 1,
     dateCreated: "",
   };
@@ -192,7 +192,7 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
     try {
       let result = await api("getIdNewMessage", "GET", null, null);
       let idGet = Number(result.data.id);
-      result = await api("groupmessage", "POST", data, null);
+      result = await api("groupMessage", "POST", data, null);
       const group = result.data;
       let newDataMess = [];
       groupMessage.users.forEach((element) => {
@@ -234,7 +234,7 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
     }
   };
 };
-
+//
 export const updateColorChatRequest = (data) => {
   const content = {
     data: [
@@ -279,14 +279,14 @@ export const updateColorChatRequest = (data) => {
     }
   };
 };
-
+//
 export const updateColorChat = (color) => {
   return {
     type: Types.UPDATE_COLOR_CHAT,
     color,
   };
 };
-
+//
 export const updateNameGroupMessageRequest = (data) => {
   const content = {
     data: [
@@ -330,14 +330,14 @@ export const updateNameGroupMessageRequest = (data) => {
     }
   };
 };
-
+//
 export const updateNameGroupMessage = (name) => {
   return {
     type: Types.UPDATE_NAME_GROUP_MESSAGE,
     name,
   };
 };
-
+//
 export const updateIonChatMessageRequest = (data) => {
   const content = {
     data: [
@@ -377,10 +377,72 @@ export const updateIonChatMessageRequest = (data) => {
     }
   };
 };
-
+//
 export const updateIconChatMessage = (icon) => {
   return {
     type: Types.UPDATE_ICON_CHAT_MESSAGE,
     icon,
+  };
+};
+//
+export const updateImageGroupMessageRequest = (data) => {
+  const content = {
+    data: [
+      {
+        id: 0,
+        content: `đã thay đổi hình ảnh cuộc trò chuyện.`,
+        src: "",
+      },
+    ],
+    type: 6,
+  };
+  const mess = {
+    id: null,
+    groupMessage: data.group,
+    userMesages: data.user,
+    content: JSON.stringify(content),
+    nickName: null,
+    stateMessage: null,
+    typeMessage: 1,
+    dateCreated: null,
+  };
+  return async (dispatch) => {
+    try {
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      await api(
+        "updateGroupMessage/imageGroup",
+        "PUT",
+        {
+          avatar: data.url,
+          id: data.group.id,
+        },
+        null
+      );
+      const message = await api("messages", "POST", mess, null);
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data
+      );
+      await Promise.all(view);
+      await Promise.all(state);
+      dispatch(updateImageGroupMessage(data.name));
+      dispatch(
+        actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+//
+export const updateImageGroupMessage = (image) => {
+  return {
+    type: Types.UPDATE_IMAGE_GROUP_MESSAGE,
+    image,
   };
 };

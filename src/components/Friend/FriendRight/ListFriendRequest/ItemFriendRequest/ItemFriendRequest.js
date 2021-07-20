@@ -19,7 +19,7 @@ function ItemFriendRequest(props) {
 
   const relationship = {
     userSend: isLogin.user,
-    userRecivice: item,
+    userReceive: item,
   };
 
   return (

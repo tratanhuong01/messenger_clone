@@ -30,26 +30,28 @@ function MessengerRight(props) {
   );
 
   useEffect(() => {
-    api(`groupmessage/${slug}`, "GET", null, null)
-      .then((res) => {
+    async function fetch() {
+      try {
+        const result = await api(`groupMessage/${slug}`, "GET", null, null);
         dispatch(
           messagesAction.getAllMessageByGroup(
             messages.list[index],
             isLogin.user.id,
-            res.data
+            result.data
           )
         );
         setStateApi(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetch();
   }, [index, slug, dispatch, messages.list, isLogin]);
 
   return (
     <div
       className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 
-      dark:border-dark-second "
+      dark:border-dark-second z-40"
     >
       {index === -1 || stateApi === false ? (
         <EmptyMessage />

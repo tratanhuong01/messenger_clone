@@ -3,7 +3,7 @@ import api from "../../api/api";
 import * as actions from "../../actions/index";
 import * as modalsAction from "../../actions/modals/index";
 // import * as process from "../../functions/process";
-
+//
 export const addMessageRequest = (data) => {
   const content = {
     data: [
@@ -37,7 +37,7 @@ export const addMessageRequest = (data) => {
     }
   };
 };
-
+//
 export const getAllMessageByGroup = (data, idUser, group) => {
   return {
     type: Types.GET_ALL_MESSAGES_BY_GROUP,
@@ -46,7 +46,7 @@ export const getAllMessageByGroup = (data, idUser, group) => {
     group,
   };
 };
-
+//
 export const updateNickNameByUserRequest = (data) => {
   const content = {
     data: [
@@ -96,14 +96,14 @@ export const updateNickNameByUserRequest = (data) => {
     }
   };
 };
-
+//
 export const updateNickNameByUser = (name) => {
   return {
     type: Types.UPDATE_NAME_GROUP_MESSAGE,
     name,
   };
 };
-
+//
 export const addMemberToGroupMessageRequest = (data) => {
   return async (dispatch) => {
     try {
@@ -155,7 +155,7 @@ export const addMemberToGroupMessageRequest = (data) => {
     }
   };
 };
-
+//
 export const deleteUserOutGroupRequest = (data) => {
   const content = {
     data: [
@@ -201,7 +201,7 @@ export const deleteUserOutGroupRequest = (data) => {
     }
   };
 };
-
+//
 export const deleteMessage = (data) => {
   return async (dispatch) => {
     try {
@@ -218,3 +218,4 @@ export const deleteMessage = (data) => {
     }
   };
 };
+//

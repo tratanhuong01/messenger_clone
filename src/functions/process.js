@@ -1,3 +1,5 @@
+import api from "../api/api";
+
 const findUserChating = (item, idUser) => {
   let newData = null;
   item.forEach((element) => {
@@ -46,6 +48,12 @@ const checkSingle = (item, idUser) => {
 export const dataUsersChat = (item, idUser) => {
   const user = item.length > 0 ? findUserChating(item, idUser) : null;
   const userChat = item.length > 0 ? checkMemberChat(item) : null;
+  const image = () => {
+    if (item[0].imageGroup === null)
+      if (item[0].typeGroupMessage === "0") return user.avatar;
+      else return null;
+    else return item[0].imageGroup;
+  };
   return {
     user:
       item[0].typeGroupMessage === "0" || item[0].typeGroupMessage === "-1"
@@ -59,6 +67,7 @@ export const dataUsersChat = (item, idUser) => {
         : item[0].nameGroupMessage === null
         ? generalNameGroup(item)
         : item[0].nameGroupMessage,
+    image: image(),
   };
 };
 
@@ -216,6 +225,43 @@ export const generalState = (listUser, userMain) => {
       id: element.id,
       type: 0,
     });
+  });
+
+  return data;
+};
+
+export const generalStateAndViewMessage = (members, message) => {
+  let data = {
+    state: [],
+    view: [],
+  };
+  //-0 bình thường -1 thu hồi -2 xóa [state]
+  //-0 chưa nhận -1 Đã nhận 2- Đã xem [view]
+  members.forEach(async (element) => {
+    data.state.push(
+      await api(
+        "stateMessage",
+        "POST",
+        {
+          userStateMessage: element,
+          state: 0,
+          stateMessage: message,
+        },
+        null
+      )
+    );
+    data.view.push(
+      await api(
+        "viewMessage",
+        "POST",
+        {
+          userViewMessage: element,
+          view: 0,
+          viewMessage: message,
+        },
+        null
+      )
+    );
   });
 
   return data;

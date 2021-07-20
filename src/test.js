@@ -1,18 +1,15 @@
-//
-// 1 message .
-const data = {
-  view: [
-    {
-      user: "",
-      type: "",
-    },
-  ],
-  state: [
-    {
-      user: "",
-      type: "",
-    },
-  ],
+data.forEach((element) => {
+  const dataStateMessage = {
+    id: 1,
+    userStateMessage: element,
+    state: 0,
+    stateMessage: messages,
+  };
+});
+
+const dataViewMessage = {
+  id: 1,
+  userViewMessage: null,
+  state: 0,
+  viewMessage: null,
 };
-//0-chưa nhận 1-đã nhận 2-đã xem
-//0-show 1-xóa 2-thu hồi

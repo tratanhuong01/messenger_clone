@@ -54,7 +54,7 @@ function MessengerLeft(props) {
   });
 
   return (
-    <div className="w-24 md:w-5/12 xl:w-1/4 shadow-xl overflow-hidden ">
+    <div className="w-24 md:w-5/12 xl:w-1/4 shadow-xl overflow-hidden  ">
       <MainContentLeft
         isShow={showData.type === 0 ? false : true}
         messages={messages}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../../../actions/modals/index";
+import ChangeImageGroup from "./ChangeImageGroup/ChangeImageGroup";
 import ItemCustomChatCenter from "./ItemCustomChatCenter/ItemCustomChatCenter";
 import MemberGroupChat from "./MemberGroupChat/MemberGroupChat";
 
@@ -42,11 +43,7 @@ function CustomChatCenter(props) {
           {messages.data[0].typeGroupMessage === "0" ? (
             ""
           ) : (
-            <ItemCustomChatCenter
-              // onClick={() => dispatch(modalsAction.openModalChangeNameGroup())}
-              icon={{ icon: "bx bx-images", type: 0 }}
-              name={"Thay đổi ảnh"}
-            />
+            <ChangeImageGroup />
           )}
           <ItemCustomChatCenter
             onClick={() => dispatch(modalsAction.openModalChangeColorChat())}

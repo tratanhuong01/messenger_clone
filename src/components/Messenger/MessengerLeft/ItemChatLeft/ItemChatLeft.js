@@ -11,7 +11,7 @@ function ItemChatLeft(props) {
   //
   const { item, idUser, slug } = props;
 
-  const { user, name } = process.dataUsersChat(item, idUser);
+  const { user, name, image } = process.dataUsersChat(item, idUser);
 
   const states = useSelector((state) => {
     return {
@@ -131,9 +131,10 @@ function ItemChatLeft(props) {
         >
           <div className="w-full flex justify-center md:w-1/5 mr-3">
             {item[0].typeGroupMessage === "0" ||
-            item[0].typeGroupMessage === "-1" ? (
+            item[0].typeGroupMessage === "-1" ||
+            image !== null ? (
               <ItemSingleChat
-                user={user}
+                image={image}
                 width="w-14"
                 height="h-14"
                 margin=""

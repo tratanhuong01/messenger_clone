@@ -1,6 +1,6 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
-
+//
 export const loadListConnectFriendRequest = (id) => {
   return async (dispatch) => {
     try {
@@ -23,14 +23,14 @@ export const loadListConnectFriendRequest = (id) => {
     }
   };
 };
-
+//
 export const loadListConnectFriend = (list) => {
   return {
     type: Types.LOAD_CONTENT_LIST_CONNECT_FRIEND,
     list,
   };
 };
-
+//
 export const loadListGroupRequest = (id) => {
   return async (dispatch) => {
     try {
@@ -48,14 +48,14 @@ export const loadListGroupRequest = (id) => {
     }
   };
 };
-
+//
 export const loadListGroup = (list) => {
   return {
     type: Types.LOAD_CONTENT_LIST_GROUP,
     list,
   };
 };
-
+//
 export const loadListInviteFriendRequest = (id) => {
   return async (dispatch) => {
     try {
@@ -73,22 +73,23 @@ export const loadListInviteFriendRequest = (id) => {
     }
   };
 };
-
+//
 export const loadListInviteFriend = (list) => {
   return {
     type: Types.LOAD_CONTENT_LIST_INVITE_FRIEND,
     list,
   };
 };
-
+//
 export const changeLoadingToContent = () => {
   return {
     type: Types.CHANGE_LOADING_TO_CONTENT,
   };
 };
-
+//
 export const changeContentToLoading = () => {
   return {
     type: Types.CHANGE_CONTENT_TO_LOADING,
   };
 };
+//

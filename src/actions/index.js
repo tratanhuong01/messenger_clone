@@ -1,7 +1,7 @@
 import * as Types from "../constants/ActionTypes";
 import api from "../api/api";
 import * as messagesAction from "../actions/messages/index";
-
+//
 export const loadAllMessageOfUserByIdRequest = (id, slug) => {
   return async (dispatch) => {
     try {
@@ -18,7 +18,7 @@ export const loadAllMessageOfUserByIdRequest = (id, slug) => {
         let index = resList.data.findIndex(
           (item) => item[0].idGroupMessage === slug
         );
-        const resultMain = await api(`groupmessage/${slug}`, "GET", null, null);
+        const resultMain = await api(`groupMessage/${slug}`, "GET", null, null);
         if (
           resultMain.data !== null &&
           resultMain.data !== "" &&
@@ -38,10 +38,11 @@ export const loadAllMessageOfUserByIdRequest = (id, slug) => {
     }
   };
 };
-
+//
 export const loadAllMessageOfUserById = (listInList) => {
   return {
     type: Types.LOAD_ALL_MESSAGE_OF_USER_BY_ID,
     listInList,
   };
 };
+//

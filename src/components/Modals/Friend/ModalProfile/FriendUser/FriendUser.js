@@ -23,7 +23,7 @@ function FriendUser(props) {
 
   const relationship = {
     userSend: isLogin.user,
-    userRecivice: user,
+    userReceive: user,
   };
 
   const history = useHistory();
@@ -41,7 +41,7 @@ function FriendUser(props) {
       if (result.data !== "") setIdGroupMessage(result.data.groupMessage.id);
     }
     chat();
-  }, []);
+  }, [isLogin, user]);
 
   const chat = () => {
     history.push(`${Config.PAGE_MESSENGER}/${idGroupMessage}`);

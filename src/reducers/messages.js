@@ -8,6 +8,7 @@ const initialState = {
   name: null,
   group: null,
   icon: "",
+  image: "",
 };
 const myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,8 +24,12 @@ const myReducer = (state = initialState, action) => {
         typeof action.group !== "undefined"
       ) {
         state.color = action.data[0].colorChat;
-        const { name } = process.dataUsersChat(action.data, action.idUser);
+        const { name, image } = process.dataUsersChat(
+          action.data,
+          action.idUser
+        );
         state.name = name;
+        state.image = image;
         state.group = action.group;
         state.icon = action.group.iconChat;
       }
