@@ -5,7 +5,7 @@ import * as modalsAction from "../../../actions/modals/index";
 
 function FeelMessage(props) {
   //
-  const { postion, data, item } = props;
+  const { postion, data, item, userStateMessage } = props;
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,14 @@ function FeelMessage(props) {
           <i className="far fa-smile text-xm"></i>
         </li>
         <li
-          onClick={() => dispatch(modalsAction.openModalWarningMessage(item))}
+          onClick={() =>
+            dispatch(
+              modalsAction.openModalWarningMessage({
+                messageCurrent: item,
+                userStateMessage: userStateMessage,
+              })
+            )
+          }
           className="px-1.5 rounded-full hover:bg-gray-300 dark:hover:bg-dark-third"
         >
           <i className="far fa-trash-alt text-xm"></i>

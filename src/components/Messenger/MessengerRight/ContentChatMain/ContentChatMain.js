@@ -52,23 +52,56 @@ function ContentChatMain(props) {
   };
   const showAllMessages = item.map((ele, index) => {
     const main = ele.content !== null ? JSON.parse(ele.content) : "";
-    switch (ele.typeMessage) {
-      case "1":
-        return showChild(main, ele.typeGroupMessage, user, index, ele);
-      case "2":
-        return isLogin.user.id === ele.idUser ? (
-          <Fragment key={index}>
-            <TimeChat time={ele.dateCreated} key={index + "jdkhsaj"} />
-            <ChatRight item={ele} key={index} index={index} />
-          </Fragment>
-        ) : (
-          <Fragment key={index}>
-            <TimeChat time={ele.dateCreated} key={index + "jdkhsaj"} />
-            <ChatLeft item={ele} key={index} index={index} />
-          </Fragment>
-        );
-      default:
-        return "";
+    let stateSend = 0;
+    ele.stateMessageList.forEach((element) => {
+      if (ele.idUser === element.userStateMessage.id) {
+        stateSend = element.state;
+      }
+    });
+    let stateView = 0;
+    ele.stateMessageList.forEach((element) => {
+      if (element.userStateMessage.id === isLogin.user.id) {
+        stateView = element.state;
+      }
+    });
+    if (
+      (stateSend === 2 && stateView === 0) ||
+      (stateSend !== 2 && stateView !== 2) ||
+      (stateSend === 2 && stateView === 1)
+    ) {
+      let userStateMessage = ele.stateMessageList.find(
+        (ele__) => isLogin.user.id === ele__.userStateMessage.id
+      );
+      switch (ele.typeMessage) {
+        case "1":
+          return showChild(main, ele.typeGroupMessage, user, index, ele);
+        case "2":
+          return isLogin.user.id === ele.idUser ? (
+            <Fragment key={index}>
+              <TimeChat time={ele.dateCreated} key={index + "jdkhsaj"} />
+              <ChatRight
+                item={ele}
+                key={index}
+                index={index}
+                state={stateSend === 1 ? 1 : stateView}
+                userStateMessage={userStateMessage}
+              />
+            </Fragment>
+          ) : (
+            <Fragment key={index}>
+              <TimeChat time={ele.dateCreated} key={index + "jdkhsaj"} />
+              <ChatLeft
+                item={ele}
+                key={index}
+                index={index}
+                state={stateSend === 1 ? 1 : stateView}
+                userStateMessage={userStateMessage}
+              />
+            </Fragment>
+          );
+        default:
+          return "";
+      }
     }
   });
 

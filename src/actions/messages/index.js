@@ -2,7 +2,7 @@ import * as Types from "../../constants/ActionTypes";
 import api from "../../api/api";
 import * as actions from "../../actions/index";
 import * as modalsAction from "../../actions/modals/index";
-// import * as process from "../../functions/process";
+import * as process from "../../functions/process";
 //
 export const addMessageRequest = (data) => {
   const content = {
@@ -27,8 +27,21 @@ export const addMessageRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      await api("messages", "POST", mess, null);
-
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const message = await api("messages", "POST", mess, null);
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        data.user,
+        data.group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
       );
@@ -73,11 +86,22 @@ export const updateNickNameByUserRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      const allPromises = [
-        await api("updateMessage/nickName", "PUT", data.nickName, null),
-        await api("messages", "POST", mess, null),
-      ];
-      await Promise.all(allPromises);
+      await api("updateMessage/nickName", "PUT", data.nickName, null);
+      const message = await api("messages", "POST", mess, null);
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        data.data.userMain,
+        data.data.group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       //
       if (
         data.data.group.typeGroupMessage === 0 &&
@@ -181,16 +205,26 @@ export const deleteUserOutGroupRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      const allPromises = [
-        await api(
-          `deleteMessages/${data.group.id}/${data.userDelete.idUser}`,
-          "DELETE",
-          null,
-          null
-        ),
-        await api("messages", "POST", mess, null),
-      ];
-      await Promise.all(allPromises);
+      await api(
+        `deleteMessages/${data.group.id}/${data.userDelete.idUser}`,
+        "DELETE",
+        null,
+        null
+      );
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const message = await api("messages", "POST", mess, null);
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        data.group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       //
       dispatch(modalsAction.closeModal());
       dispatch(
@@ -204,18 +238,59 @@ export const deleteUserOutGroupRequest = (data) => {
 //
 export const deleteMessage = (data) => {
   return async (dispatch) => {
+    let userStateMessage = { ...data.userStateMessage };
+    userStateMessage.state = data.typeRemove;
     try {
-      switch (data.type) {
-        case 0:
-          break;
-        case 1:
-          break;
-        default:
-          break;
+      if (data.typeRemove === 1) {
+        console.log(userStateMessage);
+        const members = await api(
+          `stateMessage/${userStateMessage.stateMessage.id}`,
+          "GET",
+          null,
+          null
+        );
+        const allPromises = [];
+        members.data.forEach(async (element) => {
+          const dt = { ...element };
+          dt.state = data.typeRemove;
+          allPromises.push(await api("stateMessage", "PUT", dt, null));
+        });
+        await Promise.all(allPromises);
+      } else {
+        await api("stateMessage", "PUT", userStateMessage, null);
       }
+      dispatch(
+        actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+      );
+      dispatch(modalsAction.closeModal());
     } catch (error) {
       console.log(error);
     }
   };
 };
 //
+export const seenAllMessageByIdMessage = (data) => {
+  return async (dispatch) => {
+    try {
+      const result = await api(
+        `checkViewMessage/${data.group.id}/${data.user.id}`,
+        "PUT",
+        null,
+        null
+      );
+      if (result.data.length !== 0) {
+        await api(
+          `updateViewMessage/${data.group.id}/${data.user.id}`,
+          "PUT",
+          null,
+          null
+        );
+        dispatch(
+          actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};

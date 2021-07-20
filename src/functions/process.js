@@ -230,7 +230,7 @@ export const generalState = (listUser, userMain) => {
   return data;
 };
 
-export const generalStateAndViewMessage = (members, message) => {
+export const generalStateAndViewMessage = (members, message, user, group) => {
   let data = {
     state: [],
     view: [],
@@ -246,6 +246,7 @@ export const generalStateAndViewMessage = (members, message) => {
           userStateMessage: element,
           state: 0,
           stateMessage: message,
+          groupMessageStateMessage: group,
         },
         null
       )
@@ -256,8 +257,9 @@ export const generalStateAndViewMessage = (members, message) => {
         "POST",
         {
           userViewMessage: element,
-          view: 0,
+          view: element.id === user.id ? 2 : 0,
           viewMessage: message,
+          groupMessageViewMessage: group,
         },
         null
       )

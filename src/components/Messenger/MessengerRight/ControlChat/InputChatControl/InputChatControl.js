@@ -39,6 +39,14 @@ function InputChatControl(props) {
   return (
     <div className="three-exten1 w-full relative">
       <ContentEditable
+        onClick={() =>
+          dispatch(
+            messagesAction.seenAllMessageByIdMessage({
+              group: group.current,
+              user: isLogin.user,
+            })
+          )
+        }
         onKeyPress={(event) => {
           var keyCode = event.which || event.keyCode;
           keyCode === 13 && event.preventDefault();

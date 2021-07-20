@@ -91,7 +91,13 @@ const myReducer = (state = initialState, action) => {
     case Types.OPEN_MODAL_WARNING_MESSGAE:
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       state.StateModal = true;
-      state.DataModal = <ModalWarningMessage messageCurrent={action.item} />;
+      console.log(action.item);
+      state.DataModal = (
+        <ModalWarningMessage
+          messageCurrent={action.item.messageCurrent}
+          userStateMessage={action.item.userStateMessage}
+        />
+      );
       return { ...state };
     case Types.OPEN_MODAL_FEEL_MESSAGE:
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");

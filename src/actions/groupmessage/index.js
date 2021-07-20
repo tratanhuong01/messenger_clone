@@ -151,9 +151,23 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
       const allPromises = [
         await api("messages", "POST", messOne, null),
         await api("messages", "POST", messTwo, null),
-        await api("messages", "POST", messThree, null),
       ];
       await Promise.all(allPromises);
+      const message = await api("messages", "POST", messThree, null);
+      const members = await api(
+        `getMemberGroupChat/${group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        groupMessage.user,
+        group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       dispatch(
         contentRightAction.loadListInviteFriend(groupMessage.listInvite)
       );
@@ -217,17 +231,36 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
         typeMessage: -1,
         dateCreated: null,
       });
-      newDataMess.push({
-        id: ++idGet,
-        groupMessage: group,
-        userMesages: groupMessage.user,
-        content: JSON.stringify(content),
-        nickName: null,
-        stateMessage: null,
-        typeMessage: 1,
-        dateCreated: null,
-      });
       await api("messagesGroup", "POST", newDataMess, null);
+      const message = await api(
+        "messages",
+        "POST",
+        {
+          id: ++idGet,
+          groupMessage: group,
+          userMesages: groupMessage.user,
+          content: JSON.stringify(content),
+          nickName: null,
+          stateMessage: null,
+          typeMessage: 1,
+          dateCreated: null,
+        },
+        null
+      );
+      const members = await api(
+        `getMemberGroupChat/${group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        groupMessage.user,
+        group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       dispatch(modalsAction.closeModal());
     } catch (error) {
       console.log(error);
@@ -258,16 +291,27 @@ export const updateColorChatRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      const allPromises = [
-        await api(
-          `updateGroupMessage/colorChat/${data.group.id}/${data.color}`,
-          "GET",
-          null,
-          null
-        ),
-        await api("messages", "POST", mess, null),
-      ];
-      await Promise.all(allPromises);
+      await api(
+        `updateGroupMessage/colorChat/${data.group.id}/${data.color}`,
+        "GET",
+        null,
+        null
+      );
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const message = await api("messages", "POST", mess, null);
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        data.user,
+        data.group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       //
       dispatch(updateColorChat("#" + data.color));
       dispatch(modalsAction.closeModal());
@@ -310,16 +354,27 @@ export const updateNameGroupMessageRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      const allPromises = [
-        await api(
-          `updateGroupMessage/nameGroupMessage/${data.id}/${data.name}`,
-          "GET",
-          null,
-          null
-        ),
-        await api("messages", "POST", mess, null),
-      ];
-      await Promise.all(allPromises);
+      await api(
+        `updateGroupMessage/nameGroupMessage/${data.id}/${data.name}`,
+        "GET",
+        null,
+        null
+      );
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const message = await api("messages", "POST", mess, null);
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        data.user,
+        data.group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       dispatch(updateNameGroupMessage(data.name));
       dispatch(modalsAction.closeModal());
       dispatch(
@@ -361,12 +416,22 @@ export const updateIonChatMessageRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      const allPromises = [
-        await api("updateGroupMessage/iconChat", "PUT", data.data, null),
-        await api("messages", "POST", mess, null),
-      ];
-      await Promise.all(allPromises);
-      //
+      await api("updateGroupMessage/iconChat", "PUT", data.data, null);
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
+      const message = await api("messages", "POST", mess, null);
+      const { view, state } = process.generalStateAndViewMessage(
+        members.data,
+        message.data,
+        data.user,
+        data.group
+      );
+      await Promise.all(view);
+      await Promise.all(state);
       dispatch(updateIconChatMessage(data.data.icon));
       dispatch(modalsAction.closeModal());
       dispatch(
@@ -408,12 +473,6 @@ export const updateImageGroupMessageRequest = (data) => {
   };
   return async (dispatch) => {
     try {
-      const members = await api(
-        `getMemberGroupChat/${data.group.id}`,
-        "GET",
-        null,
-        null
-      );
       await api(
         "updateGroupMessage/imageGroup",
         "PUT",
@@ -423,10 +482,18 @@ export const updateImageGroupMessageRequest = (data) => {
         },
         null
       );
+      const members = await api(
+        `getMemberGroupChat/${data.group.id}`,
+        "GET",
+        null,
+        null
+      );
       const message = await api("messages", "POST", mess, null);
       const { view, state } = process.generalStateAndViewMessage(
         members.data,
-        message.data
+        message.data,
+        data.user,
+        data.group
       );
       await Promise.all(view);
       await Promise.all(state);

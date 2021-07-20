@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
 import * as modalsAction from "../../../../actions/modals/index";
+import * as messagesAction from "../../../../actions/messages/index";
 
 function ModalWarningMessage(props) {
   //
@@ -9,15 +10,23 @@ function ModalWarningMessage(props) {
 
   const [typeRemove, setTypeRemove] = useState(-1);
 
-  const { messageCurrent } = props;
+  const { messageCurrent, userStateMessage } = props;
 
   const states = useSelector((state) => {
     return {
       isLogin: state.isLogin,
+      messages: state.messages,
     };
   });
 
-  const { isLogin } = states;
+  const { isLogin, messages } = states;
+
+  const data = {
+    userStateMessage: userStateMessage,
+    user: isLogin.user,
+    group: messages.group,
+    typeRemove,
+  };
 
   return (
     <div
@@ -39,7 +48,7 @@ function ModalWarningMessage(props) {
             <div className="w-full p-6 pb-2 inline-block ">
               <input
                 onChange={() => {
-                  setTypeRemove(0);
+                  setTypeRemove(1);
                 }}
                 type="radio"
                 className="text-4xl pb-1"
@@ -64,7 +73,7 @@ function ModalWarningMessage(props) {
           <div className="w-full p-6 pb-2 inline-block ">
             <input
               onChange={() => {
-                setTypeRemove(1);
+                setTypeRemove(2);
               }}
               type="radio"
               className="text-4xl pb-1"
@@ -91,6 +100,7 @@ function ModalWarningMessage(props) {
           Hủy
         </button>
         <button
+          onClick={() => dispatch(messagesAction.deleteMessage(data))}
           type="button"
           className={`cursor-pointer w-1/4  border-none 
           font-bold text-white rounded-lg p-2 mx-2 ${
