@@ -17,10 +17,11 @@ function ModalCreateGroup(props) {
   const states = useSelector((state) => {
     return {
       isLogin: state.isLogin,
+      socket: state.socket,
     };
   });
 
-  const { isLogin } = states;
+  const { isLogin, socket } = states;
 
   const [nameGroup, setNameGroup] = useState(null);
   const [colorGroup, setColorGroup] = useState("");
@@ -54,13 +55,15 @@ function ModalCreateGroup(props) {
     setStatusChoosed("Đã chọn");
   };
 
-  const groupMessage = {
+  let groupMessage = {
     groupMessage: {
       nameGroup: nameGroup === "" ? null : nameGroup,
       colorChat: colorGroup,
     },
     user: isLogin.user,
     users: memberChoose,
+    socket: socket,
+    members: [],
   };
 
   const showAllFriends = userCurrent.map((item, index) => {
@@ -103,6 +106,14 @@ function ModalCreateGroup(props) {
   };
 
   const history = useHistory();
+
+  const generalAgainUser = () => {
+    let users = [];
+    memberChoose.forEach((element) => {
+      users.push(element.userRelationshipUser);
+    });
+    return users;
+  };
 
   return (
     <div
@@ -158,8 +169,10 @@ function ModalCreateGroup(props) {
             <ButtonCancel />
             <ButtonSave
               onClick={async () => {
+                let dataNew = { ...groupMessage };
+                dataNew.members = generalAgainUser();
                 await dispatch(
-                  groupMessagesAction.addGroupMessageRequestGroup(groupMessage)
+                  groupMessagesAction.addGroupMessageRequestGroup(dataNew)
                 );
                 history.push(`${Config.PAGE_MESSENGER}`);
               }}

@@ -4,6 +4,7 @@ import * as contentRightAction from "../contentRight/index";
 import * as modalsAction from "../modals/index";
 import * as actions from "../index";
 import * as process from "../../functions/process";
+import * as messagesAction from "../messages/index";
 //
 export const addGroupMessageWaitRequest = (groupMessage) => {
   const data = {
@@ -171,6 +172,13 @@ export const addGroupMessageRequestSingle = (groupMessage) => {
       dispatch(
         contentRightAction.loadListInviteFriend(groupMessage.listInvite)
       );
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: groupMessage.socket,
+          members: groupMessage.members,
+          type: 1,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -262,6 +270,13 @@ export const addGroupMessageRequestGroup = (groupMessage) => {
       await Promise.all(view);
       await Promise.all(state);
       dispatch(modalsAction.closeModal());
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: groupMessage.socket,
+          members: groupMessage.members,
+          type: 1,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -281,8 +296,8 @@ export const updateColorChatRequest = (data) => {
   };
   const mess = {
     id: null,
-    groupMessage: data.group,
-    userMesages: data.user,
+    groupMessage: data.data.group,
+    userMesages: data.data.user,
     content: JSON.stringify(content),
     nickName: null,
     stateMessage: null,
@@ -292,13 +307,13 @@ export const updateColorChatRequest = (data) => {
   return async (dispatch) => {
     try {
       await api(
-        `updateGroupMessage/colorChat/${data.group.id}/${data.color}`,
+        `updateGroupMessage/colorChat/${data.data.group.id}/${data.data.color}`,
         "GET",
         null,
         null
       );
       const members = await api(
-        `getMemberGroupChat/${data.group.id}`,
+        `getMemberGroupChat/${data.data.group.id}`,
         "GET",
         null,
         null
@@ -307,16 +322,26 @@ export const updateColorChatRequest = (data) => {
       const { view, state } = process.generalStateAndViewMessage(
         members.data,
         message.data,
-        data.user,
-        data.group
+        data.data.user,
+        data.data.group
       );
       await Promise.all(view);
       await Promise.all(state);
       //
-      dispatch(updateColorChat("#" + data.color));
+      dispatch(updateColorChat("#" + data.data.color));
       dispatch(modalsAction.closeModal());
       dispatch(
-        actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+        actions.loadAllMessageOfUserByIdRequest(
+          data.data.user.id,
+          data.data.group.id
+        )
+      );
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
       );
     } catch (error) {
       console.log(error);
@@ -380,6 +405,13 @@ export const updateNameGroupMessageRequest = (data) => {
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
       );
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -436,6 +468,13 @@ export const updateIonChatMessageRequest = (data) => {
       dispatch(modalsAction.closeModal());
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+      );
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
       );
     } catch (error) {
       console.log(error);
@@ -500,6 +539,13 @@ export const updateImageGroupMessageRequest = (data) => {
       dispatch(updateImageGroupMessage(data.name));
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+      );
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
       );
     } catch (error) {
       console.log(error);

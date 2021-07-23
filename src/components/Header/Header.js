@@ -19,6 +19,8 @@ function Header(props) {
 
   const dispatch = useDispatch();
 
+  const { route } = props;
+
   return (
     <div className="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second">
       <div className="w-full flex px-2 my-1">
@@ -159,20 +161,22 @@ function Header(props) {
                  rounded-full flex items-center justify-center text-xl"
                 ></span>
               </div>
-              <div className="w-12 h-12 mr-1 flex justify-center relative">
-                <span
-                  className="bx bxl-messenger cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
-                 rounded-full flex items-center justify-center text-xl"
-                ></span>
-                <div className="absolute -top-1 -right-1">
+              {route !== "messenger" && (
+                <div className="w-12 h-12 mr-1 flex justify-center relative">
                   <span
-                    className="text-white bg-red-600 font-semibold rounded-full text-xs h-5 w-5 flex 
+                    className="bx bxl-messenger cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
+                 rounded-full flex items-center justify-center text-xl"
+                  ></span>
+                  <div className="absolute -top-1 -right-1">
+                    <span
+                      className="text-white bg-red-600 font-semibold rounded-full text-xs h-5 w-5 flex 
                     justify-center items-center"
-                  >
-                    2
-                  </span>
+                    >
+                      2
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="w-12 h-12 mr-1 flex justify-center relative">
                 <span
                   className="far fa-bell cursor-pointer h-10 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 

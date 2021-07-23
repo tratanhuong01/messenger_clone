@@ -7,6 +7,7 @@ import contentRight from "./contentRight";
 import users from "./users";
 import friends from "./friends";
 import messages from "./messages";
+import socket from "./socket";
 
 const myReducer = combineReducers({
   modal,
@@ -17,6 +18,7 @@ const myReducer = combineReducers({
   users,
   friends,
   messages,
+  socket,
 });
 
 export default myReducer;

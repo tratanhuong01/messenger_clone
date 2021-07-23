@@ -9,7 +9,7 @@ const findUserChating = (item, idUser) => {
   return newData;
 };
 
-const checkMemberChat = (item) => {
+export const checkMemberChat = (item) => {
   let newUserChat = [];
   for (let index = 0; index < item.length; index++) {
     const element = item[index];

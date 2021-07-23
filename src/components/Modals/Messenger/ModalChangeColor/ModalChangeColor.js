@@ -12,10 +12,11 @@ function ModalChangeColor(props) {
     return {
       messages: state.messages,
       isLogin: state.isLogin,
+      socket: state.socket,
     };
   });
 
-  const { messages, isLogin } = states;
+  const { messages, isLogin, socket } = states;
 
   const dispatch = useDispatch();
 
@@ -36,7 +37,13 @@ function ModalChangeColor(props) {
       user: isLogin.user,
     };
     setDisabled(true);
-    dispatch(groupMessagesAcion.updateColorChatRequest(data));
+    dispatch(
+      groupMessagesAcion.updateColorChatRequest({
+        data: data,
+        socket: socket,
+        members: messages.members,
+      })
+    );
   };
 
   return (

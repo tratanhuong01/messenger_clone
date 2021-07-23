@@ -1,7 +1,5 @@
 import React from "react";
 
-LoadingRight.propTypes = {};
-
 function LoadingRight(props) {
   return (
     <div className="w-full h-full relative bg-white dark:bg-dark-third">

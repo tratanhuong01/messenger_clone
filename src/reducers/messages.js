@@ -7,8 +7,12 @@ const initialState = {
   color: null,
   name: null,
   group: null,
+  idGroup: null,
   icon: "",
   image: "",
+  members: [],
+  typeGroup: 0,
+  typing: false,
 };
 const myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,6 +36,9 @@ const myReducer = (state = initialState, action) => {
         state.image = image;
         state.group = action.group;
         state.icon = action.group.iconChat;
+        state.typeGroup = action.group.typeGroupMessage;
+        state.members = action.members;
+        state.idGroup = action.group.id;
       }
       return { ...state };
     //
@@ -42,10 +49,14 @@ const myReducer = (state = initialState, action) => {
     case Types.UPDATE_NAME_GROUP_MESSAGE:
       state.name = action.name;
       return { ...state };
-
+    //
     case Types.UPDATE_ICON_CHAT_MESSAGE:
       state.icon = action.icon;
       return { ...state };
+    //
+    case Types.SET_TYPING_MESSAGE:
+      state.typing = action.typing;
+    //
     default:
       return state;
   }

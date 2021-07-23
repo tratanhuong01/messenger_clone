@@ -12,29 +12,34 @@ function ItemSticker(props) {
     return {
       isLogin: state.isLogin,
       messages: state.messages,
+      socket: state.socket,
     };
   });
 
-  const { isLogin, messages } = states;
+  const { isLogin, messages, socket } = states;
 
   const data = `stickerAnimation:${sticker.col}:${sticker.row}`;
 
   const [animation, setAnimation] = useState("");
 
+  const handleSticker = async () => {
+    await dispatch(
+      messagesAction.addMessageRequest({
+        content: "",
+        group: messages.group,
+        user: isLogin.user,
+        type: 2,
+        child: sticker,
+        socket: socket,
+        members: messages.members,
+      })
+    );
+    setShow(false);
+  };
+
   return (
     <div
-      onClick={() => {
-        dispatch(
-          messagesAction.addMessageRequest({
-            content: "",
-            group: messages.group,
-            user: isLogin.user,
-            type: 2,
-            child: sticker,
-          })
-        );
-        setShow(false);
-      }}
+      onClick={handleSticker}
       onMouseMove={() => {
         setAnimation(data);
       }}

@@ -44,7 +44,16 @@ function ItemChatLeft(props) {
     ) {
       return item.findIndex((dt) => dt.idMessage === ele.idMessage);
     }
+    return null;
   });
+
+  let userChatMain = [...process.checkMemberChat(item)];
+
+  let indexUserLogin = userChatMain.findIndex(
+    (dt) => dt.idUser === isLogin.user.id
+  );
+
+  userChatMain.splice(indexUserLogin, 1);
 
   let index =
     itemNew === null
@@ -165,12 +174,14 @@ function ItemChatLeft(props) {
         <div
           onClick={() => {
             history.push(`${Config.PAGE_MESSENGER}/${item[0].idGroupMessage}`);
-            dispatch(
-              messagesActions.seenAllMessageByIdMessage({
-                group: userViewMessage.groupMessageViewMessage,
-                user: isLogin.user,
-              })
-            );
+            if (typeof userViewMessage !== "undefined")
+              dispatch(
+                messagesActions.seenAllMessageByIdMessage({
+                  group: userViewMessage.groupMessageViewMessage,
+                  user: isLogin.user,
+                  members: userChatMain,
+                })
+              );
           }}
           className={`w-full mess-person user__chat__child cursor-pointer flex relative py-2 px-1 
           ${
@@ -219,8 +230,8 @@ function ItemChatLeft(props) {
                   typeof userViewMessage !== "undefined"
                     ? userViewMessage.view !== 2
                       ? "text-blue-500"
-                      : "dark:text-white text-gray-500"
-                    : ""
+                      : " dark:text-gray-300 text-gray-500 "
+                    : " dark:text-gray-300 text-gray-500 "
                 } font-semibold`}
               >
                 <div

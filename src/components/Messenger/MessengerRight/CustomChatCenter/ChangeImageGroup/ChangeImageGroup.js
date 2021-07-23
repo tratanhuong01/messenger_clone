@@ -11,10 +11,11 @@ function ChangeImageGroup(props) {
     return {
       messages: state.messages,
       isLogin: state.isLogin,
+      socket: state.socket,
     };
   });
 
-  const { messages, isLogin } = states;
+  const { messages, isLogin, socket } = states;
 
   const onChangeFile = async (event) => {
     if (event.target.files.length !== 0) {
@@ -28,6 +29,8 @@ function ChangeImageGroup(props) {
           group: messages.group,
           user: isLogin.user,
           url: result.data.url,
+          members: messages.members,
+          socket: socket,
         })
       );
     }

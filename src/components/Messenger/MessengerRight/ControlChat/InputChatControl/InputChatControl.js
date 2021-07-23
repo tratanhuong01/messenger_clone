@@ -1,11 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ContentEditable from "react-contenteditable";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as messagesAction from "../../../../../actions/messages/index";
 
 function InputChatControl(props) {
   //
   const dispatch = useDispatch();
+
+  const states = useSelector((state) => {
+    return {
+      socket: state.socket,
+    };
+  });
+
+  const { socket } = states;
 
   const { isLogin, messages, imagePreview } = props;
 
@@ -19,11 +27,10 @@ function InputChatControl(props) {
     text.current = "";
     group.current = messages.group;
     images.current = imagePreview;
-  }, [messages, imagePreview]);
+  }, [imagePreview, messages.idGroup, messages.typing]);
 
   const enter = (event) => {
     if (event.keyCode === 13) {
-      console.log("Data : ", images);
       dispatch(
         messagesAction.addMessageRequest({
           content: text.current,
@@ -31,8 +38,11 @@ function InputChatControl(props) {
           user: isLogin.user,
           type: 0,
           child: [],
+          socket: socket,
+          members: messages.members,
         })
       );
+      dispatch(messagesAction.setTypingMessage(!messages.typing));
     }
   };
 
@@ -44,6 +54,8 @@ function InputChatControl(props) {
             messagesAction.seenAllMessageByIdMessage({
               group: group.current,
               user: isLogin.user,
+              socket: socket,
+              members: messages.members,
             })
           )
         }

@@ -33,11 +33,18 @@ function MessengerRight(props) {
     async function fetch() {
       try {
         const result = await api(`groupMessage/${slug}`, "GET", null, null);
+        const members = await api(
+          `getMemberGroupChat/${slug}/${isLogin.user.id}`,
+          "GET",
+          null,
+          null
+        );
         dispatch(
           messagesAction.getAllMessageByGroup(
             messages.list[index],
             isLogin.user.id,
-            result.data
+            result.data,
+            members.data
           )
         );
         setStateApi(true);

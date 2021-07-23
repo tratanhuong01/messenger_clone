@@ -94,3 +94,8 @@ export const openModalFeelMessage = (data) => {
   };
 };
 //
+export const openModalCall = () => {
+  return {
+    type: Types.OPEN_MODAL_CALL,
+  };
+};

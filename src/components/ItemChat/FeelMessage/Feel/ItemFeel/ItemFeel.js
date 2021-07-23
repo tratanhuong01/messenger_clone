@@ -8,10 +8,11 @@ function ItemFeel(props) {
     return {
       isLogin: state.isLogin,
       messages: state.messages,
+      socket: state.socket,
     };
   });
 
-  const { isLogin, messages } = states;
+  const { isLogin, messages, socket } = states;
 
   const { item, setShow, message } = props;
 
@@ -23,6 +24,8 @@ function ItemFeel(props) {
     icon: item.icon,
     type: item.type,
     message: message,
+    socket: socket,
+    members: messages.members,
   };
 
   return (

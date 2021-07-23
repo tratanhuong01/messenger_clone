@@ -16,16 +16,19 @@ function ModalWarningMessage(props) {
     return {
       isLogin: state.isLogin,
       messages: state.messages,
+      socket: state.socket,
     };
   });
 
-  const { isLogin, messages } = states;
+  const { isLogin, messages, socket } = states;
 
   const data = {
     userStateMessage: userStateMessage,
     user: isLogin.user,
     group: messages.group,
     typeRemove,
+    socket: socket,
+    members: messages.members,
   };
 
   return (

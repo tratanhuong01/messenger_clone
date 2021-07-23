@@ -45,18 +45,26 @@ export const addMessageRequest = (data) => {
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
       );
+      dispatch(
+        sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
   };
 };
 //
-export const getAllMessageByGroup = (data, idUser, group) => {
+export const getAllMessageByGroup = (data, idUser, group, members) => {
   return {
     type: Types.GET_ALL_MESSAGES_BY_GROUP,
     data,
     idUser,
     group,
+    members,
   };
 };
 //
@@ -89,7 +97,7 @@ export const updateNickNameByUserRequest = (data) => {
       await api("updateMessage/nickName", "PUT", data.nickName, null);
       const message = await api("messages", "POST", mess, null);
       const members = await api(
-        `getMemberGroupChat/${data.group.id}`,
+        `getMemberGroupChat/${data.data.group.id}`,
         "GET",
         null,
         null
@@ -114,6 +122,13 @@ export const updateNickNameByUserRequest = (data) => {
           data.data.userMain.id,
           data.data.group.id
         )
+      );
+      dispatch(
+        sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
       );
     } catch (error) {
       console.log(error);
@@ -242,7 +257,6 @@ export const deleteMessage = (data) => {
     userStateMessage.state = data.typeRemove;
     try {
       if (data.typeRemove === 1) {
-        console.log(userStateMessage);
         const members = await api(
           `stateMessage/${userStateMessage.stateMessage.id}`,
           "GET",
@@ -261,6 +275,13 @@ export const deleteMessage = (data) => {
       }
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+      );
+      dispatch(
+        sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 0,
+        })
       );
       dispatch(modalsAction.closeModal());
     } catch (error) {
@@ -288,9 +309,34 @@ export const seenAllMessageByIdMessage = (data) => {
         dispatch(
           actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
         );
+        dispatch(
+          sendEventMessage({
+            socket: data.socket,
+            members: data.members,
+            type: 0,
+          })
+        );
       }
     } catch (error) {
       console.error(error);
     }
+  };
+};
+
+export const sendEventMessage = (data) => {
+  return (dispatch) => {
+    data.members.forEach((element) => {
+      data.socket.emit("chatMessage", {
+        id: element.id,
+        type: data.type,
+      });
+    });
+  };
+};
+
+export const setTypingMessage = (typing) => {
+  return {
+    type: Types.SET_TYPING_MESSAGE,
+    typing,
   };
 };

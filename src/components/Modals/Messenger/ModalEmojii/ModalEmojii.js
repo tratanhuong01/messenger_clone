@@ -11,12 +11,13 @@ function ModalEmojii(props) {
     return {
       isLogin: state.isLogin,
       messages: state.messages,
+      socket: state.socket,
     };
   });
 
   const dispatch = useDispatch();
 
-  const { isLogin, messages } = states;
+  const { isLogin, messages, socket } = states;
 
   const listCategoryFun = () => {
     let listCategory = [];
@@ -75,6 +76,8 @@ function ModalEmojii(props) {
     },
     group: messages.group,
     user: isLogin.user,
+    socket: socket,
+    members: messages.members,
   };
 
   const showByCategoryAll = getEmojiiByCategory(categoryActive).map(

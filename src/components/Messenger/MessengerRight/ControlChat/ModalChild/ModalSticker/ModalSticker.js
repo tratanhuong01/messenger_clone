@@ -12,7 +12,7 @@ function ModalSticker(props) {
 
   return (
     <div
-      className="z-40 bg-white my-2 absolute w-72 dark:border-dark-second shadow-lg border-gray-300 p-1 border-2 border-solid rounded-lg dark:bg-dark-second"
+      className="z-50 bg-white my-2 absolute w-72 dark:border-dark-second shadow-lg border-gray-300 p-1 border-2 border-solid rounded-lg dark:bg-dark-second"
       style={{ bottom: "100%", maxHeight: "365px", height: "360px" }}
     >
       <ul className="w-full flex">

@@ -11,6 +11,7 @@ import ModalAddMemberGroup from "../components/Modals/Messenger/ModalAddMemberGr
 import ModalEmojii from "../components/Modals/Messenger/ModalEmojii/ModalEmojii";
 import ModalWarningMessage from "../components/Modals/Messenger/ModalWarningMessage/ModalWarningMessage";
 import ModalFeel from "../components/Modals/Messenger/ModalFeel/ModalFeel";
+import ModalCall from "../components/Modals/General/ModalCall/ModalCall";
 
 const initialState = {
   StateModal: false,
@@ -103,6 +104,11 @@ const myReducer = (state = initialState, action) => {
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
       state.StateModal = true;
       state.DataModal = <ModalFeel data={action.data} />;
+      return { ...state };
+    case Types.OPEN_MODAL_CALL:
+      document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
+      state.StateModal = true;
+      state.DataModal = <ModalCall />;
       return { ...state };
     default:
       return state;

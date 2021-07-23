@@ -46,7 +46,7 @@ function ChatRight(props) {
   };
 
   return (
-    <div className="mess-user chat-rights z-0 w-full py-1 flex relative justify-end z-50">
+    <div className="mess-user chat-rights z-0 w-full py-1 flex relative justify-end">
       <FeelMessage
         item={item}
         data="right"

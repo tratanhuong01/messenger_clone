@@ -1,19 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ItemGroupChat from "../../../ItemChat/ItemGroupChat/ItemGroupChat";
 import ItemSingleChat from "../../../ItemChat/ItemSingleChat/ItemSingleChat";
+import * as messagesAction from "../../../../actions/messages/index";
 
 function ContentChatTop(props) {
   //
   const states = useSelector((state) => {
     return {
       messages: state.messages,
+      socket: state.socket,
     };
   });
 
-  const { messages } = states;
+  const { messages, socket } = states;
 
   const { typeGroupMessage, user, setShowRight, showRight, image } = props;
+
+  const dispatch = useDispatch();
 
   const y = window.top.outerHeight / 2 + window.top.screenY - 720 / 2;
   const x = window.top.outerWidth / 2 + window.top.screenX - 1200 / 2;
@@ -59,14 +63,15 @@ function ContentChatTop(props) {
       <div className="w-1/3 ml-auto">
         <ul className="ml-auto flex float-right">
           <li
-            onClick={() =>
-              window.open(
-                `../call/audioCall/${messages.group.id}`,
-                "name",
-                `toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=1200,height=720,
-                top=${y},left=${x},title="Cuộc gọi âm thanh - Messenger"`
-              )
-            }
+            onClick={() => {
+              dispatch(
+                messagesAction.sendEventMessage({
+                  members: messages.members,
+                  socket: socket,
+                  type: 2,
+                })
+              );
+            }}
             className="py-2 px-1 mx-1 rounded-full 
               dark:text-white cursor-pointer"
           >

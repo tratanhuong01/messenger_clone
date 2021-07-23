@@ -24,11 +24,18 @@ export const loadAllMessageOfUserByIdRequest = (id, slug) => {
           resultMain.data !== "" &&
           index !== -1
         ) {
+          const members = await api(
+            `getMemberGroupChat/${slug}/${id}`,
+            "GET",
+            null,
+            null
+          );
           dispatch(
             messagesAction.getAllMessageByGroup(
               resList.data[index],
               id,
-              resultMain.data
+              resultMain.data,
+              members.data
             )
           );
         }

@@ -25,6 +25,7 @@ function ContentChatMain(props) {
     document.getElementById("content__chat").scrollTop =
       document.getElementById("content__chat").scrollHeight;
   });
+
   const showChild = (item, typeGroupMessage, user, index, itemMain) => {
     switch (item.type) {
       case -1:

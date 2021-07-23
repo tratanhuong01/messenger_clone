@@ -1,5 +1,6 @@
 import api from "../../api/api";
 import * as actions from "../../actions/index";
+import * as messagesAction from "../../actions/messages/index";
 //
 export const addFeelRequest = (data) => {
   let feel = {
@@ -34,6 +35,13 @@ export const addFeelRequest = (data) => {
       }
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.userFeel.id, data.group.id)
+      );
+      dispatch(
+        messagesAction.sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 0,
+        })
       );
     } catch (error) {
       console.log(error);

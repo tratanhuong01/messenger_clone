@@ -10,10 +10,11 @@ function ItemNickName(props) {
     return {
       messages: state.messages,
       isLogin: state.isLogin,
+      socket: state.socket,
     };
   });
 
-  const { messages, isLogin } = states;
+  const { messages, isLogin, socket } = states;
 
   const [show, setShow] = useState(false);
 
@@ -32,6 +33,8 @@ function ItemNickName(props) {
       idUser: item.idUser,
       nameNickName: nickName,
     },
+    socket: socket,
+    members: messages.members,
   };
 
   const dispatch = useDispatch();

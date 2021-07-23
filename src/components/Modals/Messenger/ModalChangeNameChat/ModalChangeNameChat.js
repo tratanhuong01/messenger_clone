@@ -12,10 +12,11 @@ function ModalChangeNameChat(props) {
     return {
       messages: state.messages,
       isLogin: state.isLogin,
+      socket: state.socket,
     };
   });
 
-  const { messages, isLogin } = states;
+  const { messages, isLogin, socket } = states;
 
   const [disabled, setDisabled] = useState(
     messages.group.nameGroupMessage === null ? true : false
@@ -37,6 +38,8 @@ function ModalChangeNameChat(props) {
     id: messages.group.id,
     group: messages.group,
     user: isLogin.user,
+    socket: socket,
+    members: messages.members,
   };
 
   return (

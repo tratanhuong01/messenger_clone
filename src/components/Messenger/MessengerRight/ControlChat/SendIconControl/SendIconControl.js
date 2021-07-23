@@ -9,10 +9,11 @@ function SendIconControl(props) {
     return {
       messages: state.messages,
       isLogin: state.isLogin,
+      socket: state.socket,
     };
   });
 
-  const { messages, isLogin } = states;
+  const { messages, isLogin, socket } = states;
 
   const group = useRef(messages.group);
 
@@ -26,6 +27,8 @@ function SendIconControl(props) {
         user: isLogin.user,
         type: 0,
         child: ["icon"],
+        socket: socket,
+        members: messages.members,
       })
     );
   };
