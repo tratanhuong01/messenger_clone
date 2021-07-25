@@ -103,8 +103,7 @@ export const timeGeneral = (time) => {
   let startDate = new Date(time);
   let endDate = new Date();
   let __sec__ = (endDate.getTime() - startDate.getTime()) / 1000;
-  let __min__ = __sec__ / 60;
-  // let __hour__ = __sec__ / 3600;
+  let __hour__ = __sec__ / 3600;
   let result = time.replace(".0", "");
   let array = result.split(" ");
   let year = array[0].split("-")[0];
@@ -115,11 +114,7 @@ export const timeGeneral = (time) => {
   let minute = array[1].split(":")[1];
   let hour = array[1].split(":")[0];
 
-  if (__sec__ <= 60) {
-    result = `${hour} : ${minute} : ${second}`;
-  } else if (__min__ < 60) {
-    result = `${hour} : ${minute} : ${second}`;
-  } else if (hour < 24) {
+  if (__hour__ < 24) {
     result = `${hour} : ${minute} : ${second}`;
   } else {
     result = `${year} , ${day} tháng ${month} , ${hour} : ${minute} : ${second}`;

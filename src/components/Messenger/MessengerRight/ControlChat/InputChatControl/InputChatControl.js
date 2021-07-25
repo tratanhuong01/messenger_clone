@@ -15,7 +15,7 @@ function InputChatControl(props) {
 
   const { socket } = states;
 
-  const { isLogin, messages, imagePreview } = props;
+  const { isLogin, messages, imagePreview, setImagePreview } = props;
 
   const text = useRef("");
 
@@ -40,9 +40,11 @@ function InputChatControl(props) {
           child: [],
           socket: socket,
           members: messages.members,
+          fileImages: images.current,
         })
       );
       dispatch(messagesAction.setTypingMessage(!messages.typing));
+      setImagePreview([]);
     }
   };
 

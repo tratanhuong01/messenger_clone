@@ -50,7 +50,7 @@ function ChatRight(props) {
             />
           );
         case 1:
-          return <ChatImage key={index} />;
+          return <ChatImage key={index} margin={"ml-auto"} item={item} />;
         case 2:
           return (
             <ChatSticker

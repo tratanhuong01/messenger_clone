@@ -42,7 +42,7 @@ function ChatLeft(props) {
             />
           );
         case 1:
-          return <ChatImage margin="" key={index} />;
+          return <ChatImage margin="" key={index} item={item} />;
         case 2:
           return (
             <ChatSticker

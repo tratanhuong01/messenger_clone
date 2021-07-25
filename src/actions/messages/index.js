@@ -33,8 +33,43 @@ export const addMessageRequest = (data) => {
         null,
         null
       );
-      const message = await api("messages", "POST", mess, null);
-      const { view, state } = process.generalStateAndViewMessage(
+      if (typeof data.fileImages !== "undefined")
+        if (data.fileImages.length > 0) {
+          let dataURL = [];
+          let mess_clone = { ...mess };
+          for (let index = 0; index < data.fileImages.length; index++) {
+            const element = data.fileImages[index];
+            let formData = new FormData();
+            formData.append("multipartFile", element);
+            formData.append("publicId", "Messenger/ImageVideoMessage/");
+            let datas = await api(
+              "updateImageSingleChild",
+              "POST",
+              formData,
+              null
+            );
+            dataURL.push({
+              id: index,
+              content: "",
+              src: datas.data.url,
+            });
+          }
+          mess_clone.content = JSON.stringify({
+            data: dataURL,
+            type: 1,
+          });
+          let message = await api("messages", "POST", mess_clone, null);
+          let { view, state } = process.generalStateAndViewMessage(
+            members.data,
+            message.data,
+            data.user,
+            data.group
+          );
+          await Promise.all(view);
+          await Promise.all(state);
+        }
+      let message = await api("messages", "POST", mess, null);
+      let { view, state } = process.generalStateAndViewMessage(
         members.data,
         message.data,
         data.user,

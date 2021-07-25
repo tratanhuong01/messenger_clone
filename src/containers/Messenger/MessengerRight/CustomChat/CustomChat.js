@@ -10,8 +10,9 @@ function CustomChat(props) {
     <div
       className={`${
         showRight ? "hidden" : "w-1/3 hidden xl:block"
-      } pr-2 h-full max-h-full wrapper-content-right shadow-xl 
+      } pr-2 wrapper-content-right shadow-xl 
       overflow-y-auto`}
+      style={{ maxHeight: 695 }}
     >
       <CustomChatTop />
       <ul className="w-full py-2">

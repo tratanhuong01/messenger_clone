@@ -5,7 +5,7 @@ import * as usersAction from "../../../../../actions/users/index";
 
 function ImageAvatar(props) {
   //
-  const { user } = props;
+  const { user, isLogin } = props;
 
   const [stateApiAvatar, setStateApiAvatar] = useState(true);
 
@@ -67,15 +67,17 @@ function ImageAvatar(props) {
         id="avatar__file"
         disabled={!stateApiAvatar}
       />
-      <label
-        htmlFor="avatar__file"
-        className="absolute bottom-0 right-0 h-10 w-10"
-      >
-        <span
-          className="bx bxs-camera dark:text-white z-50 dark:bg-dark-main text-2xl flex 
+      {user.id === isLogin.user.id && (
+        <label
+          htmlFor="avatar__file"
+          className="absolute bottom-0 right-0 h-10 w-10"
+        >
+          <span
+            className="bx bxs-camera dark:text-white z-50 dark:bg-dark-main text-2xl flex 
           rounded-full cursor-pointer bg-gray-200 justify-center items-center h-full w-full"
-        ></span>
-      </label>
+          ></span>
+        </label>
+      )}
     </div>
   );
 }
