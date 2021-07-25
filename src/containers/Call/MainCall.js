@@ -5,14 +5,19 @@ import ItemExtensionCall from "../../components/Call/ExtensionCall/ItemExtension
 import InfoCalling from "../../components/Call/InfoCalling/InfoCalling";
 import NotifyRight from "../../components/Call/NotifyRight/NotifyRight";
 import WebcamView from "../../components/Call/WebcamView/WebcamView";
+// import * as process from "../../functions/process";
 
 function MainCall(props) {
   //
-  const { stateCall, match } = props;
+  const { stateCall, match, members } = props;
 
   return (
     <div className="w-full h-screen relative">
-      <InfoCalling stateCall={stateCall} />
+      <InfoCalling
+        stateCall={stateCall}
+        members={members.members}
+        group={members.group}
+      />
       {stateCall === true ? (
         <CallAgain match={match} />
       ) : (

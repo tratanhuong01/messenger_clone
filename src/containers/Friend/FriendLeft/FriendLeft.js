@@ -28,6 +28,7 @@ function FriendLeft(props) {
       setListFriendsCurrent(friends.listFriends);
     }
     load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isLogin]);
 
   const [listFriendsCurrent, setListFriendsCurrent] = useState(

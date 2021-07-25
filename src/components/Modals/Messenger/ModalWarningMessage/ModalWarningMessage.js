@@ -30,7 +30,7 @@ function ModalWarningMessage(props) {
     socket: socket,
     members: messages.members,
   };
-
+  console.log(messageCurrent);
   return (
     <div
       className="shadow-sm border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0
@@ -46,7 +46,8 @@ function ModalWarningMessage(props) {
         <hr />
       </div>
       <div className="w-full">
-        {messageCurrent.idUser === isLogin.user.id && (
+        {messageCurrent.idUser === isLogin.user.id &&
+        messageCurrent.stateMessageList[0].state !== 1 ? (
           <div className="w-full">
             <div className="w-full p-6 pb-2 inline-block ">
               <input
@@ -70,6 +71,8 @@ function ModalWarningMessage(props) {
               thể báo cáo tin nhắn đó.
             </div>
           </div>
+        ) : (
+          ""
         )}
 
         <div className="w-full">

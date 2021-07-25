@@ -6,12 +6,36 @@ import ChatGif from "../ChatGif/ChatGif";
 import FeelMessage from "../FeelMessage/FeelMessage";
 import NumberFeel from "../NumberFeel/NumberFeel";
 import ChatReCall from "../ChatRecall/ChatReCall";
+import { useSelector } from "react-redux";
 
 function ChatRight(props) {
   //
   const ref = useRef(null);
 
+  const states = useSelector((state) => {
+    return {
+      isLogin: state.isLogin,
+    };
+  });
+
+  const { isLogin } = states;
+
   const { item, index, state, userStateMessage } = props;
+
+  const viewNotIsLogin = item.viewMessageList.filter(
+    (data) => data.userViewMessage.id !== isLogin.user.id && data.view === 2
+  );
+
+  const showUserView = viewNotIsLogin.map((data, index) => {
+    return (
+      <img
+        src={data.userViewMessage.avatar}
+        alt=""
+        className="w-4 h-4 object-cover rounded-full mx-0.5"
+        key={index}
+      />
+    );
+  });
 
   const data = () => {
     if (state === 0) {
@@ -69,16 +93,19 @@ function ChatRight(props) {
         )}
       </div>
       <div className=" mess-user-r2 " style={{ width: "4%" }}>
-        <div className="w-full clear-both hidden">
-          <i className="far fa-check-circle img-mess-right absolute bottom-1.5 text-gray-300"></i>
-        </div>
-      </div>
-      <div className="absolute flex z-0 -bottom-3 right-0">
-        <img
-          src="../images/male/6.jpg"
-          alt=""
-          className="w-4 h-4 object-cover rounded-full mx-0.5"
-        />
+        {viewNotIsLogin.length === 0 ? (
+          <div className="w-full clear-both">
+            <i className="fas fa-check-circle img-mess-right absolute bottom-1.5 text-gray-300"></i>
+          </div>
+        ) : (
+          <div
+            className={`absolute flex z-0 ${
+              showUserView.length > 1 ? "-bottom-5" : "bottom-2.5"
+            } right-0`}
+          >
+            {showUserView}
+          </div>
+        )}
       </div>
     </div>
   );

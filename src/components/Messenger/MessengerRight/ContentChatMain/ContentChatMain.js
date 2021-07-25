@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import TimeChat from "../../../ItemChat/TimeChat/TimeChat";
 import ChatRight from "../../../ItemChat/ChatRight/ChatRight";
 import ChatLeft from "../../../ItemChat/ChatLeft/ChatLeft";
@@ -7,24 +7,42 @@ import FirstSingleChat from "../../../ItemChat/FirstSingleChat/FirstSingleChat";
 import FirstGroupChat from "../../../ItemChat/FirstGroupChat/FirstGroupChat";
 import { useSelector } from "react-redux";
 
-ContentChatMain.propTypes = {};
-
 function ContentChatMain(props) {
   //
   const states = useSelector((state) => {
     return {
       isLogin: state.isLogin,
+      messages: state.messages,
     };
   });
 
-  const { isLogin } = states;
+  const { isLogin, messages } = states;
 
   const { item, user } = props;
+
+  // const limitOffset = (index) => {
+  //   let clone = [...item];
+  //   return clone.slice(index);
+  // };
+
+  // const [index, setIndex] = useState(
+  //   item.length - 15 <= 0 ? 0 : item.length - 15
+  // );
+
+  // const [messsageAll, setMessageAll] = useState(limitOffset(index));
 
   useEffect(() => {
     document.getElementById("content__chat").scrollTop =
       document.getElementById("content__chat").scrollHeight;
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages]);
+
+  useEffect(() => {
+    document
+      .getElementById("content__chat")
+      .addEventListener("scroll", (event) => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showChild = (item, typeGroupMessage, user, index, itemMain) => {
     switch (item.type) {
@@ -51,6 +69,7 @@ function ContentChatMain(props) {
         );
     }
   };
+
   const showAllMessages = item.map((ele, index) => {
     const main = ele.content !== null ? JSON.parse(ele.content) : "";
     let stateSend = 0;
@@ -86,6 +105,7 @@ function ContentChatMain(props) {
                 index={index}
                 state={stateSend === 1 ? 1 : stateView}
                 userStateMessage={userStateMessage}
+                userViewMessage={ele.viewMessageList}
               />
             </Fragment>
           ) : (
@@ -97,6 +117,7 @@ function ContentChatMain(props) {
                 index={index}
                 state={stateSend === 1 ? 1 : stateView}
                 userStateMessage={userStateMessage}
+                userViewMessage={ele.viewMessageList}
               />
             </Fragment>
           );
@@ -104,6 +125,7 @@ function ContentChatMain(props) {
           return "";
       }
     }
+    return "";
   });
 
   return (

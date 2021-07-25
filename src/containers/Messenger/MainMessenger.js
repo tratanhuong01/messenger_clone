@@ -7,7 +7,6 @@ import * as actions from "../../actions/index";
 import EmptyMessage from "../../components/Messenger/MessengerRight/EmptyMessage/EmptyMessage";
 import * as relationshipUsersAction from "../../actions/relationshipusers/index";
 import * as usersAction from "../../actions/users/index";
-import * as socketAction from "../../actions/socket/index";
 import * as modalsAction from "../../actions/modals/index";
 //
 function MainMessenger(props) {
@@ -33,19 +32,28 @@ function MainMessenger(props) {
   };
 
   useEffect(() => {
-    dispatch(
-      actions.loadAllMessageOfUserByIdRequest(
-        isLogin.user.id,
-        match.params.slug
-      )
-    );
-    dispatch(relationshipUsersAction.loadListFriendRequest(isLogin.user.id));
-    dispatch(usersAction.getAllUsersRequest());
+    //
+    async function fetch() {
+      if (isLogin && isLogin.user) {
+        await dispatch(
+          actions.loadAllMessageOfUserByIdRequest(
+            isLogin.user.id,
+            match.params.slug
+          )
+        );
+        await dispatch(
+          relationshipUsersAction.loadListFriendRequest(isLogin.user.id)
+        );
+        await dispatch(usersAction.getAllUsersRequest());
+      }
+    }
+    fetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin, dispatch, match]);
 
   useEffect(() => {
+    //
     function fetch() {
-      dispatch(socketAction.loadIdUserSocket());
       socket.on(`receiveMessage.${isLogin.user.id}`, (data) => {
         switch (data.type) {
           case 0:
@@ -55,6 +63,7 @@ function MainMessenger(props) {
                 match.params.slug
               )
             );
+            break;
           case 1:
             dispatch(
               actions.loadAllMessageOfUserByIdRequest(
@@ -76,7 +85,8 @@ function MainMessenger(props) {
       };
     }
     fetch();
-  }, [socket]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket, dispatch, isLogin, match]);
 
   return (
     <div className="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">

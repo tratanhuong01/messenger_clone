@@ -1,6 +1,6 @@
 import api from "../api/api";
 
-const findUserChating = (item, idUser) => {
+export const findUserChating = (item, idUser) => {
   let newData = null;
   item.forEach((element) => {
     if (idUser === element.idUser) {
@@ -22,7 +22,7 @@ export const checkMemberChat = (item) => {
   return newUserChat;
 };
 
-const generalNameGroup = (item) => {
+export const generalNameGroup = (item) => {
   let data = checkMemberChat(item);
   let name = "";
   data.forEach((element) => {
@@ -31,7 +31,7 @@ const generalNameGroup = (item) => {
   return name;
 };
 
-const checkSingle = (item, idUser) => {
+export const checkSingle = (item, idUser) => {
   let newData = null;
   item.forEach((element) => {
     if (idUser === element.idUser) {

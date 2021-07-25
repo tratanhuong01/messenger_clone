@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import ContentEditable from "react-contenteditable";
 import { useDispatch, useSelector } from "react-redux";
 import * as messagesAction from "../../../../../actions/messages/index";
@@ -27,7 +27,7 @@ function InputChatControl(props) {
     text.current = "";
     group.current = messages.group;
     images.current = imagePreview;
-  }, [imagePreview, messages.idGroup, messages.typing]);
+  }, [imagePreview, messages.group, messages.typing]);
 
   const enter = (event) => {
     if (event.keyCode === 13) {

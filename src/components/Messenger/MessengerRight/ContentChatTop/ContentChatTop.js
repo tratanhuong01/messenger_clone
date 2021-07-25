@@ -71,6 +71,12 @@ function ContentChatTop(props) {
                   type: 2,
                 })
               );
+              window.open(
+                `../call/audioCall/${messages.group.id}`,
+                "name",
+                `toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=1200,height=720,
+                top=${y},left=${x}`
+              );
             }}
             className="py-2 px-1 mx-1 rounded-full 
               dark:text-white cursor-pointer"

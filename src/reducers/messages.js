@@ -56,6 +56,7 @@ const myReducer = (state = initialState, action) => {
     //
     case Types.SET_TYPING_MESSAGE:
       state.typing = action.typing;
+      return { ...state };
     //
     default:
       return state;

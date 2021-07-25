@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import MainCall from "../../containers/Call/MainCall";
 import ShowModal from "../../containers/ShowModal/ShowModal";
+import api from "../../api/api";
 
 function Call(props) {
   //
   const audio = new Audio("../../../sound/messenger.mp3");
 
-  const [stateCall, setStateCall] = useState(false);
+  const [stateCall] = useState(false);
 
   const [stateApi, setStateApi] = useState(false);
+
+  const [members, setMembers] = useState({
+    members: [],
+    group: null,
+  });
 
   const { match } = props;
 
@@ -18,21 +24,47 @@ function Call(props) {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setStateApi(true);
-      handelAudio();
-      setTimeout(() => {
-        setStateCall(true);
-        audio.pause();
-      }, 10000);
-    }, 3000);
+    async function fetch() {
+      try {
+        const resultMembers = await api(
+          `getMemberGroupChat/${match.match.params.id}`,
+          "GET",
+          null,
+          null
+        );
+        const resultGroup = await api(
+          `groupMessage/${match.match.params.id}`,
+          "GET",
+          null,
+          null
+        );
+        setMembers({
+          members: resultMembers.data,
+          group: resultGroup.data,
+        });
+        setStateApi(true);
+        handelAudio();
+        setTimeout(() => {
+          window.close();
+        }, 20000);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="w-full bg-black h-screen relative">
       {stateApi ? (
         <>
-          <MainCall audio={audio} stateCall={stateCall} match={match} />
+          <MainCall
+            audio={audio}
+            stateCall={stateCall}
+            match={match}
+            members={members}
+          />
           <ShowModal />
         </>
       ) : (

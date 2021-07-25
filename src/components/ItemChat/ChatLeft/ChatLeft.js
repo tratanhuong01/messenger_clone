@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import ChatGif from "../ChatGif/ChatGif";
 import ChatImage from "../ChatImage/ChatImage";
 import ChatReCall from "../ChatRecall/ChatReCall";
@@ -9,9 +10,22 @@ import NumberFeel from "../NumberFeel/NumberFeel";
 
 function ChatLeft(props) {
   //
+
+  const states = useSelector((state) => {
+    return {
+      messages: state.messages,
+    };
+  });
+
+  const { messages } = states;
+
   const ref = useRef(null);
 
   const { item, index, state, userStateMessage } = props;
+
+  const getUser = messages.data.find(
+    (data) => data.typeMessage === "-1" && data.idUser === item.idUser
+  );
 
   const data = () => {
     if (state === 0) {
@@ -47,8 +61,31 @@ function ChatLeft(props) {
     }
   };
 
+  const viewNotIsLogin = item.viewMessageList.filter((data) => data.view === 2);
+
+  const showUserView = viewNotIsLogin.map((data, index) => {
+    return (
+      <img
+        src={data.userViewMessage.avatar}
+        alt=""
+        className="w-4 h-4 object-cover rounded-full mx-0.5"
+        key={index}
+      />
+    );
+  });
+
   return (
     <div className="mess-user z-0 chat-lefts w-full py-2 flex relative">
+      {item.typeGroupMessage === "1" && (
+        <div
+          className="absolute text-xs text-gray-500 dark:text-gray-300 font-semibold 
+          -top-4 left-14"
+        >
+          {getUser.nickName === null
+            ? `${getUser.firstName} ${getUser.lastName}`
+            : getUser.nickName}
+        </div>
+      )}
       <div className="w-12 relative">
         <img
           className="absolute bottom-1 w-9 h-9 object-cover rounded-full"
@@ -71,12 +108,8 @@ function ChatLeft(props) {
           />
         )}
       </div>
-      <div className="flex flex items-end">
-        <img
-          src="../images/male/6.jpg"
-          alt=""
-          className="w-4 h-4 object-cover rounded-full mx-0.5"
-        />
+      <div className={`absolute flex z-0 bottom-2.5 right-0`}>
+        {showUserView}
       </div>
       <FeelMessage
         item={item}

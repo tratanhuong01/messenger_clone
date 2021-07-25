@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import CloseModal from "../../../UI/CloseModal/CloseModal";
 import * as modalsAction from "../../../../actions/modals/index";
 import { useDispatch } from "react-redux";
@@ -15,12 +15,14 @@ function ModalCall(props) {
   };
 
   useEffect(() => {
+    //
     handelAudio();
-    const setTimeOut = setTimeout(() => {
+    setTimeout(() => {
       dispatch(modalsAction.closeModal());
       audio.pause();
       audio.remove();
     }, 20000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const y = window.top.outerHeight / 2 + window.top.screenY - 720 / 2;

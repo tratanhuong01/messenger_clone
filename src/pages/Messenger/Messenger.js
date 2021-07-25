@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import * as Config from "../../constants/Config";
 import MainMessenger from "../../containers/Messenger/MainMessenger";
 import ShowModal from "../../containers/ShowModal/ShowModal";
+import * as socketAction from "../../actions/socket/index";
 
 function Messenger(props) {
   //
@@ -18,6 +19,12 @@ function Messenger(props) {
   const history = useHistory();
 
   const { match } = props;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(socketAction.loadIdUserSocket());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLogin.isLogin) {

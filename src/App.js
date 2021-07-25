@@ -2,6 +2,8 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import routes from "./routes";
 
 function showAllLinks(routes) {
+  //
+
   let result = null;
   if (routes.length > 0) {
     result = routes.map((route, index) => {
