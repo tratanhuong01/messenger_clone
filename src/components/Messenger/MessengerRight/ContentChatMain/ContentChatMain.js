@@ -35,7 +35,7 @@ function ContentChatMain(props) {
     document.getElementById("content__chat").scrollTop =
       document.getElementById("content__chat").scrollHeight;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messages]);
+  }, [messages.data.length]);
 
   useEffect(() => {
     document

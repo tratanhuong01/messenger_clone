@@ -90,10 +90,10 @@ function MainMessenger(props) {
 
   return (
     <div className="w-full dark:bg-dark-main bg-white h-screen relative overflow-hidden">
+      <Header id="header" route="messenger" />
       {localStorage && localStorage.getItem("user") ? (
         messages.list !== null ? (
           <>
-            <Header id="header" route="messenger" />
             <div
               className="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full 
               lg:mx-auto xl:w-full"

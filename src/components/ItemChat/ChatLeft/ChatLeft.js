@@ -73,7 +73,15 @@ function ChatLeft(props) {
       />
     );
   });
-
+  const nickName = () => {
+    if (typeof getUser === "undefined") {
+      return `${item.firstName} ${item.lastName}`;
+    } else {
+      if (getUser.nickName === null)
+        return `${getUser.firstName} ${getUser.lastName}`;
+      else return getUser.nickName;
+    }
+  };
   return (
     <div className="mess-user z-0 chat-lefts w-full py-2 flex relative">
       {item.typeGroupMessage === "1" && (
@@ -81,9 +89,7 @@ function ChatLeft(props) {
           className="absolute text-xs text-gray-500 dark:text-gray-300 font-semibold 
           -top-4 left-14"
         >
-          {getUser.nickName === null
-            ? `${getUser.firstName} ${getUser.lastName}`
-            : getUser.nickName}
+          {nickName()}
         </div>
       )}
       <div className="w-12 relative">

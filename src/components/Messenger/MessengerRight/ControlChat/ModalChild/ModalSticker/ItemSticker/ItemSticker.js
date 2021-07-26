@@ -22,8 +22,8 @@ function ItemSticker(props) {
 
   const [animation, setAnimation] = useState("");
 
-  const handleSticker = async () => {
-    await dispatch(
+  const handleSticker = () => {
+    dispatch(
       messagesAction.addMessageRequest({
         content: "",
         group: messages.group,

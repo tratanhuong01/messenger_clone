@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as groupMessagesAction from "../../../../../actions/groupmessage/index";
 import api from "../../../../../api/api";
+import * as modalsAction from "../../../../../actions/modals/index";
 
 function ChangeImageGroup(props) {
   //
@@ -19,11 +20,14 @@ function ChangeImageGroup(props) {
 
   const onChangeFile = async (event) => {
     if (event.target.files.length !== 0) {
+      dispatch(modalsAction.openModalLoadingUploadImageGroup());
+
       const formData = new FormData();
       formData.append("multipartFile", event.target.files[0]);
       formData.append("id", messages.group.id);
       formData.append("publicId", "Messenger/ImageGroup/");
       const result = await api(`updateImageSingle`, "POST", formData, null);
+
       dispatch(
         groupMessagesAction.updateImageGroupMessageRequest({
           group: messages.group,

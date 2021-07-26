@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import FriendLeftList from "../../../../components/Friend/FriendLeft/FriendLeftList/FriendLeftList";
 import ItemFriendRequest from "../../../../components/Friend/FriendRight/ListFriendRequest/ItemFriendRequest/ItemFriendRequest";
+import Pagination from "../../../../components/Pagination/Pagination";
 
 function ListFriendRequest(props) {
   //
@@ -36,6 +37,9 @@ function ListFriendRequest(props) {
         >
           {showItemFriendRequest}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Pagination />
       </div>
     </>
   );

@@ -271,6 +271,7 @@ export const deleteUserOutGroupRequest = (data) => {
       const { view, state } = process.generalStateAndViewMessage(
         members.data,
         message.data,
+        data.user,
         data.group
       );
       await Promise.all(view);
@@ -279,6 +280,13 @@ export const deleteUserOutGroupRequest = (data) => {
       dispatch(modalsAction.closeModal());
       dispatch(
         actions.loadAllMessageOfUserByIdRequest(data.user.id, data.group.id)
+      );
+      dispatch(
+        sendEventMessage({
+          socket: data.socket,
+          members: data.members,
+          type: 1,
+        })
       );
     } catch (error) {
       console.log(error);
@@ -328,6 +336,7 @@ export const deleteMessage = (data) => {
 export const seenAllMessageByIdMessage = (data) => {
   return async (dispatch) => {
     try {
+      console.log(data);
       const result = await api(
         `checkViewMessage/${data.group.id}/${data.user.id}`,
         "PUT",
@@ -360,6 +369,7 @@ export const seenAllMessageByIdMessage = (data) => {
 
 export const sendEventMessage = (data) => {
   return (dispatch) => {
+    console.log(data.members);
     data.members.forEach((element) => {
       data.socket.emit("chatMessage", {
         id: element.id,

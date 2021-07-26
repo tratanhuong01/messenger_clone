@@ -43,6 +43,7 @@ function InputChatControl(props) {
           fileImages: images.current,
         })
       );
+      text.current = "";
       dispatch(messagesAction.setTypingMessage(!messages.typing));
       setImagePreview([]);
     }

@@ -18,7 +18,7 @@ function ImageOrVideoSendMessages(props) {
     messages.data.forEach((message) => {
       if (message.content !== null) {
         let content = JSON.parse(message.content);
-        if (content.type === 1)
+        if (content.type === 1 && message.typeMessage === "2")
           for (let index = 0; index < content.data.length; index++) {
             const element = content.data[index];
             listMedias.push(element);
@@ -33,7 +33,7 @@ function ImageOrVideoSendMessages(props) {
       <img
         key={index}
         src={item.src}
-        class="object-cover rounded-lg m-0.5"
+        className="object-cover rounded-lg m-0.5"
         alt=""
         style={{ width: 110, height: 110 }}
       />

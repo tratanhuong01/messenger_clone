@@ -99,3 +99,10 @@ export const openModalCall = () => {
     type: Types.OPEN_MODAL_CALL,
   };
 };
+//
+export const openModalLoadingUploadImageGroup = () => {
+  return {
+    type: Types.OPEN_MODAL_LOADING_UPLOAD_IMAGE_GROUP,
+  };
+};
+//

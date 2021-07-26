@@ -14,10 +14,11 @@ function ModalViewMemberChat(props) {
     return {
       isLogin: state.isLogin,
       messages: state.messages,
+      socket: state.socket,
     };
   });
 
-  const { isLogin, messages } = states;
+  const { isLogin, messages, socket } = states;
 
   const { data, setShow, leader } = props;
 
@@ -87,6 +88,8 @@ function ModalViewMemberChat(props) {
                     userDelete: datas,
                     user: isLogin.user,
                     group: messages.group,
+                    socket: socket,
+                    members: messages.members,
                     type: 0,
                   })
                 );

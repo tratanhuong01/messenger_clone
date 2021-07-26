@@ -547,6 +547,7 @@ export const updateImageGroupMessageRequest = (data) => {
           type: 1,
         })
       );
+      dispatch(modalsAction.closeModal());
     } catch (error) {
       console.log(error);
     }
