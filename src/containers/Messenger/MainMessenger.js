@@ -8,6 +8,7 @@ import EmptyMessage from "../../components/Messenger/MessengerRight/EmptyMessage
 import * as relationshipUsersAction from "../../actions/relationshipusers/index";
 import * as usersAction from "../../actions/users/index";
 import * as modalsAction from "../../actions/modals/index";
+// import LoadingScreen from "../../components/Loading/LoadingScreen/LoadingScreen";
 //
 function MainMessenger(props) {
   //
@@ -84,7 +85,7 @@ function MainMessenger(props) {
         socket.disconnect();
       };
     }
-    fetch();
+    if (typeof isLogin.user !== "undefined" || isLogin.user !== null) fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket, dispatch, isLogin, match]);
 
