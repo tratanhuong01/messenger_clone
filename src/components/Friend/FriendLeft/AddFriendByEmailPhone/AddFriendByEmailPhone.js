@@ -17,7 +17,7 @@ function AddFriendByEmailPhone(props) {
           className="bx bx-user-plus text-2xl text-blue-500 
           cursor-pointer mr-2"
         ></span>
-        <span className="hidden md:block">
+        <span className="hidden md:block text-sm">
           Thêm bạn bằng email hoặc số điện thoại
         </span>
       </div>

@@ -40,7 +40,7 @@ function ContentChatMain(props) {
   useEffect(() => {
     document
       .getElementById("content__chat")
-      .addEventListener("scroll", (event) => {});
+      .addEventListener("scroll", (event) => { });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -131,7 +131,7 @@ function ContentChatMain(props) {
   return (
     <div
       className="w-full p-1 wrapper-content-right overflow-y-auto overflow-x-hidden relative"
-      style={{ height: "565px", maxHeight: "565px" }}
+      style={{ height: "calc(100% - 132px)", maxHeight: "calc(100% - 132px)" }}
       id="content__chat"
     >
       {showAllMessages}

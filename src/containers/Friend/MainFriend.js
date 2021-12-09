@@ -12,7 +12,7 @@ function MainFriend(props) {
         <div
           className="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full 
         lg:mx-auto xl:w-full"
-          style={{ maxHeight: "798px", height: "798px" }}
+          style={{ maxHeight: "calc(100%)", height: "calc(100%)" }}
         >
           <FriendLeft />
           <FriendRight />

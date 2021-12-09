@@ -15,7 +15,7 @@ function MainContentLeft(props) {
   });
 
   return (
-    <div className={`w-full ${isShow && "hidden"}`}>
+    <div className={`w-full h-full ${isShow && "hidden"}`}>
       <MessengerLeftTop handle={handle} />
       <MessengerLeftSearch
         setShowAllMessage={setShowAllMessage}
@@ -30,7 +30,7 @@ function MainContentLeft(props) {
         className={`w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap 
         justify-center ${showAllMessage ? "" : "hidden"}`}
         style={{
-          maxHeight: `575px`,
+          maxHeight: `calc(100% - 80px)`,
         }}
       >
         {messages.list.length === 0 ? (
